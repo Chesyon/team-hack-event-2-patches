@@ -6,8 +6,71 @@
 .nds
 .include "symbols.asm"
 
+// Man idk if this is how to do this or not, Chesyon fixit! - Lappy
+.open "arm9.bin", arm9_start
+    ; Replace the function ChangeGiratinaFormIfSkyDungeon with a call to the custom function.
+    .org CHANGE_GIRATINA_FORM_HOOK
+    .area 0x8
+        bl CustomFormsChange
+        pop r4-r8,pc;
+    .endarea
+
+    ; Replace the function RevertGiratinaAndShaymin with a call to the custom function.
+
+    ; Check if the item was thrown with the pierce effect active and would normally fly off screen.
+    .org REVERT_GIRATINA_AND_SHAYMIN_FORM_HOOK
+    .area 0x8
+        bl CustomFormsRevertTeamMember
+        pop r3-r5,pc;
+    .endarea
+
 .open "overlay29.bin", overlay29_start
-    .org GetMovePower
-        // Remove the comment below to enable this example
-        // b CustomGetMovePower
+    .org CALC_DAMAGE_FORM_OFFENSE_HOOK
+    .area 0x3C
+        mov r0, r6;
+        ldr r1, [sp, 0x18];
+        mov r2, #0x0; // ATK
+        bl ApplyFormStatBoosts;
+        add r4, r0;
+        nop;
+        nop;
+        nop;
+        nop;
+        nop;
+        nop;
+        nop;
+        nop;
+        nop;
+        nop;
+    .endarea
+
+    .org CALC_DAMAGE_FORM_DEFENSE_HOOK
+    .area 0x3C
+        mov r0, r7;
+        ldr r1, [sp, 0x18];
+        mov r2, #0x1; // DEF
+        bl ApplyFormStatBoosts;
+        add r4, r0;
+        nop;
+        nop;
+        nop;
+        nop;
+        nop;
+        nop;
+        nop;
+        nop;
+        nop;
+        nop;
+    .endarea
+
+    .org HOOK_DUNGEON_FORM_CHANGE_1
+    .area 0x4
+        bl ValidateSpeciesFormsWrapper1
+    .endarea
+
+    .org HOOK_DUNGEON_FORM_CHANGE_2
+    .area 0x4
+        bl ValidateSpeciesFormsWrapper2
+    .endarea
+
 .close
