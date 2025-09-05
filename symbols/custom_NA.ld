@@ -22,3 +22,16 @@ ShowKeyboardTypeCase3 = 0x02036914;
 ShowKeyboardTypeDefaultCase = 0x02036A40;
 ShowKeyboardReturn = 0x02036CAC;
 PreprocessStringFromIdCallsite = 0x02039400;
+CHANGE_GIRATINA_FORM_HOOK = 0x20585DC;
+REVERT_GIRATINA_AND_SHAYMIN_FORM_HOOK = 0x2058678;
+CALC_DAMAGE_FORM_OFFENSE_HOOK = 0x230C040;
+CALC_DAMAGE_FORM_DEFENSE_HOOK = 0x230C134;
+HOOK_DUNGEON_FORM_CHANGE_1 = 0x23110AC;
+HOOK_DUNGEON_FORM_CHANGE_2 = 0x22FD764;
+
+
+/* ngl I don't remember which file these are from. Or if I use all of them. - Lappy */
+UnknownFunction1 = 0x234B294;
+UnknownFunction2 = 0x2304830;
+TransformationVFX = 0x22E65F4;
+UnknownFunction3 = 0x22F9EA0;
