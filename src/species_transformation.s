@@ -16,7 +16,7 @@ GroundCustomFormsChange:
 		b IfScriptVariable; // 0x6
         // Unused for now.
 		b ReturnFormsChange; // 0x7
-		b ReturnFormsChange; // 0x8
+		b IfDeerlingScenMain; // 0x8
 		b IfWishiwashiThreshold; // 0x9
 		// I think this is redundant? gonna leave it alone just in case...
 		b ReturnFormsChange; // 0xA
@@ -139,6 +139,17 @@ GroundCustomFormsChange:
         mov r0, r5;
         bl IsScriptVariableValid
         cmp r0, #0x1;
+        bne IncrementLoopCounter;
+		ldrh r0, [r5,#0x2];
+		ldrh r1, [r5,#0x4];
+        mov r2, #0xF;
+        bl LoopThruTeam
+        b IncrementLoopCounter;
+		
+	IfDeerlingScenMain:
+		mov r0, r5;
+		bl IsScenarioMainValid
+		cmp r0, #0x1;
         bne IncrementLoopCounter;
 		ldrh r0, [r5,#0x2];
 		ldrh r1, [r5,#0x4];
@@ -303,7 +314,7 @@ ValidateSpeciesForms:
         b ValidateScriptVariable; // 0x6
         // Unused for now.
         b ValidateReturn; // 0x7
-        b ValidateReturn; // 0x8
+        b ValidateDeerlingScenMain; // 0x8
         b ValidateWishiwashiHP; // 0x9
         // May be unnecessary
         b ValidateReturn; // 0xA
@@ -370,6 +381,12 @@ ValidateSpeciesForms:
         mov r0, r9;
         bl IsScriptVariableValid
         b ValidationCondition
+		
+	ValidateDeerlingScenMain:
+		mov r0, r9;
+		bl IsScenarioMainValid
+		b ValidationCondition
+	
 	ValidateWishiwashiHP:
 		ldrh r0, [r9, #0x6]
 		ldrb r1, [r6, #0xA]
@@ -534,6 +551,22 @@ IsScriptVariableValid:
         movne r0, #0x0;
         pop {r1-r12,pc}
 
+IsScenarioMainValid:
+        push {r1-r12,lr}
+        mov r5, r0;
+        mov r0, #0x0;
+        mov r1, #0x3;
+        mov r2, #0x1;
+        bl LoadScriptVariableValueAtIndex
+		and r0, #0x3;
+		ldrh r3, [r5, #0x6];
+		cmp r0, r3;
+		moveq r0, #0x1;
+		movne r0, #0x0;
+        pop {r1-r12,pc}
+
+
+
 // r0: pointer to entity struct
 // r1: Species ID to assign
 // r2: Use Transformation VFX?
@@ -614,7 +647,7 @@ TryTransformActor:
 		    b ActorScriptVariable; // 0x6
             // Unused for now.
 		    b ActorIncrementLoopCounter; // 0x7
-		    b ActorIncrementLoopCounter; // 0x8
+		    b ActorDeerlingScenMain; // 0x8
 		    b ActorWishiwashiThreshold; // 0x9
 		    // I think this is redundant? gonna leave it alone just in case...
 		    b ActorIncrementLoopCounter; // 0xA
@@ -685,7 +718,13 @@ TryTransformActor:
             cmp r0, #0x1;
             bne ActorIncrementLoopCounter
             b ActuallyReplaceActor;
-		
+		ActorDeerlingScenMain:
+			mov r0, r5;
+			bl IsScenarioMainValid
+            cmp r0, #0x1;
+            bne ActorIncrementLoopCounter
+            b ActuallyReplaceActor;
+			
 		ActorWishiwashiThreshold:
 			ldrh r1, [r5, #0xE]; // Current HP
 			ldrh r2, [r5, #0x10]; // Max HP
