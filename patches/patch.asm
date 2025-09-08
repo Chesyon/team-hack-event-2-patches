@@ -23,6 +23,48 @@
         bl CustomFormsRevertTeamMember
         pop r3-r5,pc;
     .endarea
+	
+	.org TRANSFORM_UNIT_HOOK
+	.area 0x4
+		bl TransformUnitAdventureActor;
+	.endarea
+
+	.org TRANSFORM_ADVENTURE_HOOK
+	.area 0x4
+		bl TransformUnitAdventureActor;
+	.endarea	
+	
+	.org TRANSFORM_MC1_HOOK
+	.area 0x4
+		bl TransformMC1Actor;
+	.endarea
+
+	.org TRANSFORM_MC2_HOOK
+	.area 0x4
+		bl TransformMC2Actor;
+	.endarea
+
+	.org TRANSFORM_MC3_HOOK
+	.area 0x4
+		bl TransformMC3Actor;
+	.endarea
+
+	.org TRANSFORM_APPOINT_HOOK
+	.area 0x4
+		bl TransformAppointActor;
+	.endarea
+
+	.org TRANSFORM_HERO_HOOK
+	.area 0x4
+		bl TransformHeroActor;
+	.endarea
+
+	.org TRANSFORM_PARTNER_HOOK
+	.area 0x4
+		bl TransformPartnerActor;
+	.endarea
+
+
 
 .open "overlay29.bin", overlay29_start
     .org CALC_DAMAGE_FORM_OFFENSE_HOOK
