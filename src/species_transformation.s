@@ -885,8 +885,8 @@ LegendaryDataTable:
         .byte 0xFE
 	// Deerling-Summer
 		.hword 0x0008
-		.hword 0x021B  // Deerling-Spring
-		.hword 0x021C  // Deerling-Summer
+		.hword 0x0474  // Deerling-Spring
+		.hword 0x0475  // Deerling-Summer
 		.hword 0x0401; // Value % 4 = 1
 		.byte 0x00;
 		.byte 0x00;
@@ -898,8 +898,8 @@ LegendaryDataTable:
 		.byte 0x00;
 	// Deerling-Autumn
 		.hword 0x0008
-		.hword 0x021B  // Deerling-Spring
-		.hword 0x021D; // Deerling-Autumn
+		.hword 0x0474  // Deerling-Spring
+		.hword 0x0476; // Deerling-Autumn
 		.hword 0x0402; // Value % 4 = 2
 		.byte 0x00;
 		.byte 0x00;
@@ -911,8 +911,47 @@ LegendaryDataTable:
 		.byte 0x00;
 	// Deerling-Winter
 		.hword 0x0008
-		.hword 0x021B  // Deerling-Spring
-		.hword 0x021E; // Deerling-Winter
+		.hword 0x0474  // Deerling-Spring
+		.hword 0x0477; // Deerling-Winter
+		.hword 0x0403; // Value % 4 = 3
+		.byte 0x00;
+		.byte 0x00;
+		.byte 0x00;
+		.byte 0x00;
+		.byte 0x00;
+		.byte 0x00;
+		.byte 0x00;
+		.byte 0x00;
+	// Deerling-Summer
+		.hword 0x0008
+		.hword 0x021C  // Deerling-Spring
+		.hword 0x021D  // Deerling-Summer
+		.hword 0x0401; // Value % 4 = 1
+		.byte 0x00;
+		.byte 0x00;
+		.byte 0x00;
+		.byte 0x00;
+		.byte 0x00;
+		.byte 0x00;
+		.byte 0x00;
+		.byte 0x00;
+	// Deerling-Autumn
+		.hword 0x0008
+		.hword 0x021C  // Deerling-Spring
+		.hword 0x021E; // Deerling-Autumn
+		.hword 0x0402; // Value % 4 = 2
+		.byte 0x00;
+		.byte 0x00;
+		.byte 0x00;
+		.byte 0x00;
+		.byte 0x00;
+		.byte 0x00;
+		.byte 0x00;
+		.byte 0x00;
+	// Deerling-Winter
+		.hword 0x0008
+		.hword 0x021C  // Deerling-Spring
+		.hword 0x021F; // Deerling-Winter
 		.hword 0x0403; // Value % 4 = 3
 		.byte 0x00;
 		.byte 0x00;
@@ -924,8 +963,8 @@ LegendaryDataTable:
 		.byte 0x00;
 	// Wishiwashi
 		.hword 0x0009
-		.hword 0x0219 // Wishiwashi-Solo
-		.hword 0x021A // Wishiwashi-School
+		.hword 0x021A // Wishiwashi-Solo
+		.hword 0x021B // Wishiwashi-School
 		.hword 0x0014
 		.byte 0x00
 		.byte 0x00
