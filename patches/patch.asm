@@ -66,6 +66,7 @@
 
 
 
+
 .open "overlay29.bin", overlay29_start
     .org CALC_DAMAGE_FORM_OFFENSE_HOOK
     .area 0x3C
@@ -115,4 +116,23 @@
         bl ValidateSpeciesFormsWrapper2
     .endarea
 
+	.org UNK_BURT_HOOK_1
+	.area 0x4
+		bl HandleFaint
+	.endarea
+
+	.org UNK_BURT_HOOK_2
+	.area 0x4
+		bl CheckIgnition
+	.endarea
+
+	.org UNK_BURT_HOOK_3
+	.area 0x4
+		bl HandleFaint
+	.endarea
+
+	.org UNK_BURT_HOOK_4
+	.area 0x4
+		b RegeneratorAbility
+	.endarea
 .close

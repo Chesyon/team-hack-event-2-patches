@@ -305,7 +305,7 @@ ValidateSpeciesForms:
         cmp r0, #0xA;
 		addls pc, pc, r0, lsl #0x2;
         b ValidateReturn;
-		b ValidateFalse; // 0x0: Should always be false
+		b ValidateIgnore; // 0x0: Should always be ignored
         b ValidateTrue; // 0x1: Should always be true
 		b ValidateBagItem; // 0x2: True if specified item in bag
 		b ValidateHeldItem; // 0x3: True if specified item is held
@@ -318,6 +318,9 @@ ValidateSpeciesForms:
         b ValidateWishiwashiHP; // 0x9
         // May be unnecessary
         b ValidateReturn; // 0xA
+	ValidateIgnore:
+		mov r0, r11;
+		b ValidationCondition;
     ValidateFalse:
         mov r0, #0x0;
         b ValidationCondition;
@@ -882,8 +885,8 @@ LegendaryDataTable:
         .byte 0xFE
 	// Deerling-Summer
 		.hword 0x0008
-		.hword 0x0213  // Replace w/h Deerling-Spring
-		.hword 0x0214  // Replace w/h Deerling-Summer
+		.hword 0x021B  // Deerling-Spring
+		.hword 0x021C  // Deerling-Summer
 		.hword 0x0401; // Value % 4 = 1
 		.byte 0x00;
 		.byte 0x00;
@@ -895,8 +898,8 @@ LegendaryDataTable:
 		.byte 0x00;
 	// Deerling-Autumn
 		.hword 0x0008
-		.hword 0x0213  // Replace w/h Deerling-Spring
-		.hword 0x0215; // Replace w/h Deerling-Autumn
+		.hword 0x021B  // Deerling-Spring
+		.hword 0x021D; // Deerling-Autumn
 		.hword 0x0402; // Value % 4 = 2
 		.byte 0x00;
 		.byte 0x00;
@@ -908,8 +911,8 @@ LegendaryDataTable:
 		.byte 0x00;
 	// Deerling-Winter
 		.hword 0x0008
-		.hword 0x0213  // Replace w/h Deerling-Spring
-		.hword 0x0216; // Replace w/h Deerling-Winter
+		.hword 0x021B  // Deerling-Spring
+		.hword 0x021E; // Deerling-Winter
 		.hword 0x0403; // Value % 4 = 3
 		.byte 0x00;
 		.byte 0x00;
@@ -921,10 +924,8 @@ LegendaryDataTable:
 		.byte 0x00;
 	// Wishiwashi
 		.hword 0x0009
-		// TODO: Actually make this the ID of Wishiwashi-Solo
-		.hword 0x0218
-		// TODO: Actually make this the ID of Wishiwashi-School
-		.hword 0x0219
+		.hword 0x0219 // Wishiwashi-Solo
+		.hword 0x021A // Wishiwashi-School
 		.hword 0x0014
 		.byte 0x00
 		.byte 0x00
