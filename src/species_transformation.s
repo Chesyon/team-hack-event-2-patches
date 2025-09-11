@@ -709,20 +709,20 @@ TryTransformActor:
             b ActorLevelTestResume
 
         ActorInHourOrMonthRange:
-            mov r0, r5;
+            mov r0, r9;
             bl IsInSpecifiedDateRange;
             cmp r0, #0x1;
             bne ActorIncrementLoopCounter;
             b ActuallyReplaceActor;
 
         ActorScriptVariable:
-            mov r0, r5;
+            mov r0, r9;
             bl IsScriptVariableValid
             cmp r0, #0x1;
             bne ActorIncrementLoopCounter
             b ActuallyReplaceActor;
 		ActorDeerlingScenMain:
-			mov r0, r5;
+			mov r0, r9;
 			bl IsScenarioMainValid
             cmp r0, #0x1;
             bne ActorIncrementLoopCounter
