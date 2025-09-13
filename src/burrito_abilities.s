@@ -166,9 +166,11 @@
 
 	beq   UNK_BURT_THING_1 ; // if the move should have triggered water absorb, continue with the water absorb stuff
 	
-	mov   r0, r7
-	mov   r1, #0x7F
-	bl    AbilityIsActive
+	mov   r0, r8
+	mov   r1, r7
+	mov   r2, #0x7F
+	mov   r3, #1
+	bl    DefenderAbilityIsActive
 	cmp   r0, #1
 	bne   UNK_BURT_THING_2
 
