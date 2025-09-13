@@ -164,7 +164,11 @@
 
  	SapSipper:
 
-	beq   UNK_BURT_THING_1 ; // if the move should have triggered water absorb, continue with the water absorb stuff
+  	
+	bne   UNK_BURT_THING_1 ; // this is where water absorb heals HP, hooking in the spot i did accounts for both branches to 92f8 with one hook
+	ldrb  r0, [r6, #0xc]
+	cmp   r0, #0x5
+	beq   UNK_BURT_THING_1 ; // basic water absorb stuff
 	
 	mov   r0, r8
 	mov   r1, r7
