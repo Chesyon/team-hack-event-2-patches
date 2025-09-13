@@ -118,17 +118,17 @@
 
 	.org UNK_BURT_HOOK_1
 	.area 0x4
-		bl HandleFaint
+		b CheckIgnition
 	.endarea
 
 	.org UNK_BURT_HOOK_2
 	.area 0x4
-		bl CheckIgnition
+		b CheckIgnition ; apparently SOMEONE made these 3 into bls and also made the other two into HandleFaint. not naming any names here, but it confused me a good bit
 	.endarea
 
 	.org UNK_BURT_HOOK_3
 	.area 0x4
-		bl HandleFaint
+		b CheckIgnition
 	.endarea
 
 	.org UNK_BURT_HOOK_4
