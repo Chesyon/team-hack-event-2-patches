@@ -154,7 +154,7 @@
 
 	add    r5, r5, #0x1
 	cmp    r5, #0x4 // the first four entries to the table are all allies, so checking the is_allied_monster bit is pointless
-	beq    CheckTeamLoop
+	bne    CheckTeamLoop
 
 	return:
 
