@@ -11,7 +11,7 @@
     ; Replace the function ChangeGiratinaFormIfSkyDungeon with a call to the custom function.
     .org CHANGE_GIRATINA_FORM_HOOK
     .area 0x8
-        bl CustomFormsChange
+        bl GroundCustomFormsChange
         pop r4-r8,pc;
     .endarea
 
@@ -20,7 +20,7 @@
     ; Check if the item was thrown with the pierce effect active and would normally fly off screen.
     .org REVERT_GIRATINA_AND_SHAYMIN_FORM_HOOK
     .area 0x8
-        bl CustomFormsRevertTeamMember
+        bl GroundRevertTeamMember
         pop r3-r5,pc;
     .endarea
 	
@@ -64,7 +64,7 @@
 		bl TransformPartnerActor;
 	.endarea
 
-
+.close
 
 
 .open "overlay29.bin", overlay29_start

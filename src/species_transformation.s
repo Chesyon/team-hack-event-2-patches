@@ -298,6 +298,7 @@ ValidateSpeciesForms:
         cmp r0, r4;
         moveq r11, #0x1; // Final Species
         beq SpeciesFound;
+	ResumeSpeciesLoop:
         add r9, r9, #0x10;
         b FindMatchingSpeciesLoop
     SpeciesFound:
@@ -393,7 +394,9 @@ ValidateSpeciesForms:
 	ValidateWishiwashiHP:
 		ldrh r0, [r9, #0x6]
 		ldrb r1, [r6, #0xA]
-		cmp r0, r1;
+		cmp r1, r0;
+		movlt r0, #0x0;
+		blt ValidationCondition;
 		cmp r11, #0x1; // Is this School or Solo?
 		moveq r7, #0x2; // School: Check for >= Quarter
 		movne r7, #0x1; // Solo: Check for >= Half
@@ -401,13 +404,13 @@ ValidateSpeciesForms:
         ldrh r2, [r6, #0x12]; // Max HP
         lsr r2, r7; // Max HP >> num_to_shift_by
 		cmp r1, r2; // Current >= Max>>X
-		movne r0, #0x0;
-		moveq r0, #0x1;
+		movlt r0, #0x0;
+		movge r0, #0x1;
 		b ValidationCondition;
 		
     ValidationCondition:
         cmp r0, r11; // Should be true for final species, false otherwise. If NOT, then the species must change!
-        beq ValidateReturn;
+        beq ResumeSpeciesLoop;
         cmp r11, #0x1;
         ldreqh r1, [r9,#0x2];
         ldrneh r1, [r9,#0x4];
@@ -418,7 +421,8 @@ ValidateSpeciesForms:
         bne ValidateReturnSkipr8;
         mov r0, r5;
         bl TransformationVFX
-        b ValidateReturnSkipr8;
+		push {r8};
+        b ResumeSpeciesLoop;
     ValidateReturn:
         pop {r8};
     ValidateReturnSkipr8:
@@ -559,10 +563,10 @@ IsScenarioMainValid:
         mov r5, r0;
         mov r0, #0x0;
         mov r1, #0x3;
-        mov r2, #0x1;
+        mov r2, #0x0;
         bl LoadScriptVariableValueAtIndex
 		and r0, #0x3;
-		ldrh r3, [r5, #0x6];
+		ldrb r3, [r5, #0x6];
 		cmp r0, r3;
 		moveq r0, #0x1;
 		movne r0, #0x0;
@@ -736,7 +740,7 @@ TryTransformActor:
 			blt ActorIncrementLoopCounter; // If NOT...
 			ldrb r1, [r0, #0x2]
 			ldrb r0, [r9, #0x6]
-			cmp r1, r0;
+			cmp r0, r1;
 			blt ActorIncrementLoopCounter
 			b ActuallyReplaceActor;
 			
@@ -887,7 +891,7 @@ LegendaryDataTable:
 		.hword 0x0008
 		.hword 0x0474  // Deerling-Spring
 		.hword 0x0475  // Deerling-Summer
-		.hword 0x0401; // Value % 4 = 1
+		.hword 0x0001; // Value % 4 = 1
 		.byte 0x00;
 		.byte 0x00;
 		.byte 0x00;
@@ -900,7 +904,7 @@ LegendaryDataTable:
 		.hword 0x0008
 		.hword 0x0474  // Deerling-Spring
 		.hword 0x0476; // Deerling-Autumn
-		.hword 0x0402; // Value % 4 = 2
+		.hword 0x0002; // Value % 4 = 2
 		.byte 0x00;
 		.byte 0x00;
 		.byte 0x00;
@@ -913,7 +917,7 @@ LegendaryDataTable:
 		.hword 0x0008
 		.hword 0x0474  // Deerling-Spring
 		.hword 0x0477; // Deerling-Winter
-		.hword 0x0403; // Value % 4 = 3
+		.hword 0x0003; // Value % 4 = 3
 		.byte 0x00;
 		.byte 0x00;
 		.byte 0x00;
@@ -926,7 +930,7 @@ LegendaryDataTable:
 		.hword 0x0008
 		.hword 0x021C  // Deerling-Spring
 		.hword 0x021D  // Deerling-Summer
-		.hword 0x0401; // Value % 4 = 1
+		.hword 0x0001; // Value % 4 = 1
 		.byte 0x00;
 		.byte 0x00;
 		.byte 0x00;
@@ -939,7 +943,7 @@ LegendaryDataTable:
 		.hword 0x0008
 		.hword 0x021C  // Deerling-Spring
 		.hword 0x021E; // Deerling-Autumn
-		.hword 0x0402; // Value % 4 = 2
+		.hword 0x0002; // Value % 4 = 2
 		.byte 0x00;
 		.byte 0x00;
 		.byte 0x00;
@@ -952,7 +956,7 @@ LegendaryDataTable:
 		.hword 0x0008
 		.hword 0x021C  // Deerling-Spring
 		.hword 0x021F; // Deerling-Winter
-		.hword 0x0403; // Value % 4 = 3
+		.hword 0x0003; // Value % 4 = 3
 		.byte 0x00;
 		.byte 0x00;
 		.byte 0x00;
