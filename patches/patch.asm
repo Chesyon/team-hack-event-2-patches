@@ -135,4 +135,9 @@
 	.area 0x4
 		b RegeneratorAbility
 	.endarea
+
+	.org 0x023092CC
+	.area 0x4
+		b SapSipper
+	.endarea
 .close
