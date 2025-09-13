@@ -161,3 +161,28 @@
 	pop    {r0-r12}
 	ldrb   r0, [r0, #0x748]
 	b      UNK_BURT_UNHOOK_4
+
+ 	SapSipper:
+
+	beq   0x23092d0 ; if the move should have triggered water absorb, continue with the water absorb stuff
+	
+	mov   r0, r7
+	mov   r1, #0x7F
+	bl    AbilityIsActive
+	cmp   r0, #1
+	bne   0x23092f8
+
+	ldrb  r0, [r6, #0xc] ; the moves type? i think?
+	cmp   r0, #4
+	bne   0x23092f8
+
+	mov   r0, r8
+	mov   r1, r7
+	mov   r2, #0
+	mov   r3, #1
+	bl    BoostOffensiveStat
+
+	mov   r0, #1
+	strb  r0, [r6, #0x10] ; probably some kind of immunity flag? god i hope so
+	mov   r0, #0
+	b     ExitPoint
