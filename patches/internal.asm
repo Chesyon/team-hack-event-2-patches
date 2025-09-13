@@ -40,8 +40,9 @@
 .close 
 
 .open "overlay29.bin", overlay29_start
-  .org ApplyItemEffectHookAddr
-    b cotInternalTrampolineApplyItemEffect
-  .org ApplyMoveEffectHookAddr
-    b cotInternalTrampolineApplyMoveEffect
+  //.org ApplyItemEffectHookAddr
+    //b cotInternalTrampolineApplyItemEffect
+  // custom hook from marius for compatibility with ExtractMoveEffects
+  .org ApplyMoveEffectHookAddrExtracted
+    b cotInternalTrampolineApplyMoveEffectExtracted
 .close

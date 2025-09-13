@@ -35,40 +35,43 @@ cotInternalTrampolineApplyItemEffect:
   cmp r0, #0
   b ApplyItemEffectHookAddr+4
 
+// Custom trampoline by Marius for compatibility with ExtractMoveEffects. Ported to NA by Chesyon, so please ask him first if anything breaks!
 .align 4
-cotInternalTrampolineApplyMoveEffect:
-  // Backup registers
+cotInternalTrampolineApplyMoveEffectExtracted:
+  // register backup
   push {r0-r9, r11, r12}
 
-  // Setup move_effect_input struct
+  // TODO: check that move effect struct later
+
   ldr r10, =move_effect_input
-  str r6, [r10] // move_id
-  str r7, [r10, #0x4] // item_id
+  str r6, [r10] // move effect
+
+  // unsure about item id...
+
   mov r0, #0
   str r0, [r10, #0x8] // out_dealt_damage
 
-  // Call the hook function
+
+
+  // call the hook function
   mov r0, r10
-  mov r1, r9
-  mov r2, r4
-  mov r3, r8
+  // attacker is r9
+  // move is r8
+  mov r1, r9 // attacker (I think)
+  mov r2, r4 // defenser (I think)
+  mov r3, r8 // move (I think)
   bl cotInternalDispatchApplyMoveEffect
 
-  // Check if true was returned
   cmp r0, #1
-
-  // Load saved registers
-  popeq {r0-r9, r11, r12}
-  ldreq r10, =move_effect_input_out_dealt_damage
-
-  // If yes, exit the original function
-  beq ApplyMoveEffectJumpAddr
-
   pop {r0-r9, r11, r12}
 
-  // Restore the instruction that was replaced with the patch and call the original function
-  mov r1, #0x1
-  b ApplyMoveEffectHookAddr+4
+  // Not 100% sure r10 is the good output
+  ldreq r10, =move_effect_input_out_dealt_damage
+  beq ApplyMoveEffectHookAddrExtractedOnSuccess
+  
+  // the original replaced function
+  stmdb  r13!,{r5,r7,r8}
+  b ApplyMoveEffectHookAddrExtracted+4
 
 .align 4
 move_effect_input:

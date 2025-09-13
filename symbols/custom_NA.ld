@@ -14,6 +14,10 @@ ApplyMoveEffectHookAddr = 0x0232F8A4;
 ApplyMoveEffectJumpAddr = 0x023326CC;
 ApplyItemEffectHookAddr = 0x0231B9D8;
 ApplyItemEffectJumpAddr = 0x0231CB14;
+/* The following two symbols are from Marius' fix for ExtractMoveCode compatibility. NA offsets from Chesyon */
+ApplyMoveEffectHookAddrExtracted = 0x232F8B0;
+ApplyMoveEffectHookAddrExtractedOnSuccess = 0x23326CC;
+/* Other ov29 addresses */
 UNK_BURT_HOOK_5 = 0x023092CC;
 
 /* Add your own symbols here... */
