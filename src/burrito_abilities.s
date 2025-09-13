@@ -164,7 +164,8 @@
 
  	SapSipper:
 
-  	
+ 	mov   r11, r11
+	  	
 	bne   UNK_BURT_THING_1 ; // this is where water absorb heals HP, hooking in the spot i did accounts for both branches to 92f8 with one hook
 	ldrb  r0, [r6, #0xc]
 	cmp   r0, #0x5
