@@ -55,5 +55,6 @@ UNK_BURT_HOOK_3 = 0x0230a8f0;
 UNK_BURT_UNHOOK_3 = 0x230a8f4;
 UNK_BURT_HOOK_4 = 0x22df998;
 UNK_BURT_UNHOOK_4 = 0x22df9a4;
-ME_STABBING_BURRITIO = 0x2304BAC; /* Burrito had this in an earlier version of the patch, with the label "idunno". :D */
+ME_STABBING_BURRITIO = 0x2304BAC; /* Burrito had this in an earlier version of the patch, with the label "idunno". :D */ /* damn i didnt know there was a patch for this - burrito */
 BURT_PLAY_ANIMATION = 0x02304830;
+ExitPoint = 0x230a918;
