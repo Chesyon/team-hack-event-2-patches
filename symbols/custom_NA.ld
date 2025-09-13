@@ -14,6 +14,7 @@ ApplyMoveEffectHookAddr = 0x0232F8A4;
 ApplyMoveEffectJumpAddr = 0x023326CC;
 ApplyItemEffectHookAddr = 0x0231B9D8;
 ApplyItemEffectJumpAddr = 0x0231CB14;
+UNK_BURT_HOOK_5 = 0x023092CC;
 
 /* Add your own symbols here... */
 
@@ -55,8 +56,12 @@ UNK_BURT_HOOK_3 = 0x0230a8f0;
 UNK_BURT_UNHOOK_3 = 0x230a8f4;
 UNK_BURT_HOOK_4 = 0x22df998;
 UNK_BURT_UNHOOK_4 = 0x22df9a4;
+
 ME_STABBING_BURRITIO = 0x2304BAC; /* Burrito had this in an earlier version of the patch, with the label "idunno". :D */ /* damn i didnt know there was a patch for this - burrito */
-BURT_PLAY_ANIMATION = 0x02304830;
+BURT_PLAY_ANIMATION = 0x2304830;
 BURT_ExitPoint = 0x230a918;
+
 UNK_BURT_THING_1 = 0x23092d0;
 UNK_BURT_THING_2 = 0x23092f8;
+
+UNK_BURT_HOOK_5 = 0x23092CC;

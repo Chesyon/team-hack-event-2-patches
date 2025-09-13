@@ -130,14 +130,15 @@
 	.area 0x4
 		b CheckIgnition
 	.endarea
-
+	
 	.org UNK_BURT_HOOK_4
 	.area 0x4
 		b RegeneratorAbility
 	.endarea
 
-	.org 0x023092CC
+	.org UNK_BURT_HOOK_5
 	.area 0x4
 		b SapSipper
 	.endarea
+
 .close
