@@ -18,7 +18,6 @@ ApplyItemEffectJumpAddr = 0x0231CB14;
 ApplyMoveEffectHookAddrExtracted = 0x232F8B0;
 ApplyMoveEffectHookAddrExtractedOnSuccess = 0x23326CC;
 /* Other ov29 addresses */
-UNK_BURT_HOOK_5 = 0x023092CC;
 
 /* Add your own symbols here... */
 
