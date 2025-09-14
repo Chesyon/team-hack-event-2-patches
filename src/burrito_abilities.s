@@ -27,11 +27,11 @@
 	mov   r0, r8
 	mov   r1, r7
 	ldr   r2, =#3889
-	bl    LogMessage // aint doing this properly
+	bl    LogMessageByIdWithPopupCheckUserTarget
 
 	mov   r0, r7
 	ldr   r1, =#317// flame from ember
-	bl    BURT_PLAY_ANIMATION // aint doing this
+	bl    PlayEffectAnimationEntityStandard // aint doing this
 
 	ldrh  r10, [r7, #0x4]
 	ldrh  r11, [r7, #0x6]
