@@ -90,7 +90,7 @@
 	mov   r0, r6
     	mov   r2, #0
 	mov   r3, #0
-    	bl    CalcDamageFixed
+    	bl    CalcRecoilDamageFixed
 
 	CauseBurn: // or this
 
