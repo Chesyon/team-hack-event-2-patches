@@ -166,9 +166,12 @@
 
  	mov   r11, r11
 	  	
-	bne   UNK_BURT_THING_1 ; // this is where water absorb heals HP, hooking in the spot i did accounts for both branches to 92f8 with one hook
+	movne r1, #1
 	ldrb  r0, [r6, #0xc]
 	cmp   r0, #0x5
+	moveq r2, #1
+	cmp   r1, #1
+	cmpeq r2, #1
 	beq   UNK_BURT_THING_1 ; // basic water absorb stuff
 	
 	mov   r0, r8
