@@ -29,6 +29,7 @@ bool CustomScriptSpecialProcessCall(undefined4* unknown, uint32_t special_proces
   switch (special_process_id) {
     case 100:
       SpToggleDropShadow(arg1);
+      return true;
     default:
       return false;
   }
