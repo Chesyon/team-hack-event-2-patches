@@ -63,7 +63,10 @@
 	.area 0x4
 		bl TransformPartnerActor;
 	.endarea
-
+	.org CreateDBoxStart;
+	.area 0x4;
+		bl DBoxFormatHook;
+	.endarea;
 .close
 
 

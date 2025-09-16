@@ -41,6 +41,7 @@ TRANSFORM_APPOINT_HOOK = 0x20657D0;
 TRANSFORM_HERO_HOOK = 0x20657E0;
 TRANSFORM_PARTNER_HOOK = 0x20657F0;
 CSOReturnValue = 0x202675C; /* EU: 0x2026A40 */
+CreateDBoxStart = 0x0202F0B8;
 
 
 /* ngl I don't remember which file these are from. Or if I use all of them. - Lappy */
