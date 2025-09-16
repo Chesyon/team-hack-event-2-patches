@@ -2,10 +2,10 @@ DBoxFormatHook:
 	push {r4,r5,r14}
 	mov r4,r0
 	mov r0,#0
-	mov r1,#1
-	bl LoadScriptVariableValue
-	ldr r1,=#11621
-	cmp r0,r1
+	mov r1,#0x4E;
+	mov r2,#63; // Flag 63 is for Custom Dialogue Boxes
+	bl LoadScriptVariableValueAtIndex
+	cmp r0,#0x1
 	movne r0,r4
 	movne r6,r0
 	popne {r4,r5,r15}
