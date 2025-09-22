@@ -160,3 +160,12 @@
 	.endarea;
 
 .close
+
+
+.open "overlay31.bin", overlay31_start
+	.org UNK_ANON_HOOK_2 ; 0x023888A4
+	.area 0x4
+		b HookQuickSave
+	EndHookQuickSave:
+	.endarea
+.close
