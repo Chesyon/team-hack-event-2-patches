@@ -12,7 +12,7 @@ static void __attribute__((naked)) SpToggleDropShadow(bool enable){
   asm("strb r0,[r1]");
   asm("add r1,r1,#0x54");
   asm("strb r0,[r1]");
-  asm("add r1,r1,#0xBC");
+  asm("add r1,r1,#0x48");
   asm("strb r0,[r1]");
   asm("add r1,r1,#0x44");
   asm("strb r0,[r1]");
