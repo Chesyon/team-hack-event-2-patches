@@ -35,18 +35,18 @@ void SpSetLitwickSpritePalette(){
     else if(clock.hour < 15) current_litwick_mode = LITWICK_CHILL;
     else current_litwick_mode = LITWICK_STARTLED;
     // Find litwick actor
-    struct live_actor_custom * live_actor_list_tmp = ((struct live_actor_list_custom*)(GROUND_STATE_PTRS.actors))->actors;
+    struct live_actor * live_actor_list_tmp = (GROUND_STATE_PTRS.actors)->actors;
     for(int i = 0; i < 24; i++){
-        struct live_actor_custom* actor = &(live_actor_list_tmp[i]);
-        if(actor->entity_id == LITWICK_ACTOR_LIST_IDX){
+        struct live_actor* actor = &(live_actor_list_tmp[i]);
+        if(actor->entity.kind == LITWICK_ACTOR_LIST_IDX){
             // litwick actor found, get its palette info.
-            struct AnimationSub * animation_sub = &actor->animation.sub_content;
-            int render_bank_id_unlooked = animation_sub->field56_0x7a;
+            struct animation_control * ctrl = &actor->animation.ctrl;
+            int8_t render_bank_id_unlooked = ctrl->palette_bank;
             int render_bank_id = SPRITE_BANK_ID_SOMETHING_IDK[render_bank_id_unlooked];
             struct AnotherRenderAllocStuff* another_sprite_alloc_stuff = &ANOTHER_SPRITE_RENDER_THING->something_rndr[render_bank_id];
             ImportantPaletteRelatedStruct* imp_pal_rel_struct = another_sprite_alloc_stuff->pnt_at_byte_8;
             uint32_t* vanilla_palette_ptr = (uint32_t*) imp_pal_rel_struct->pal_1.rgba_palette;
-            int palette_start_count = (animation_sub->field29_0x41 & 0xf) << 4;
+            int palette_start_count = (ctrl->palette_pos_low & 0xf) << 4;
             // hueshift every color in the palette
             int hue_shift = GetLitwickHueShift();
             for(int i = 0; i < 16; i++){
