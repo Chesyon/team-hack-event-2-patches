@@ -67,6 +67,12 @@
 	.area 0x4;
 		bl DBoxFormatHook;
 	.endarea;
+
+	; original instruction: b LoadPortraitReturn
+	.org LoadPortraitFinish
+	.area 0x4
+		b KaomadoBufTamperWrapper
+ 	.endarea
 .close
 
 

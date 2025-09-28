@@ -44,6 +44,8 @@ TRANSFORM_HERO_HOOK = 0x20657E0;
 TRANSFORM_PARTNER_HOOK = 0x20657F0;
 CSOReturnValue = 0x202675C; /* EU: 0x2026A40 */
 CreateDBoxStart = 0x0202F0B8;
+LoadPortraitFinish = 0x204D9D8;
+LoadPortraitReturn = 0x204dA0C;
 
 
 /* ngl I don't remember which file these are from. Or if I use all of them. - Lappy */
@@ -76,3 +78,6 @@ UNK_BURT_HOOK_5 = 0x23092C0;
 UNK_ANON_HOOK_1 = 0x0238897C;
 UNK_ANON_HOOK_2 = 0x023888A4;
 EndHookQuickSave = 0x023888A8;
+
+/* File overlay36 */
+portrait_dbox_id = 0x23A8A98;
