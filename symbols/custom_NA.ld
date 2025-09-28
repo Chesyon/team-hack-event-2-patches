@@ -7,6 +7,8 @@ ScriptMenuRequestFinalize = 0x022E68AC;
 ScriptMenuUpdateDefaultCase = 0x022E68F8;
 ScriptMenuUpdateFinalize = 0x022E6E58;
 IS_BASE_GAME_MENU_FINISHED = 0x02324C9C;
+SPRITE_BANK_ID_SOMETHING_IDK = 0x20AFC50;
+ANOTHER_SPRITE_RENDER_THING = 0x20AFC4C;
 
 /* !file overlay29 */
 ApplyMoveEffect = 0x0232E864;
