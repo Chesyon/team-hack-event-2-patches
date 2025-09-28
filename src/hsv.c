@@ -75,7 +75,7 @@ HSV float_rgb_to_hsv(floatRGB float_rgb) {
     if (feq(delta, _fflt(0))) {
         hsv.h = _fflt(0);
     } else if (feq(max, float_rgb.r)) {
-        hsv.h = _fmul(_fflt(60), _fadd(_fdiv(_fsub(float_rgb.g, float_rgb.b), delta), _fflt(6))); // i had this in as fmod but i think that was a typo on my behalf
+        hsv.h = _fmul(_fflt(60), _fadd(_fdiv(_fsub(float_rgb.g, float_rgb.b), delta), _fflt(6)));
     } else if (feq(max, float_rgb.g)) {
         hsv.h = _fmul(_fflt(60), _fadd(_fdiv(_fsub(float_rgb.b, float_rgb.r), delta), _fflt(2)));
     } else {

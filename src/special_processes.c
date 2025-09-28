@@ -44,20 +44,21 @@ static int GetLitwickHueShift(){
     }
 }
 
+#define LITWICK_ACTOR_LIST_IDX 396
 static void SpSetLitwickSpritePalette(){
     // get litwick mode based on system clock. this SP should ONLY be called when loading the room!
     struct system_clock clock; 
     GetSystemClock(&clock);
+    if(clock.hour == 0 || clock.hour >= 20) current_litwick_mode = LITWICK_SPOOKY; 
     if(clock.hour >= 1 && clock.hour < 5) current_litwick_mode = LITWICK_EEPY;
     else if(clock.hour < 10) current_litwick_mode = LITWICK_ENERGETIC;
     else if(clock.hour < 15) current_litwick_mode = LITWICK_CHILL;
-    else if(clock.hour < 20) current_litwick_mode = LITWICK_STARTLED;
-    else current_litwick_mode = LITWICK_SPOOKY;
+    else current_litwick_mode = LITWICK_STARTLED;
     // Find litwick actor
     struct live_actor_custom * live_actor_list_tmp = ((struct live_actor_list_custom*)(GROUND_STATE_PTRS.actors))->actors;
     for(int i = 0; i < 24; i++){
         struct live_actor_custom* actor = &(live_actor_list_tmp[i]);
-        if(actor->height != 0){ // TODO: find a better way to do this that won't break if anyone else changes an NPC's height before running this SP.
+        if(actor->entity_id == LITWICK_ACTOR_LIST_IDX){
             // litwick actor found, get its palette info.
             struct AnimationSub * animation_sub = &actor->animation.sub_content;
             int render_bank_id_unlooked = animation_sub->field56_0x7a;

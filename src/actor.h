@@ -4,11 +4,11 @@
 #include <cot.h>
 
 // TODO: Check if you can use what's in pmdsky-debug instead of this
-// Pretty much everything in this file is taken from MysteryMail
-// (4 or 5, i don't remember which), and the structs are INCREDIBLY
-// outdated compared to what's in pmdsky-debug. However, afaik
-// pmdsky-debug is missing some of the needed structs for the
-// palette manipulation I do with litwick. Need to check.
+// Pretty much everything in this file is taken from MysteryMail4,
+// and the structs are INCREDIBLY outdated compared to what's in
+// pmdsky-debug. However, afaik pmdsky-debug is missing some of the
+// needed structs for the palette manipulation I do with litwick.
+// Need to check.
 
 struct astruct_31 {
     undefined2 field0_0x0;
