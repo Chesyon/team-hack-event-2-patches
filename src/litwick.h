@@ -4,10 +4,6 @@
 void SpSetLitwickSpritePalette();
 int SpGetLitwickMode();
 
-
-// This is the value ChangePortraitMidText uses to keep track of the window id for the current portrait.
-extern uint8_t portrait_dbox_id;
-
 // All of the below is taken from MysteryMail4. As far as I know, none of this is documented at the moment.
 
 extern uint32_t SPRITE_BANK_ID_SOMETHING_IDK[];
