@@ -30,7 +30,7 @@ void SpSetLitwickSpritePalette(){
     struct system_clock clock; 
     GetSystemClock(&clock);
     if(clock.hour == 0 || clock.hour >= 20) current_litwick_mode = LITWICK_SPOOKY; 
-    if(clock.hour >= 1 && clock.hour < 5) current_litwick_mode = LITWICK_EEPY;
+    else if(clock.hour >= 1 && clock.hour < 5) current_litwick_mode = LITWICK_EEPY;
     else if(clock.hour < 10) current_litwick_mode = LITWICK_ENERGETIC;
     else if(clock.hour < 15) current_litwick_mode = LITWICK_CHILL;
     else current_litwick_mode = LITWICK_STARTLED;
