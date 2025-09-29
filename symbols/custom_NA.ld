@@ -21,7 +21,12 @@ ApplyMoveEffectHookAddrExtracted = 0x232F8B0;
 ApplyMoveEffectHookAddrExtractedOnSuccess = 0x23326CC;
 /* Other ov29 addresses */
 DeerlingSplitPersonalityHook = 0x234D01C;
-/* Add your own symbols here... */
+/* Move Shortcut Hooks */
+MoveShortcutsMainCheckHook = 0x22F11DC;         /* In SetLeaderAction */
+MoveShortcutsMainCheckLoopUnhook = 0x22F1024;   /* In SetLeaderAction */
+MoveShortcutsMainCheckNormalUnhook = 0x22F11E4; /* In SetLeaderAction */
+MessageLogShortcutButtonOneCheck = 0x22F1E44;   /* In SetLeaderAction */
+MessageLogShortcutButtonTwoCheck = 0x22F1E54;   /* In SetLeaderAction */
 
 /* !file arm9 */
 ShowKeyboardTypeCase3 = 0x02036914;
@@ -56,8 +61,6 @@ UnknownFunction3 = 0x22F9EA0;
 GetAppointedMemberIdx = 0x20568A4;
 
 
-
-
 /* Fuck if I know */
 UNK_BURT_HOOK_1 = 0x0230a8c4;
 UNK_BURT_HOOK_2 = 0x0230a890;
@@ -78,3 +81,8 @@ UNK_BURT_HOOK_5 = 0x23092C0;
 UNK_ANON_HOOK_1 = 0x0238897C;
 UNK_ANON_HOOK_2 = 0x023888A4;
 EndHookQuickSave = 0x023888A8;
+
+/* Undocumented functions/symbols */
+SetDisplayMode = 0x22EA428; /* Used to hide the textbox and map. */
+GetStringWidth = 0x20265A8;
+DUNGEON_CONTROLLER_STATUS = 0x237C694;
