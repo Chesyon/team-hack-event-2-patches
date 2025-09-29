@@ -9,3 +9,5 @@ out.asm
 *.nds.skytemple
 
 symbols/generated_*.ld
+
+*.mch
