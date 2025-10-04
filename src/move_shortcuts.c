@@ -281,7 +281,7 @@ void CloseMoveBoxes() {
 // TODO: Stench check.
 int __attribute__((used)) TryHandleMoveShortcuts(struct entity *leader) {
     // Check if L is being pressed. If not return.
-    if(DUNGEON_CONTROLLER_STATUS.l_button_tap == false) {
+    if(DUNGEON_CONTROLLER_STATUS.l_button == false) {
         return MOVE_SHORTCUT_DO_NOTHING;
     }
     
