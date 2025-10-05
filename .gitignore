@@ -11,3 +11,5 @@ out.asm
 symbols/generated_*.ld
 
 *.mch
+
+/.vscode

@@ -51,14 +51,17 @@ CSOReturnValue = 0x202675C; /* EU: 0x2026A40 */
 CreateDBoxStart = 0x0202F0B8;
 LoadPortraitFinish = 0x204D9D8;
 LoadPortraitReturn = 0x204DA0C;
-/* For text speed tag. TODO: Hardcode less of these where possible! */
-vstag_EnterHookSpeed = 0x02020ED0;
-vstag_ExitHookSpeed = 0x02020ED4;
-vstag_EnterHookLoop = 0x02020EE0;
-vstag_ExitHookLoop = 0x02020EE4;
-vstag_Idk1 = 0x02021EC8;
-vstag_Idk2 = 0x02021AA0;
-vstag_Idk3 = 0x02021A10;
+/* For text_speed.c.*/
+EnterHookTextSpeedWrapper = 0x2020ED0;
+ExitHookTextSpeedWrapper = 0x2020ED4; /* May be unnecessary to return this way */
+EnterHookTextLoop = 0x2020EE0;
+ExitHookTextLoop = 0x2020EE4; /* May be unnecessary to return this way */
+SomethingTextRelatedIdk = 0x2021EC8;
+/* Uppercase text tags */
+UppercaseNTagHook = 0x2020FAC;
+UppercaseVTagHook = 0x2020FCC;
+UppercaseTagCodeError = 0x2021A10;
+AfterUppercaseTagIsFound = 0x2021AA0;
 
 
 /* ngl I don't remember which file these are from. Or if I use all of them. - Lappy */
