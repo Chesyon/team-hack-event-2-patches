@@ -19,26 +19,25 @@ void __attribute((naked)) ReturnFromUppercaseTag(){
 }
 
 /*
-    Handles various possible text tags for the character 'N'. Currently, the new text tags include:
-        - No texts tags exist currently. Feel free to add your own!
+    Handles various possible text tags for the character 'U'. Currently, the new text tags include:
+        - "U:X", unlocks scripting lock X. 
 
     Returns whether a valid text tag was parsed or not.
 */
-bool __attribute__((used)) HandleUppercaseNTag(const char* tag_string, const char* tag_string_param1, const char* tag_string_param2, int tag_param_count)
+bool __attribute__((used)) HandleUppercaseUTag(const char* tag_string, const char* tag_string_param1, const char* tag_string_param2, int tag_param_count)
 {
-    // Demonstration of the syntax for adding an uppercase tag, in this case, one named "NOPE".
-    /*if(StrcmpTag(tag_string, "NOPE"))
+    if(StrcmpTag(tag_string, "U"))
     {
-        CardPullOut();
+        UnlockScriptingLock(AtoiTag(tag_string_param1));
         return true;
-    }*/
+    }
     return false;
 }
 
-void __attribute__((naked)) HandleUppercaseNTagWrapper()
+void __attribute__((naked)) HandleUppercaseUTagWrapper()
 {
     asm("bl LoadUppercaseTagParameters");
-    asm("bl HandleUppercaseNTag");
+    asm("bl HandleUppercaseUTag");
     asm("b  ReturnFromUppercaseTag");
 }
 

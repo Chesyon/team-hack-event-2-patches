@@ -58,8 +58,7 @@ EnterHookTextLoop = 0x2020EE0;
 ExitHookTextLoop = 0x2020EE4; /* May be unnecessary to return this way */
 SomethingTextRelatedIdk = 0x2021EC8;
 /* Uppercase text tags */
-UppercaseNTagHook = 0x2020FAC;
-UppercaseVTagHook = 0x2020FCC;
+UppercaseUVTagHook = 0x2020FC8;
 UppercaseTagCodeError = 0x2021A10;
 AfterUppercaseTagIsFound = 0x2021AA0;
 
