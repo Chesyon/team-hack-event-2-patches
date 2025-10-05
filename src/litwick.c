@@ -25,8 +25,8 @@ int GetLitwickHueShift(){
     }
 }
 
+// assign litwick mode based on system clock. this SP should ONLY be called when loading the room! Returns litwick mode.
 void SpSetLitwickSpritePalette(){
-    // assign litwick mode based on system clock. this SP should ONLY be called when loading the room!
     struct system_clock clock; 
     GetSystemClock(&clock);
     if(clock.hour == 0 || clock.hour >= 20) current_litwick_mode = LITWICK_SPOOKY; 

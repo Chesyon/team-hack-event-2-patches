@@ -31,7 +31,7 @@ bool CustomScriptSpecialProcessCall(undefined4* unknown, uint32_t special_proces
         case 100:
             SpToggleDropShadow(arg1);
             return true;
-        // 101-103 are for Chesyon's litwick NPC. These could probably be custom script instructions, but then I'd have to learn how those work.
+        // 101 and 102 are for Chesyon's litwick NPC. These could probably be custom script instructions, but then I'd have to learn how those work.
         // As to not bloat this file, these functions are in their own file (litwick.c).
         case 101:
             SpSetLitwickSpritePalette();
