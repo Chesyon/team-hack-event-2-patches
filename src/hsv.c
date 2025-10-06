@@ -22,33 +22,29 @@ bool feq(float a, float b){
     return _deq(_f2d(a), _f2d(b));
 }
 
-bool fls(float a, float b){
-    return _dls(_f2d(a), _f2d(b));
-}
-
 float max3(float a, float b, float c) {
-    float max = fls(b, a) ? a : b;
-    return fls(c, max) ? max : c;
+    float max = _fls(b, a) ? a : b;
+    return _fls(c, max) ? max : c;
 }
 
 float min3(float a, float b, float c) {
-    float min = fls(a, b) ? a : b;
-    return fls(min, c) ? min : c;
+    float min = _fls(a, b) ? a : b;
+    return _fls(min, c) ? min : c;
 }
 
 float fabs(float x){
-    return fls(_fflt(0), x) ? x : _fsub(_fflt(0), x);
+    return _fls(_fflt(0), x) ? x : _fsub(_fflt(0), x);
 }
 
 // this is bad but if it works it works
 float fmod(float dividend, float divisor){
     float mod;
     // Handling negative values
-    if (fls(dividend, _fflt(0))) mod = _fsub(_fflt(0), dividend);
+    if (_fls(dividend, _fflt(0))) mod = _fsub(_fflt(0), dividend);
     else mod = dividend;
-    if (fls(divisor, _fflt(0))) divisor = _fsub(_fflt(0), divisor);
+    if (_fls(divisor, _fflt(0))) divisor = _fsub(_fflt(0), divisor);
 
-    while(fls(divisor, mod)){
+    while(_fls(divisor, mod)){
         mod = _fsub(mod, divisor);
     }
     return mod;
@@ -82,7 +78,7 @@ HSV float_rgb_to_hsv(floatRGB float_rgb) {
         hsv.h = _fmul(_fflt(60), _fadd(_fdiv(_fsub(float_rgb.r, float_rgb.g), delta), _fflt(4)));
     }
 
-    if (fls(hsv.h, _fflt(0)))
+    if (_fls(hsv.h, _fflt(0)))
         
         hsv.h = _fadd(hsv.h, _fflt(360));
 
@@ -98,15 +94,15 @@ floatRGB hsv_to_float_rgb(HSV hsv) {
 
     float r, g, b;
 
-    if (fls(hsv.h, 60)) {
+    if (_fls(hsv.h, 60)) {
         r = c, g = x, b = 0;
-    } else if (fls(hsv.h, _fflt(120))) {
+    } else if (_fls(hsv.h, _fflt(120))) {
         r = x, g = c, b = 0;
-    } else if (fls(hsv.h, _fflt(180))) {
+    } else if (_fls(hsv.h, _fflt(180))) {
         r = 0, g = c, b = x;
-    } else if (fls(hsv.h, _fflt(240))) {
+    } else if (_fls(hsv.h, _fflt(240))) {
         r = 0, g = x, b = c;
-    } else if (fls(hsv.h, _fflt(300))) {
+    } else if (_fls(hsv.h, _fflt(300))) {
         r = x, g = 0, b = c;
     } else {
         r = c, g = 0, b = x;
@@ -123,7 +119,7 @@ floatRGB hsv_to_float_rgb(HSV hsv) {
 floatRGB shift_hue(floatRGB color, int hue_shift_degrees) {
     HSV hsv = float_rgb_to_hsv(color);
     hsv.h = fmod(_fadd(hsv.h, _fflt(hue_shift_degrees)), _fflt(360));
-    if (fls(hsv.h, _fflt(0)))
+    if (_fls(hsv.h, _fflt(0)))
         hsv.h = _fadd(hsv.h, _fflt(360));
     return hsv_to_float_rgb(hsv);
 }
