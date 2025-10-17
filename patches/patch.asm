@@ -157,7 +157,7 @@
 		mov r2, #0;
 		bl LoadScriptVariableValueAtIndex
 		and r0, #0x3;
-		addls r4, r0, #0x4b0;
+		add r4, r0, #0x4b0;
 		nop;
 		nop;
 		nop;
