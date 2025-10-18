@@ -179,7 +179,7 @@
 	mul   r11, r0
 	lsr   r11, #8
 
-	FinalAbilityChecK:
+	FinalAbilityCheck:
 
 	// does the target have water veil?
 
