@@ -65,7 +65,7 @@
 	mov   r6, r0
 	bl    EntityIsValid
 	cmp   r0, #1
-	bne   EndLoop
+	bne   EndLoopI
 
 	ldr   r9, [r6,#0xb4]
 	ldrb  r9, [r9,#0x6]
@@ -82,7 +82,7 @@
 	mov   r1, #115
 	bl    AbilityIsActive
 	cmp   r0, #1
-	beq   EndLoop
+	beq   EndLoopI
 
 	// does the target have flash fire?
 
@@ -105,7 +105,7 @@
 	cmp    r1, #2
 	ldrneb r1, [r0, #0x5f]
 	cmpne  r1, #2
-	beq    EndLoop
+	beq    EndLoopI
 
 	CalcTotalDamage: 
 
@@ -223,7 +223,7 @@
 	cmp   r0, #4
 	addls r15, r0, lsl #0x3
 	mov   r0, #0 // case 0, little effect
-	b     EndLoop
+	b     EndLoopI
 	mov   r0, #10 // case 1, not very effective, 10%
 	b     CauseBurn
 	mov   r0, #5 // case 2, neutral, 20%
@@ -237,7 +237,7 @@
 
 	bl    DungeonRandInt
 	cmp   r0, #0
-	bne   EndLoop
+	bne   EndLoopI
 
 	mov   r0, r8
 	mov   r1, r7
