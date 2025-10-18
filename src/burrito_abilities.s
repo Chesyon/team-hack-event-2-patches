@@ -1,15 +1,21 @@
+; ------------------------------------------------------------------------------
+; StolenBurrito - 09/07/2025
+;
+; Implements the Ignition ability.
+; When a Pokémon with the Ignition ability causes a target to faint, they create
+; an explosion. This explosion deals damage equal to the user's level plus 15 to 
+; other surrounding Pokémon and inflicts the Burn status.
+; ------------------------------------------------------------------------------
 
+.relativeinclude on
+.nds
+.arm
 
-	// hook is located in HandleFaint at 0x22f7f44. the intent here was to have the fainted mon flashing as they explode
-	
-	// r10 holds the defender, r8 is the attacker
-	// r7 holds the defender
-
+.org 0x023A7080 + Offset
+.area MaxSize
 	CheckIgnition:
 
-	mov   r11, r11
-
-	push  {r0-r6, r9-r12}
+	push  {r0-r7, r9-r12}
 
 	mov   r0, r8
 	mov   r1, #0x7c
@@ -30,7 +36,7 @@
 	bl    LogMessageByIdWithPopupCheckUserTarget
 
 	mov   r0, r7
-	ldr   r1, =#317// flame from ember
+	ldr   r1, =#317
 	bl    PlayEffectAnimationEntityStandard
 
 	ldrh  r10, [r7, #0x4]
@@ -70,37 +76,30 @@
 	ldr   r9, [r6,#0xb4]
 	ldrb  r9, [r9,#0x6]
 	cmp   r9, #1
-	beq   BurnChance
+	movne r0, #5
+	bne   DoRng
 	
 	CheckImmunities:
 
-	mov    r11, r11
-
-	// does the target have magic guard?
-
-	mov   r0, r7
+	mov   r0, r6
 	mov   r1, #115
 	bl    AbilityIsActive
 	cmp   r0, #1
 	beq   EndLoopI
 
-	// does the target have flash fire?
-
-	mov   r0, r7
+	mov   r0, r6
 	mov   r1, #72
 	bl    AbilityIsActive
 	cmp   r0, #1
 	bne   CheckFireType
 
-	mov   r0, r7
-	mov   r1, r7
+	mov   r0, r6
+	mov   r1, r6
 	bl    ActivateFlashFire
-
-	// is the target fire type?
 
 	CheckFireType:
 
-	ldr    r0, [r7, #0xb4]
+	ldr    r0, [r6, #0xb4]
 	ldrb   r1, [r0, #0x5e]
 	cmp    r1, #2
 	ldrneb r1, [r0, #0x5f]
@@ -113,31 +112,30 @@
 	ldrb  r1, [r0, #0xA]
 	add   r1, r1, #15
 
-	mov   r11, r1
-
-	// check the type chart
+	mov   r7, r1
 
 	mov   r0, r8
-	mov   r1, r7
+	mov   r1, r6
 	mov   r2, #2
 	bl    GetTypeMatchupBothTypes
 	cmp   r0, #4
 	addls r15, r0, lsl #0x3
-	ldr   r0, =#128 // case 0, little effect, x0.5
+	nop
+	ldr   r0, =#128
 	b     CheckWeather
-	ldr   r0, =#179 // case 1, not very effective, x0.7
+	ldr   r0, =#179
 	b     CheckWeather
-	ldr   r0, =#256 // case 2, neutral, x1
+	ldr   r0, =#256
 	b     CheckWeather
-	ldr   r0, =#358 // case 3, super effective, x1.4
+	ldr   r0, =#358
 	b     CheckWeather
 	
 	CheckWeather:
 
-	mul   r11, r0
-	lsr   r11, #8
+	mul   r7, r0
+	lsr   r7, #8
 
-	mov   r0, r7
+	mov   r0, r6
 	bl    GetApparentWeather
 	cmp   r0, #1
 	ldreq r0, =#384
@@ -145,57 +143,47 @@
 	ldreq r0, =#192
 	ldrne r0, =#256
 
-	mul   r11, r0
-	lsr   r11, #8
+	mul   r7, r0
+	lsr   r7, #8
 
 	CheckFilterAndSolidRockForSomeReasonEvenThoughNoMonWeakToFireHasEitherOfTheseAbilitiesExceptMegaAggronWhoIsntEvenInTheHack:
 
-	// is the target weak to fire?
-
 	mov   r0, r8
-	mov   r1, r7
+	mov   r1, r6
 	mov   r2, #2
 	bl    GetTypeMatchupBothTypes
 	cmp   r0, #3
 	bne   FinalAbilityCheck
 
-	// does the target have filter?
-
-	mov   r0, r7
+	mov   r0, r6
 	mov   r1, #110
 	bl    AbilityIsActive
 	cmp   r0, #1
 	ldreq r0, =#192
 
-	// does the target have solid rock?
-
-	mov   r0, r7
+	mov   r0, r6
 	mov   r1, #108
 	bl    AbilityIsActive
 	cmp   r0, #1
 	ldreq r0, =#192
 	ldrne r0, =#256
 
-	mul   r11, r0
-	lsr   r11, #8
+	mul   r7, r0
+	lsr   r7, #8
 
 	FinalAbilityCheck:
 
-	// does the target have water veil?
-
-	mov   r0, r7
+	mov   r0, r6
 	mov   r1, #66
 	bl    AbilityIsActive
 	cmp   r0, #1
-	lsreq r11, #1
-
-	// does the target have heatproof?
+	lsreq r7, #1
 	
-	mov   r0, r7
+	mov   r0, r6
 	mov   r1, #95
 	bl    AbilityIsActive
 	cmp   r0, #1
-	lsreq r11, #1
+	lsreq r7, #1
 
 	InflictDamage:
 
@@ -208,8 +196,8 @@
     str   r0, [r13, #+0x10]
     str   r0, [r13, #+0x14]
 
-	mov   r0, r7
-	mov   r1, r11
+	mov   r0, r6
+	mov   r1, r7
     mov   r2, #0
     mov   r3, #0
     bl    CalcRecoilDamageFixed
@@ -217,32 +205,34 @@
 	BurnChance:
 
 	mov   r0, r8
-	mov   r1, r7
+	mov   r1, r6
 	mov   r2, #2
 	bl    GetTypeMatchupBothTypes
 	cmp   r0, #4
 	addls r15, r0, lsl #0x3
-	mov   r0, #0 // case 0, little effect
+	nop
+	mov   r0, #0
 	b     EndLoopI
-	mov   r0, #10 // case 1, not very effective, 10%
-	b     CauseBurn
-	mov   r0, #5 // case 2, neutral, 20%
-	b     CauseBurn
-	mov   r0, #2 // case 3, super effective, 50%
+	mov   r0, #5
+	b     DoRng
+	mov   r0, #2
+	b     DoRng
+	nop
 	b     CauseBurn
 
-	CauseBurn: 
-
-	// r0 is determined in the above switch statement, just use it
+	DoRng: 
 
 	bl    DungeonRandInt
 	cmp   r0, #0
 	bne   EndLoopI
 
-	mov   r0, r8
-	mov   r1, r7
+	CauseBurn: 
+
+	mov   r0, r6
+	mov   r1, r6
 	mov   r2, #0
 	mov   r3, #0
+	str   r3, [r13, #+0x0]
 	bl    TryInflictBurnStatus
 	
 	EndLoopI:
@@ -250,15 +240,15 @@
 	cmp   r5, #8
 	bne   TileCheckLoop
 
-	pop   {r0-r6,r9-r12}
+	pop   {r0-r7,r9-r12}
 	add   r13, r13, #0x14
-	b     UNK_BURT_UNHOOK_3
+	b     0x230a8f4
 
 	IgnitionCheckEndPremature:
 
-	pop   {r0-r6, r9-r12}
+	pop   {r0-r7, r9-r12}
 	bl    HandleFaint	
-	b     UNK_BURT_UNHOOK_3
+	b     0x230a8f4
 
 	RegeneratorAbility:
 	
@@ -266,9 +256,8 @@
 	ldr    r0, [r0, #0x0]
 
 	push   {r1-r12}
-	mov    r11, r11
-	mov    r4, r0 // r0 previously contained the dungeon pointer at the point i hooked. in fact, it already did ldr r0, [r0] 
-	push   {r0} // i dont think pushing a register deletes its value? better safe than sorry anyways
+	mov    r4, r0
+	push   {r0}
 	mov    r5, #0
 	
 	CheckTeamLoop:
@@ -276,7 +265,7 @@
 	add    r7, r4, r5, lsl #0x2
 	add    r7, r7, #0x12000
 	ldr    r0, [r7, #0x0B28]
-	mov    r6, r0 // store the entity into r6 for later, as running r0 through entity is valid replaces it with 0 or 1
+	mov    r6, r0
 	bl     EntityIsValid
 	cmp    r0, #1
 	bne    EndLoopR
@@ -297,18 +286,16 @@
 	EndLoopR:
 
 	add    r5, r5, #0x1
-	cmp    r5, #0x4 // the first four entries to the table are all allies, so checking the is_allied_monster bit is pointless
+	cmp    r5, #0x4
 	bne    CheckTeamLoop
 
 	return:
 
 	pop    {r0-r12}
 	ldrb   r0, [r0, #0x748]
-	b      UNK_BURT_UNHOOK_4
+	b      0x22df9a4
 
  	SapSipper:
-
- 	mov   r11, r11
 	  	
 	movne r1, #1
 	ldrb  r0, [r6, #0xc]
@@ -316,7 +303,7 @@
 	moveq r2, #1
 	cmp   r1, #1
 	cmpeq r2, #1
-	beq   UNK_BURT_THING_1 ; // basic water absorb stuff
+	beq   0x23092d0
 	
 	mov   r0, r8
 	mov   r1, r7
@@ -324,11 +311,11 @@
 	mov   r3, #1
 	bl    DefenderAbilityIsActive
 	cmp   r0, #1
-	bne   UNK_BURT_THING_2
+	bne   0x23092f8
 
-	ldrb  r0, [r6, #0xc] ; // the moves type? i think?
+	ldrb  r0, [r6, #0xc]
 	cmp   r0, #4
-	bne   UNK_BURT_THING_2
+	bne   0x23092f8
 
 	mov   r0, r8
 	mov   r1, r7
@@ -337,6 +324,10 @@
 	bl    BoostOffensiveStat
 
 	mov   r0, #1
-	strb  r0, [r6, #0x10] ; // probably some kind of immunity flag? god i hope so
+	strb  r0, [r6, #0x10]
 	mov   r0, #0
-	b     BURT_ExitPoint
+	b     0x230a918
+
+	
+.pool
+.endarea
