@@ -65,42 +65,186 @@
 	mov   r6, r0
 	bl    EntityIsValid
 	cmp   r0, #1
-	bne   EndLoopI
+	bne   EndLoop
 
 	ldr   r9, [r6,#0xb4]
 	ldrb  r9, [r9,#0x6]
 	cmp   r9, #1
-	bne   EndLoopI
-
-	CauseDamage:
-
-	mov   r0, #0
-	str   r0, [r13, #+0xc]
-   	mov   r0, #2
-    	str   r0, [r13, #+0x0]
-    	str   r0, [r13, #+0x4]
-    	str   r0, [r13, #+0x8]
-    	str   r0, [r13, #+0x10]
-    	str   r0, [r13, #+0x14]
+	beq   BurnChance
 	
+	CheckImmunities
+
+	mov    r11, r11
+
+	; does the target have magic guard?
+
+	mov   r0, r7
+	mov   r1, #115
+	bl    AbilityIsActive
+	cmp   r0, #1
+	beq   EndLoop
+
+	; does the target have flash fire?
+
+	mov   r0, r7
+	mov   r1, #72
+	bl    AbilityIsActive
+	cmp   r0, #1
+	bne   CheckFireType
+
+	mov   r0, r7
+	mov   r1, r7
+	bl    ActivateFlashFire
+
+	; is the target fire type?
+
+	CheckFireType:
+
+	ldr    r0, [r7, #0xb4]
+	ldrb   r1, [r0, #0x5e]
+	cmp    r1, #2
+	ldrneb r1, [r0, #0x5f]
+	cmpne  r1, #2
+	beq    EndLoop
+
+	CalcTotalDamage: 
+
 	ldr   r0, [r8, #0xb4]
 	ldrb  r1, [r0, #0xA]
 	add   r1, r1, #15
 
-	mov   r0, r6
-    	mov   r2, #0
-	mov   r3, #0
-    	bl    CalcRecoilDamageFixed
+	mov   r11, r1
 
-	CauseBurn: // or this
+	; check the type chart
 
 	mov   r0, r8
-	mov   r1, r6
+	mov   r1, r7
+	mov   r2, #2
+	bl    GetTypeMatchupBothTypes
+	cmp   r0, #4
+	addls r15, r0, lsl 3h
+	ldr   r0, =#128 ; case 0, little effect, x0.5
+	b     CheckWeather
+	ldr   r0, =#179 ; case 1, not very effective, x0.7
+	b     CheckWeather
+	ldr   r0, =#256 ; case 2, neutral, x1
+	b     CheckWeather
+	ldr   r0, =#358 ; case 3, super effective, x1.4
+	b     CheckWeather
+	
+	CheckWeather:
+
+	mul   r11, r0
+	lsr   r11, #8
+
+	mov   r0, r7
+	bl    GetApparentWeather
+	cmp   r0, #1
+	ldreq r0, =#384
+	cmpne r0, #4
+	ldreq r0, =#192
+	ldrne r0, =#256
+
+	mul   r11, r0
+	lsr   r11, #8
+
+	CheckFilterAndSolidRockForSomeReasonEvenThoughNoMonWeakToFireHasEitherOfTheseAbilitiesExceptMegaAggronWhoIsntEvenInTheHack:
+
+	; is the target weak to fire?
+
+	mov   r0, r8
+	mov   r1, r7
+	mov   r2, #2
+	bl    GetTypeMatchupBothTypes
+	cmp   r0, #3
+	bne   FinalAbilityCheck
+
+	; does the target have filter?
+
+	mov   r0, r7
+	mov   r1, #110
+	bl    AbilityIsActive
+	cmp   r0, #1
+	ldreq r0, #192
+
+	; does the target have solid rock?
+
+	mov   r0, r7
+	mov   r1, #108
+	bl    AbilityIsActive
+	cmp   r0, #1
+	ldreq r0, #192
+	ldrne r0, #256
+
+	mul   r11, r0
+	lsr   r11, #8
+
+	FinalAbilityChecK:
+
+	; does the target have water veil?
+
+	mov   r0, r7
+	mov   r1, #66
+	bl    AbilityIsActive
+	cmp   r0, #1
+	lsreq r11, #1
+
+	; does the target have heatproof?
+	
+	mov   r0, r7
+	mov   r1, #95
+	bl    AbilityIsActive
+	cmp   r0, #1
+	lsreq r11, #1
+
+	InflictDamage:
+
+	mov   r0, #0
+	str   r0, [r13, #+0xc]
+   	mov   r0, #2
+    str   r0, [r13, #+0x0]
+    str   r0, [r13, #+0x4]
+    str   r0, [r13, #+0x8]
+    str   r0, [r13, #+0x10]
+    str   r0, [r13, #+0x14]
+
+	mov   r0, r7
+	mov   r1, r11
+    mov   r2, #0
+    mov   r3, #0
+    bl    CalcRecoilDamageFixed
+
+	BurnChance:
+
+	mov   r0, r8
+	mov   r1, r7
+	mov   r2, #2
+	bl    GetTypeMatchupBothTypes
+	cmp   r0, #4
+	addls r15, r0, lsl 3h
+	mov   r0, #0 ; case 0, little effect
+	b     EndLoop
+	mov   r0, #10 ; case 1, not very effective, 10%
+	b     CauseBurn
+	mov   r0, #5 ; case 2, neutral, 20%
+	b     CauseBurn
+	mov   r0, #2 ; case 3, super effective, 50%
+	b     CauseBurn
+
+	CauseBurn: 
+
+	; r0 is determined in the above switch statement, just use it
+
+	bl    DungeonRandInt
+	cmp   r0, #0
+	bne   EndLoop
+
+	mov   r0, r8
+	mov   r1, r7
 	mov   r2, #0
 	mov   r3, #0
-	str   r3, [r13, #0x0]
-	bl    TryInflictBurnStatus	
-
+	bl    TryInflictBurnStatus
+	
 	EndLoopI:
 	add   r5, r5, #1
 	cmp   r5, #8
