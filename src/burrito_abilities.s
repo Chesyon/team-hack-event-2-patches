@@ -122,7 +122,7 @@
 	mov   r2, #2
 	bl    GetTypeMatchupBothTypes
 	cmp   r0, #4
-	addls r15, r0, lsl 3h
+	addls r15, r0, lsl #0x3
 	ldr   r0, =#128 // case 0, little effect, x0.5
 	b     CheckWeather
 	ldr   r0, =#179 // case 1, not very effective, x0.7
@@ -165,7 +165,7 @@
 	mov   r1, #110
 	bl    AbilityIsActive
 	cmp   r0, #1
-	ldreq r0, #192
+	ldreq r0, =#192
 
 	// does the target have solid rock?
 
@@ -173,8 +173,8 @@
 	mov   r1, #108
 	bl    AbilityIsActive
 	cmp   r0, #1
-	ldreq r0, #192
-	ldrne r0, #256
+	ldreq r0, =#192
+	ldrne r0, =#256
 
 	mul   r11, r0
 	lsr   r11, #8
@@ -221,7 +221,7 @@
 	mov   r2, #2
 	bl    GetTypeMatchupBothTypes
 	cmp   r0, #4
-	addls r15, r0, lsl 3h
+	addls r15, r0, lsl #0x3
 	mov   r0, #0 // case 0, little effect
 	b     EndLoop
 	mov   r0, #10 // case 1, not very effective, 10%
