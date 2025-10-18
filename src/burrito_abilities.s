@@ -1,18 +1,3 @@
-; ------------------------------------------------------------------------------
-; StolenBurrito - 09/07/2025
-;
-; Implements the Ignition ability.
-; When a Pokémon with the Ignition ability causes a target to faint, they create
-; an explosion. This explosion deals damage equal to the user's level plus 15 to 
-; other surrounding Pokémon and inflicts the Burn status.
-; ------------------------------------------------------------------------------
-
-.relativeinclude on
-.nds
-.arm
-
-.org 0x023A7080 + Offset
-.area MaxSize
 	CheckIgnition:
 
 	push  {r0-r7, r9-r12}
@@ -54,6 +39,8 @@
 	mov   r5, #0
 
 	TileCheckLoop:
+
+	mov   r11, r11
 
 	mov   r1, r5, lsl #0x2
 	add   r0, r4, r5, lsl #0x2
@@ -190,17 +177,17 @@
 	mov   r0, #0
 	str   r0, [r13, #+0xc]
    	mov   r0, #2
-    str   r0, [r13, #+0x0]
-    str   r0, [r13, #+0x4]
-    str   r0, [r13, #+0x8]
-    str   r0, [r13, #+0x10]
-    str   r0, [r13, #+0x14]
+    	str   r0, [r13, #+0x0]
+    	str   r0, [r13, #+0x4]
+    	str   r0, [r13, #+0x8]
+    	str   r0, [r13, #+0x10]
+    	str   r0, [r13, #+0x14]
 
 	mov   r0, r6
 	mov   r1, r7
-    mov   r2, #0
-    mov   r3, #0
-    bl    CalcRecoilDamageFixed
+    	mov   r2, #0
+    	mov   r3, #0
+    	bl    CalcRecoilDamageFixed
 
 	BurnChance:
 
@@ -242,13 +229,13 @@
 
 	pop   {r0-r7,r9-r12}
 	add   r13, r13, #0x14
-	b     0x230a8f4
+	b     UNK_BURT_UNHOOK_3
 
 	IgnitionCheckEndPremature:
 
 	pop   {r0-r7, r9-r12}
 	bl    HandleFaint	
-	b     0x230a8f4
+	b     UNK_BURT_UNHOOK_3
 
 	RegeneratorAbility:
 	
@@ -293,7 +280,7 @@
 
 	pop    {r0-r12}
 	ldrb   r0, [r0, #0x748]
-	b      0x22df9a4
+	b      UNK_BURT_UNHOOK_4
 
  	SapSipper:
 	  	
@@ -303,7 +290,7 @@
 	moveq r2, #1
 	cmp   r1, #1
 	cmpeq r2, #1
-	beq   0x23092d0
+	beq   UNK_BURT_THING_1
 	
 	mov   r0, r8
 	mov   r1, r7
@@ -311,11 +298,11 @@
 	mov   r3, #1
 	bl    DefenderAbilityIsActive
 	cmp   r0, #1
-	bne   0x23092f8
+	bne   UNK_BURT_THING_2
 
 	ldrb  r0, [r6, #0xc]
 	cmp   r0, #4
-	bne   0x23092f8
+	bne   UNK_BURT_THING_2
 
 	mov   r0, r8
 	mov   r1, r7
@@ -326,8 +313,4 @@
 	mov   r0, #1
 	strb  r0, [r6, #0x10]
 	mov   r0, #0
-	b     0x230a918
-
-	
-.pool
-.endarea
+	b     BURT_ExitPoint
