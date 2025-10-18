@@ -15,7 +15,7 @@
 	mov   r1, #0x7c
 	bl    AbilityIsActive
 	cmp   r0, #0
-	beq   IgnitionCheckEndPremature // successfully does this
+	beq   IgnitionCheckEndPremature
 
 	PunchHimSoHardHeExplodes:
 
@@ -31,7 +31,7 @@
 
 	mov   r0, r7
 	ldr   r1, =#317// flame from ember
-	bl    PlayEffectAnimationEntityStandard // aint doing this
+	bl    PlayEffectAnimationEntityStandard
 
 	ldrh  r10, [r7, #0x4]
 	ldrh  r11, [r7, #0x6]
@@ -72,11 +72,11 @@
 	cmp   r9, #1
 	beq   BurnChance
 	
-	CheckImmunities
+	CheckImmunities:
 
 	mov    r11, r11
 
-	; does the target have magic guard?
+	// does the target have magic guard?
 
 	mov   r0, r7
 	mov   r1, #115
@@ -84,7 +84,7 @@
 	cmp   r0, #1
 	beq   EndLoop
 
-	; does the target have flash fire?
+	// does the target have flash fire?
 
 	mov   r0, r7
 	mov   r1, #72
@@ -96,7 +96,7 @@
 	mov   r1, r7
 	bl    ActivateFlashFire
 
-	; is the target fire type?
+	// is the target fire type?
 
 	CheckFireType:
 
@@ -115,7 +115,7 @@
 
 	mov   r11, r1
 
-	; check the type chart
+	// check the type chart
 
 	mov   r0, r8
 	mov   r1, r7
@@ -123,13 +123,13 @@
 	bl    GetTypeMatchupBothTypes
 	cmp   r0, #4
 	addls r15, r0, lsl 3h
-	ldr   r0, =#128 ; case 0, little effect, x0.5
+	ldr   r0, =#128 // case 0, little effect, x0.5
 	b     CheckWeather
-	ldr   r0, =#179 ; case 1, not very effective, x0.7
+	ldr   r0, =#179 // case 1, not very effective, x0.7
 	b     CheckWeather
-	ldr   r0, =#256 ; case 2, neutral, x1
+	ldr   r0, =#256 // case 2, neutral, x1
 	b     CheckWeather
-	ldr   r0, =#358 ; case 3, super effective, x1.4
+	ldr   r0, =#358 // case 3, super effective, x1.4
 	b     CheckWeather
 	
 	CheckWeather:
@@ -150,7 +150,7 @@
 
 	CheckFilterAndSolidRockForSomeReasonEvenThoughNoMonWeakToFireHasEitherOfTheseAbilitiesExceptMegaAggronWhoIsntEvenInTheHack:
 
-	; is the target weak to fire?
+	// is the target weak to fire?
 
 	mov   r0, r8
 	mov   r1, r7
@@ -159,7 +159,7 @@
 	cmp   r0, #3
 	bne   FinalAbilityCheck
 
-	; does the target have filter?
+	// does the target have filter?
 
 	mov   r0, r7
 	mov   r1, #110
@@ -167,7 +167,7 @@
 	cmp   r0, #1
 	ldreq r0, #192
 
-	; does the target have solid rock?
+	// does the target have solid rock?
 
 	mov   r0, r7
 	mov   r1, #108
@@ -181,7 +181,7 @@
 
 	FinalAbilityChecK:
 
-	; does the target have water veil?
+	// does the target have water veil?
 
 	mov   r0, r7
 	mov   r1, #66
@@ -189,7 +189,7 @@
 	cmp   r0, #1
 	lsreq r11, #1
 
-	; does the target have heatproof?
+	// does the target have heatproof?
 	
 	mov   r0, r7
 	mov   r1, #95
@@ -222,18 +222,18 @@
 	bl    GetTypeMatchupBothTypes
 	cmp   r0, #4
 	addls r15, r0, lsl 3h
-	mov   r0, #0 ; case 0, little effect
+	mov   r0, #0 // case 0, little effect
 	b     EndLoop
-	mov   r0, #10 ; case 1, not very effective, 10%
+	mov   r0, #10 // case 1, not very effective, 10%
 	b     CauseBurn
-	mov   r0, #5 ; case 2, neutral, 20%
+	mov   r0, #5 // case 2, neutral, 20%
 	b     CauseBurn
-	mov   r0, #2 ; case 3, super effective, 50%
+	mov   r0, #2 // case 3, super effective, 50%
 	b     CauseBurn
 
 	CauseBurn: 
 
-	; r0 is determined in the above switch statement, just use it
+	// r0 is determined in the above switch statement, just use it
 
 	bl    DungeonRandInt
 	cmp   r0, #0
