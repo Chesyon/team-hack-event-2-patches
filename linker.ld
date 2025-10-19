@@ -4,7 +4,7 @@ MEMORY {
                 Overlay load address + offset to common area
                 see https://docs.google.com/document/d/1Rs4icdYtiM6KYnWxMkdlw7jpWrH7qw5v6LOfDWIiYho
         */
-        main    : ORIGIN = 0x23D7FF0, LENGTH = 0x8010
+        main    : ORIGIN = 0x23A8C74, LENGTH = 0x2F37C
         /* Change/Add memory locations here */
         /* NEW    : ORIGIN = 0x2000000, LENGTH = 0x800 */
 }
