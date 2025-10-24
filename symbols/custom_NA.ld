@@ -102,3 +102,8 @@ DUNGEON_CONTROLLER_STATUS = 0x237C694;
 /* !file overlay29 */
 PaletteAllocatorFindEmpty = 0x022de968;
 PALETTE_ALLOCATION_DATA = 0x02353534;
+
+/* Changing a bit how tiles graphics are selected */
+/* !file overlay29 */
+DungeonTilePostPickHook = 0x0233699c;
+DungeonTilePostPickHookFinalJump = 0x023369e8;
