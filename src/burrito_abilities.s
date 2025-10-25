@@ -158,6 +158,15 @@
 	mul   r7, r0
 	lsr   r7, #8
 
+	CheckWaterSport:
+
+	ldr   r0, =DUNGEON_PTR
+	ldr   r1, =#0xCD00
+	add   r0, r0, r1
+	ldrb  r1, [r0, #0x58]
+	cmp   r1, #0
+	lsrne r7, #1
+
 	FinalAbilityCheck:
 
 	mov   r0, r6
@@ -171,6 +180,14 @@
 	bl    AbilityIsActive
 	cmp   r0, #1
 	lsreq r7, #1
+
+	CheckProtect:
+
+	ldr   r0, r6
+	ldr   r1, [r0, #0xA9]
+	ldrb  r1, [r1, #0x2C]
+	cmp   r1, #7
+	moveq r7, #0
 
 	InflictDamage:
 
