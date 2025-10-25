@@ -96,3 +96,14 @@ EndHookQuickSave = 0x023888A8;
 SetDisplayMode = 0x22EA428; /* Used to hide the textbox and map. */
 GetStringWidth = 0x20265A8;
 DUNGEON_CONTROLLER_STATUS = 0x237C694;
+
+/* Custom dungeon palette allocation */
+
+/* !file overlay29 */
+PaletteAllocatorFindEmpty = 0x022de968;
+PALETTE_ALLOCATION_DATA = 0x02353534;
+
+/* Changing a bit how tiles graphics are selected */
+/* !file overlay29 */
+DungeonTilePostPickHook = 0x0233699c;
+DungeonTilePostPickHookFinalJump = 0x023369e8;
