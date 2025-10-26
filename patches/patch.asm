@@ -151,18 +151,8 @@
 	.endarea
 
 	.org DeerlingSplitPersonalityHook
-	.area 0x40
-		mov r0, #0
-		mov r1, #3;
-		mov r2, #0;
-		bl LoadScriptVariableValueAtIndex
-		and r0, #0x3;
-		add r4, r0, #0x4b0;
-		nop;
-		nop;
-		nop;
-		nop;
-		// next instruction is a b, we're good.
+	.area 0x4
+		beq DoNormalPersonality;
 	.endarea;
 
 .close

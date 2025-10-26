@@ -183,7 +183,7 @@
 
 	CheckProtect:
 
-	ldr   r0, r6
+	ldr   r0, [r6, #0xB4]
 	ldr   r1, [r0, #0xA9]
 	ldrb  r1, [r1, #0x2C]
 	cmp   r1, #7
