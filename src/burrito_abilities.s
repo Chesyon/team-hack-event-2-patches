@@ -60,6 +60,10 @@
 	cmp   r0, #1
 	bne   EndLoopI
 
+	mov   r0, r6
+	mov   r1, r6
+	bl    EndFrozenClassStatus
+
 	ldr   r9, [r6,#0xb4]
 	ldrb  r9, [r9,#0x6]
 	cmp   r9, #1
