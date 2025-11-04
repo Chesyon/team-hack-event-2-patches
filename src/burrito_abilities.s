@@ -2,11 +2,30 @@
 
 	push  {r0-r7, r9-r12}
 
+	mov   r0, r7
+	bl    GetApparentWeather
+	cmp   r0, #4
+	bne   CheckAbilityAndHeldItem
+
+	mov   r0, r8
+	mov   r1, #21
+	bl    OtherMonsterAbilityIsActive
+	cmp   r0, #1
+	beq   IgnitionEndCheckPremature	
+
+	CheckAbilityAndHeldItem:
+
 	mov   r0, r8
 	mov   r1, #0x7c
 	bl    AbilityIsActive
-	cmp   r0, #0
-	beq   IgnitionCheckEndPremature
+	cmp   r0, #1
+	beq   PunchHimSoHardHeExplodes
+
+	ldr   r0, [r7, #0xB4]
+	add   r0, #0x62
+	ldrh  r1, [r0, #0x4]
+	cmp   r1, #1360
+	bne   IgnitionEndCheckPremture
 
 	PunchHimSoHardHeExplodes:
 
@@ -137,14 +156,14 @@
 	mul   r7, r0
 	lsr   r7, #8
 
-	CheckFilterAndSolidRockForSomeReasonEvenThoughNoMonWeakToFireHasEitherOfTheseAbilitiesExceptMegaAggronWhoIsntEvenInTheHack:
-
 	mov   r0, r8
 	mov   r1, r6
 	mov   r2, #2
 	bl    GetTypeMatchupBothTypes
 	cmp   r0, #3
-	bne   FinalAbilityCheck
+	bne   WonderGuardCheckEvenThoughTheOnlyMonWithWonderGuardIsStillWeakToFire
+
+	CheckFilterAndSolidRockForSomeReasonEvenThoughNoMonWeakToFireHasEitherOfTheseAbilitiesExceptMegaAggronWhoIsntEvenInTheHack:
 
 	mov   r0, r6
 	mov   r1, #110
@@ -162,6 +181,16 @@
 	mul   r7, r0
 	lsr   r7, #8
 
+	b     CheckWaterSport
+
+	WonderGuardCheckEvenThoughTheOnlyMonWithWonderGuardIsStillWeakToFire:
+
+	mov   r0, r6
+	mov   r1, #53
+	bl    AbilityIsActive
+	cmp   r0, #1
+	beq   EndLoopI
+
 	CheckWaterSport:
 
 	ldr   r0, =DUNGEON_PTR
@@ -172,6 +201,18 @@
 	lsrne r7, #1
 
 	FinalAbilityCheck:
+
+	mov   r0, r6
+	mov   r1, #2
+	bl    AbilityIsActive
+	cmp   r0, #1
+	lsreq r7, #1
+
+	mov   r0, r6
+	mov   r1, #85
+	bl    AbilityIsActive
+	cmp   r0, #1
+	lsleq r7, #1
 
 	mov   r0, r6
 	mov   r1, #66
