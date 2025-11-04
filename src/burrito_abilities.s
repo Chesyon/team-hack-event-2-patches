@@ -80,7 +80,7 @@
 	bne   EndLoopI
 
 	mov   r0, r6
-	mov   r1, r6
+	mov   r1, r8
 	bl    EndFrozenStatus
 
 	ldr   r9, [r6,#0xb4]
