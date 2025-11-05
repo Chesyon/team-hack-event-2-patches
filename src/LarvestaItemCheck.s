@@ -1,8 +1,8 @@
 .global LarvestaItemCheckFull
-
+.global LarvestaItemCheckDuringDungeon
 
 LarvestaItemCheckDuringDungeon:
-    push {lr}
+    push {r0,r1,lr}
 
     // hook this where you intended to
 
@@ -10,14 +10,14 @@ LarvestaItemCheckDuringDungeon:
     mov r1, #15 // replace with actual dungeon ID!
     bl LarvestaItemCheckFull
     cmp r0, #1
-    popeq {pc}
+    popeq {r0,r1,pc}
 
     bl GetLeader
     mov r1, =IdSayWhyDoTheGoodDieYoungButEvenIfHesYoungLarvestaWouldStillGoToHell
     bl LogMessageWithPopup
 
     bl LarvestaIsDead
-    pop {pc}
+    pop {r0,r1,pc}
 
 
 LarvestaItemCheckFull:
