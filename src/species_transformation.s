@@ -275,8 +275,8 @@ ApplyFormStatBoosts:
 
 
 ValidateSpeciesFormsWrapper1:
-        popne {r3-r11, pc}; // Original Instruction
-		bl LarvestaItemCheckFull
+        bl LarvestaItemCheckDuringDungeon
+		popne {r3-r11, pc}; // Original Instruction
         mov r0, r10;
         mov r1, #0x1; // Do SFX
 ValidateSpeciesForms:
@@ -501,7 +501,6 @@ ValidateSpeciesFormsWrapper2:
     mov r0, r7;
     mov r1, #0x0; // DONT do SFX
     bl ValidateSpeciesForms;
-	bl LarvestaItemCheckDuringDungeon;
     pop {pc};
 
 
