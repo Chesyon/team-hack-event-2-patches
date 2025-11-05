@@ -7,7 +7,7 @@ LarvestaItemCheckDuringDungeon:
     // hook this where you intended to
 
     mov r0, #1360
-    mov r1, #15 // replace with actual dungeon ID!
+    mov r1, #11 // replace with actual dungeon ID!
     bl LarvestaItemCheckFull
     cmp r0, #1
     popeq {r0,r1,pc}
@@ -112,13 +112,14 @@ LarvestaItemCheckStartNewFloor:
 
     // hook this in 0x22df998, ldr r0, =DUNGEON_PTR is the instruction that would be replaced
 
-    push {lr}
-
+    push {r1, lr}
+	mov r0, #11
+	bl CheckDungeonId
     mov r0, #1360
     bl IsItemInBag
     cmp r0, #1
     ldrne r0, =DUNGEON_PTR
-    popne pc
+    popne {r1, pc}
 
     bl GetLeader
     mov r1, =WhyCantWeJustLeaveHimBehind
@@ -127,7 +128,7 @@ LarvestaItemCheckStartNewFloor:
     bl LarvestaIsDead
 
     ldr r0, =DUNGEON_PTR
-    pop {pc}
+    pop {r1, pc}
 
 // r0: the dungeon ID to search for
 // return: if the dungeon IDs match
