@@ -1,4 +1,3 @@
-.global LarvestaItemCheckFull
 .global LarvestaItemCheckDuringDungeon
 
 LarvestaItemCheckDuringDungeon:
