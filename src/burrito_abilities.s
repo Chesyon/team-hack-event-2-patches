@@ -11,7 +11,7 @@
 	mov   r1, #21
 	bl    OtherMonsterAbilityIsActive
 	cmp   r0, #1
-	beq   IgnitionEndCheckPremature	
+	beq   IgnitionCheckEndPremature
 
 	CheckAbilityAndHeldItem:
 
@@ -19,13 +19,13 @@
 	mov   r1, #0x7c
 	bl    AbilityIsActive
 	cmp   r0, #1
-	beq   PunchHimSoHardHeExplodes
+	beq   IgnitionCheckEndPremature
 
 	ldr   r0, [r7, #0xB4]
 	add   r0, #0x62
 	ldrh  r1, [r0, #0x4]
 	cmp   r1, #1360
-	bne   IgnitionEndCheckPremture
+	bne   IgnitionCheckEndPremature
 
 	PunchHimSoHardHeExplodes:
 
@@ -300,7 +300,7 @@
 	b     UNK_BURT_UNHOOK_3
 
 	RegeneratorAbility:
-	
+	bl LarvestaItemCheckStartNewFloor;
 	ldr    r0, =DUNGEON_PTR
 	ldr    r0, [r0, #0x0]
 

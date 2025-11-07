@@ -1,4 +1,5 @@
 .global LarvestaItemCheckDuringDungeon
+.global LarvestaItemCheckStartNewFloor
 
 LarvestaItemCheckDuringDungeon:
     push {r0,r1,lr}
@@ -12,7 +13,7 @@ LarvestaItemCheckDuringDungeon:
     popeq {r0,r1,pc}
 
     bl GetLeader
-    mov r1, =IdSayWhyDoTheGoodDieYoungButEvenIfHesYoungLarvestaWouldStillGoToHell
+    ldr r1, =IdSayWhyDoTheGoodDieYoungButEvenIfHesYoungLarvestaWouldStillGoToHell
     bl LogMessageWithPopup
 
     bl LarvestaIsDead
@@ -66,7 +67,7 @@ LarvestaItemCheckEntities:
     mov r8, #0; // False until item found
     mov r7, #0; // Loop counter
 LarvestaItemCheckLoopStart:
-    ldr r0, [r10, #0x0]; enum entity_type
+    ldr r0, [r10, #0x0]; // enum entity_type
     cmp r0, #4;
     bge LarvestaItemCheckLoopEnd;
     cmp r0, #2;
@@ -77,7 +78,7 @@ LarvestaItemCheckLoopStart:
     beq LarvestaItemCheckLoopEnd; // Trap or Nothing!
     // Pokemon!
     ldr r6, [r10, #0xB4]; // monster_ptr
-    add r1, r6, #0x62; held_item item struct!
+    add r1, r6, #0x62; // held_item item struct!
     b LarvestaItemCheckItemStruct
 LarvestaItemCheckLoopEnd:
     add r7, #1;
@@ -121,7 +122,7 @@ LarvestaItemCheckStartNewFloor:
     popne {r1, pc}
 
     bl GetLeader
-    mov r1, =WhyCantWeJustLeaveHimBehind
+    ldr r1, =WhyCantWeJustLeaveHimBehind
     bl LogMessageWithPopup
     
     bl LarvestaIsDead
@@ -144,15 +145,15 @@ CheckDungeonId:
     pop {r15}
 
 GetWishiwashiForm:
-    ; no params
-    ; return: 1 if wishiwashi is in its school form, 0 if wishiwashi is in its solo form, or 2 if wishiwashi could not be found
+    // no params
+    // return: 1 if wishiwashi is in its school form, 0 if wishiwashi is in its solo form, or 2 if wishiwashi could not be found
     push {r4-r12, r14}
 	ldr   r8, =DUNGEON_PTR
 	mov   r5, #0
 	
 	FindWishiwashi:
 	ldr   r0, [r8, #0x0]
-	add   r0, r0, r5, lsl 2h
+	add   r0, r5, lsl #0x2
 	add   r0, r0, #0x12000
 	ldr   r6, [r0, #0xB28]
 
@@ -189,6 +190,7 @@ GetWishiwashiForm:
 
 .pool
     IdSayWhyDoTheGoodDieYoungButEvenIfHesYoungLarvestaWouldStillGoToHell:
-    .asciiz "Oh no! [CS:Z]Larvesta[CR] was defeated!"
+    .ascii "Oh no! [CS:Z]Larvesta[CR] was defeated!"
     WhyCantWeJustLeaveHimBehind:
-    .asciiz "...Huh? Where did [CS:Z]Larvesta[CR] go?[C][CS:Z]Larvesta[CR] used the [M:I1][CS:G]Escape Orb[CR]!"
+    .ascii, "...Huh? Where did [CS:Z]Larvesta[CR] go?[C][CS:Z]Larvesta[CR] used the [M:I1][CS:G]Escape Orb[CR]!"
+    
