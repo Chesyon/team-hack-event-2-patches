@@ -73,6 +73,14 @@
 	.area 0x4
 		b KaomadoBufTamperWrapper
  	.endarea
+
+	.org IsNoLossPenaltyDungeon
+	.area 0x10
+		push {r1-r3,lr}
+		mov r0, #60;
+		bl GetPerformanceFlagWithChecks
+		pop {r1-r3,pc}
+	.endarea
 .close
 
 
