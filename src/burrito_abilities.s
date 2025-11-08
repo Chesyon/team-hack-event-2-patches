@@ -314,6 +314,14 @@
     bl GetLeader
     ldr r1, =WhyCantWeJustLeaveHimBehind
     bl LogMessageWithPopup
+	mov r5, #0
+	
+	TimerLoop:
+	mov r0, #0
+	bl AdvanceFrame
+	add r5, #1
+	cmp r5, #60
+	bls TimerLoop
     
     bl LarvestaIsDead
     SkipFloorLarvestaMurder:
