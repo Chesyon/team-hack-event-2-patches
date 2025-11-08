@@ -112,23 +112,23 @@ LarvestaItemCheckStartNewFloor:
 
     // hook this in 0x22df998, ldr r0, =DUNGEON_PTR is the instruction that would be replaced
 
-    push {r1, lr}
+    push {r1-r12, lr}
 	mov r0, #11
 	bl CheckDungeonId
+    cmp r0, #1
+    bne SkipFloorLarvestaMurder
     mov r0, #1360
     bl IsItemInBag
     cmp r0, #1
-    ldrne r0, =DUNGEON_PTR
-    popne {r1, pc}
-
+    beq SkipFloorLarvestaMurder
     bl GetLeader
     ldr r1, =WhyCantWeJustLeaveHimBehind
     bl LogMessageWithPopup
     
     bl LarvestaIsDead
-
-    ldr r0, =DUNGEON_PTR
-    pop {r1, pc}
+    SkipFloorLarvestaMurder:
+        ldr r0, =DUNGEON_PTR
+        pop {r1-r12, pc}
 
 // r0: the dungeon ID to search for
 // return: if the dungeon IDs match

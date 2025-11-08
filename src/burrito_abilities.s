@@ -300,11 +300,12 @@
 	b     UNK_BURT_UNHOOK_3
 
 	RegeneratorAbility:
+	push   {r1-r12}
 	bl LarvestaItemCheckStartNewFloor;
 	ldr    r0, =DUNGEON_PTR
 	ldr    r0, [r0, #0x0]
 
-	push   {r1-r12}
+	
 	mov    r4, r0
 	push   {r0}
 	mov    r5, #0
