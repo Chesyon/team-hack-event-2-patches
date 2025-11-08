@@ -300,15 +300,26 @@
 	b     UNK_BURT_UNHOOK_3
 
 	RegeneratorAbility:
-	push   {r1-r12}
+	push   {r0-r12}
+	mov    r11, r11
 	// Do whatever you need to, burt.
-	bl LarvestaItemCheckStartNewFloor;
+	mov r0, #11
+	bl CheckDungeonId
+    cmp r0, #1
+    bne SkipFloorLarvestaMurder
+    mov r0, #1360
+    bl IsItemInBag
+    cmp r0, #1
+    beq SkipFloorLarvestaMurder
+    bl GetLeader
+    ldr r1, =WhyCantWeJustLeaveHimBehind
+    bl LogMessageWithPopup
+    
+    bl LarvestaIsDead
+    SkipFloorLarvestaMurder:
 	ldr    r0, =DUNGEON_PTR
-	ldr    r0, [r0, #0x0]
-
-	
+	ldr    r0, [r0, #0x0]	
 	mov    r4, r0
-	push   {r0}
 	mov    r5, #0
 	
 	CheckTeamLoop:
@@ -341,8 +352,9 @@
 	bne    CheckTeamLoop
 
 	return:
-	pop	   {r0}
-	pop    {r1-r12}
+	pop    {r0-r12}
+	ldr    r0, =DUNGEON_PTR
+	ldr    r0, [r0, #0x0]	
 	ldrb   r0, [r0, #0x748]
 	b      UNK_BURT_UNHOOK_4
 
