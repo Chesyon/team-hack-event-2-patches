@@ -390,3 +390,7 @@
 	strb  r0, [r6, #0x10]
 	mov   r0, #0
 	b     BURT_ExitPoint
+
+.pool
+	WhyCantWeJustLeaveHimBehind:
+    .ascii, "...Huh? Where did [CS:Z]Larvesta[CR] go?[C][CS:Z]Larvesta[CR] used the [M:I1][CS:G]Escape Orb[CR]!"
