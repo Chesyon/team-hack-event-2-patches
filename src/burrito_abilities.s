@@ -19,7 +19,7 @@
 	mov   r1, #0x7c
 	bl    AbilityIsActive
 	cmp   r0, #1
-	beq   IgnitionCheckEndPremature
+	beq   PunchHimSoHardHeExplodes
 
 	ldr   r0, [r7, #0xB4]
 	add   r0, #0x62
