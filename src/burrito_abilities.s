@@ -22,8 +22,7 @@
 	beq   PunchHimSoHardHeExplodes
 
 	ldr   r0, [r7, #0xB4]
-	ldr   r0, [r0, #0x62]
-	ldrh  r1, [r0, #0x4]
+	ldrh  r1, [r0, #0x68]
 	cmp   r1, #1360
 	bne   IgnitionCheckEndPremature
 
