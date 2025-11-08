@@ -301,6 +301,7 @@
 
 	RegeneratorAbility:
 	push   {r1-r12}
+	// Do whatever you need to, burt.
 	bl LarvestaItemCheckStartNewFloor;
 	ldr    r0, =DUNGEON_PTR
 	ldr    r0, [r0, #0x0]
@@ -340,8 +341,8 @@
 	bne    CheckTeamLoop
 
 	return:
-
-	pop    {r0-r12}
+	pop	   {r0}
+	pop    {r1-r12}
 	ldrb   r0, [r0, #0x748]
 	b      UNK_BURT_UNHOOK_4
 

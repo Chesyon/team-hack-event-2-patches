@@ -31,7 +31,7 @@ LarvestaItemCheckFull:
     mov r0, r1
     bl CheckDungeonId
     cmp r0, #1;
-    beq LarvestaItemCheckFullReturn;
+    bne LarvestaItemCheckFullReturn;
     mov r0, r4
     bl LarvestaItemCheckEntities
     cmp r0, #1;
@@ -41,7 +41,7 @@ LarvestaItemCheckFull:
     cmp r0, #1;
     beq LarvestaItemCheckFullReturn;
     mov r0, #0
-    pop {r1-r12,pc}
+    pop {r2-r12,pc}
 LarvestaItemCheckFullReturn:
     mov r0, #1
     pop {r2-r12,pc}
@@ -95,8 +95,12 @@ LarvestaItemCheckItemStruct:
     ldrh r0, [r1, #0x4];
     cmp r0, r9
     moveq r8, #1;
-    cmpne r6, #0;
     bne LarvestaItemCheckLoopEnd;
+    cmp r6, #0;
+    beq LarvestaItemCheckLoopEnd;
+    ldrb r0, [r6, #0xBF];
+    cmp r0, #1;
+    beq LarvestaItemCheckLoopEnd;
     sub sp, #0x4;
     mov r0, #0;
     str r0, [sp, #0x0];
