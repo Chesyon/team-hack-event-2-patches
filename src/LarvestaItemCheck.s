@@ -1,5 +1,8 @@
 .global LarvestaItemCheckDuringDungeon
 .global LarvestaItemCheckStartNewFloor
+.global CheckDungeonId
+.global LarvestaIsDead
+
 
 LarvestaItemCheckDuringDungeon:
     push {r0,r1,lr}
