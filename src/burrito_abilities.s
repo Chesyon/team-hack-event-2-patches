@@ -2,11 +2,6 @@
 
 	push  {r0-r7, r9-r12}
 
-	mov   r0, r7
-	bl    GetApparentWeather
-	cmp   r0, #4
-	bne   CheckAbilityAndHeldItem
-
 	mov   r0, r8
 	mov   r1, #21
 	bl    OtherMonsterAbilityIsActive
