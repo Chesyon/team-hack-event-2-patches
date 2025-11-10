@@ -77,6 +77,19 @@
 	cmpne r1, r2
 	beq   WinterDeerling
 
+	; additionally check for sawsbuck
+
+	ldr   r2, =#1201
+	add   r2, r2, #1
+	cmp   r1, r2
+	beq   SummerDeerling
+	add   r2, r2, #1
+	cmp   r1, r2
+	beq   FallDeerling
+	add   r2, r2, #1
+	cmp   r1, r2
+	beq   WinterDeerling
+
 	SpringDeerling:
 
 	; spring deerling applies leech seed to the opponent
@@ -150,6 +163,8 @@
 	b      return
 	
 	WinterDeerling:
+
+	; winter deerling has a 50% chance to lower speed
 
 	mov  r0, r9
 	mov  r1, r4
