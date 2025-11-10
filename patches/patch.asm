@@ -173,6 +173,11 @@
 		beq DoNormalPersonality;
 	.endarea;
 
+	.org RegenMonsterHP
+	.area 0x4
+		bl ConditionalRegen
+ 	.endarea
+
 .close
 
 

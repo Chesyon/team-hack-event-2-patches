@@ -22,6 +22,7 @@ ApplyMoveEffectHookAddrExtractedOnSuccess = 0x23326CC;
 /* Other ov29 addresses */
 DeerlingSplitPersonalityHook = 0x234D01C;
 DoNormalPersonality = 0x234D1D4;
+RegenMonsterHP = 0x2311254;
 /* Move Shortcut Hooks */
 MoveShortcutsMainCheckHook = 0x22F11DC;         /* In SetLeaderAction */
 MoveShortcutsMainCheckLoopUnhook = 0x22F1024;   /* In SetLeaderAction */
