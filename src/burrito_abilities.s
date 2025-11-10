@@ -1,3 +1,5 @@
+	.align
+
 	CheckIgnition:
 
 	push  {r0-r7, r9-r12}
