@@ -165,7 +165,7 @@
 		mov r1, r7
 		mov r2, #0x2e
 		mov r3, #0x1
-	.close
+	.endarea
 	
 
 	.org DeerlingSplitPersonalityHook
