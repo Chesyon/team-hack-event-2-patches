@@ -3,6 +3,8 @@
 .global CheckDungeonId
 .global LarvestaIsDead
 
+.align
+
 LarvestaItemCheckDuringDungeon:
     push {r0,r1,lr}
 
