@@ -1,5 +1,3 @@
-	.align
-
 	CheckIgnition:
 
 	push  {r0-r7, r9-r12}
@@ -421,3 +419,5 @@
 .pool
 	WhyCantWeJustLeaveHimBehind:
     .ascii, "...Huh? Where did [CS:Z]Larvesta[CR] go?[C][CS:Z]Larvesta[CR] used the [M:I1][CS:G]Escape Orb[CR]!"
+
+.align
