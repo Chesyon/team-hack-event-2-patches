@@ -1,18 +1,12 @@
-// Replace the "GetMovePower" function with a custom one.
-// Since a branch is inserted at the start of the function, the function is practically
-// replaced with our own. The "b" instruction doesn't modify the link register, so
-// execution will continue after the call to `GetMovePower` once our function returns.
-
 .nds
 .include "symbols.asm"
 
-// Man idk if this is how to do this or not, Chesyon fixit! - Lappy
 .open "arm9.bin", arm9_start
     ; Replace the function ChangeGiratinaFormIfSkyDungeon with a call to the custom function.
     .org CHANGE_GIRATINA_FORM_HOOK
     .area 0x8
         bl GroundCustomFormsChange
-        pop r4-r8,pc;
+        pop r4-r8,pc
     .endarea
 
     ; Replace the function RevertGiratinaAndShaymin with a call to the custom function.
@@ -21,52 +15,52 @@
     .org REVERT_GIRATINA_AND_SHAYMIN_FORM_HOOK
     .area 0x8
         bl GroundRevertTeamMember
-        pop r3-r5,pc;
+        pop r3-r5,pc
     .endarea
 	
 	.org TRANSFORM_UNIT_HOOK
 	.area 0x4
-		bl TransformUnitAdventureActor;
+		bl TransformUnitAdventureActor
 	.endarea
 
 	.org TRANSFORM_ADVENTURE_HOOK
 	.area 0x4
-		bl TransformUnitAdventureActor;
+		bl TransformUnitAdventureActor
 	.endarea	
 	
 	.org TRANSFORM_MC1_HOOK
 	.area 0x4
-		bl TransformMC1Actor;
+		bl TransformMC1Actor
 	.endarea
 
 	.org TRANSFORM_MC2_HOOK
 	.area 0x4
-		bl TransformMC2Actor;
+		bl TransformMC2Actor
 	.endarea
 
 	.org TRANSFORM_MC3_HOOK
 	.area 0x4
-		bl TransformMC3Actor;
+		bl TransformMC3Actor
 	.endarea
 
 	.org TRANSFORM_APPOINT_HOOK
 	.area 0x4
-		bl TransformAppointActor;
+		bl TransformAppointActor
 	.endarea
 
 	.org TRANSFORM_HERO_HOOK
 	.area 0x4
-		bl TransformHeroActor;
+		bl TransformHeroActor
 	.endarea
 
 	.org TRANSFORM_PARTNER_HOOK
 	.area 0x4
-		bl TransformPartnerActor;
+		bl TransformPartnerActor
 	.endarea
-	.org CreateDBoxStart;
-	.area 0x4;
-		bl DBoxFormatHook;
-	.endarea;
+	.org CreateDBoxStart
+	.area 0x4
+		bl DBoxFormatHook
+	.endarea
 
 	; original instruction: b LoadPortraitReturn
 	.org LoadPortraitFinish
@@ -77,7 +71,7 @@
 	.org IsNoLossPenaltyDungeon
 	.area 0x10
 		push {r1-r3,lr}
-		mov r0, #60;
+		mov r0, #60
 		bl GetPerformanceFlagWithChecks
 		pop {r1-r3,pc}
 	.endarea
@@ -87,40 +81,40 @@
 .open "overlay29.bin", overlay29_start
     .org CALC_DAMAGE_FORM_OFFENSE_HOOK
     .area 0x3C
-        mov r0, r6;
-        ldr r1, [sp, 0x18];
+        mov r0, r6
+        ldr r1, [sp, 0x18]
         mov r2, #0x0; // ATK
-        bl ApplyFormStatBoosts;
-        add r4, r0;
-        nop;
-        nop;
-        nop;
-        nop;
-        nop;
-        nop;
-        nop;
-        nop;
-        nop;
-        nop;
+        bl ApplyFormStatBoosts
+        add r4, r0
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
     .endarea
 
     .org CALC_DAMAGE_FORM_DEFENSE_HOOK
     .area 0x3C
-        mov r0, r7;
-        ldr r1, [sp, 0x18];
+        mov r0, r7
+        ldr r1, [sp, 0x18]
         mov r2, #0x1; // DEF
-        bl ApplyFormStatBoosts;
-        add r4, r0;
-        nop;
-        nop;
-        nop;
-        nop;
-        nop;
-        nop;
-        nop;
-        nop;
-        nop;
-        nop;
+        bl ApplyFormStatBoosts
+        add r4, r0
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
+        nop
     .endarea
 
     .org HOOK_DUNGEON_FORM_CHANGE_1
@@ -170,8 +164,8 @@
 
 	.org DeerlingSplitPersonalityHook
 	.area 0x4
-		beq DoNormalPersonality;
-	.endarea;
+		beq DoNormalPersonality
+	.endarea
 
 	.org RegenMonsterHP
 	.area 0x4
