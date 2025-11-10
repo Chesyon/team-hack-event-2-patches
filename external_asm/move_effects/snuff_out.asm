@@ -37,6 +37,7 @@
 .definelabel LogMessageByIdWithPopupCheckUserTarget, 0x234B350
 
 ; snuff out heals the targets burn, deals damage to the target, and then boosts the users attack by 1 stage
+; NOTE: snuff out not KOing allies is not in this file, look inside snuff_out_no_ko.s for that
 
 .definelabel MaxSize, 0x2598
 
@@ -62,27 +63,12 @@
 	moveq r3, #256
 	beq   IsEnemy
 
-	push  r5 - r7
-
-	ldrb  r5, [r0, #0xd5]
-	ldrb  r6, [r0, #0xd6]
-	mov   r1, #5
-	strb  r1, [r0, #0xd6]
-	mov   r1, #9
-	strb  r1, [r0, #0xd5]
-
-	mov  r7, r0
-
 	mov  r0, r9
 	mov  r1, r4
 	mov  r2, r8
 	mov  r3, #128
 	bl   DealDamage
-
-	strb r5, [r7, #0xd5]
-	strb r6, [r7, #0xd6]
 	
-	pop  r5-r7
 	b    RaiseAttack
 
 	IsEnemy:
@@ -124,4 +110,5 @@
 	
         .pool
     .endarea
+
 .close
