@@ -161,7 +161,6 @@
 	.org KNOWN_BURT_HOOK_6
 	.area 0x18
 		b     CanTheMoveKO
-		Continue:
 		mov r0, r8
 		mov r1, r7
 		mov r2, #0x2e
