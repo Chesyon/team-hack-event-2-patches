@@ -80,8 +80,12 @@
 	ldr   r9, [r6,#0xb4]
 	ldrb  r9, [r9,#0x6]
 	cmp   r9, #1
-	movne r0, #5
-	bne   DoRng
+	bne   BurnChance
+
+	ldr   r0, [r8, #0xb4]
+	ldrb  r0, [r0, #0x6]
+	cmp   r0, #1
+	bne   BurnChance
 	
 	CheckImmunities:
 
@@ -117,6 +121,12 @@
 	add   r1, r1, #15
 
 	mov   r7, r1
+
+	ldr   r1, [r0, #0x30]
+	add   r2, r1, #1
+	mov   r0, #5
+	mul   r2, r0
+	add   r7, r7, r2
 
 	mov   r0, r8
 	mov   r1, r6
@@ -247,6 +257,12 @@
 
 	BurnChance:
 
+	ldr   r0, [r8, #0xb4]
+	ldr   r1, [r0, #0x30]
+	add   r9, r1, #1
+
+	AnotherLabelGodPleaseHelp:
+
 	mov   r0, r8
 	mov   r1, r6
 	mov   r2, #2
@@ -267,7 +283,14 @@
 
 	bl    DungeonRandInt
 	cmp   r0, #0
-	bne   EndLoopI
+	beq   CauseBurn
+
+	FlashFireBurnCheck:
+
+	cmp   r9, #0
+	beq   EndLoopI
+	sub   r9, r9, #1
+	b     AnotherLabelGodPleaseHelp
 
 	CauseBurn: 
 
