@@ -172,6 +172,11 @@
 		bl ConditionalRegen
  	.endarea
 
+	.org SaveFloorHook
+	.area 0x4
+		bl SaveFloor
+	.endarea
+
 .close
 
 

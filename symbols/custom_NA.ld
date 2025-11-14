@@ -47,6 +47,7 @@ MoveShortcutsMainCheckLoopUnhook = 0x22F1024;   /* In SetLeaderAction */
 MoveShortcutsMainCheckNormalUnhook = 0x22F11E4; /* In SetLeaderAction */
 MessageLogShortcutButtonOneCheck = 0x22F1E44;   /* In SetLeaderAction */
 MessageLogShortcutButtonTwoCheck = 0x22F1E54;   /* In SetLeaderAction */
+SaveFloorHook = 0x22DF670;
 
 /* !file arm9 */
 ShowKeyboardTypeCase3 = 0x02036914;
