@@ -9,6 +9,24 @@ ScriptMenuUpdateFinalize = 0x022E6E58;
 IS_BASE_GAME_MENU_FINISHED = 0x02324C9C;
 SPRITE_BANK_ID_SOMETHING_IDK = 0x20AFC50;
 ANOTHER_SPRITE_RENDER_THING = 0x20AFC4C;
+/* Chesyon's TM bullshit */
+InitTreasureBagMenu = 0x2304AE0;
+UpdateTreasureBagHook1 = 0x2307618;
+UpdateTreasureBagHook2 = 0x2307630;
+UpdateTreasureBagHook3 = 0x23078D8;
+UpdateTreasureBagHook4 = 0x23078F0;
+UpdateTreasureBagHook5 = 0x2307F84;
+UpdateTreasureBagHook6 = 0x2307F90;
+UpdateTreasureBagHook7 = 0x2308834;
+TreasureBagFrameUpdateHook = 0x2304BA8;
+IdfkWhatOverlayThisIs1 = 0x22BCD68;
+IdfkWhatOverlayThisIs2 = 0x22BCDBC;
+SomeTMFunc1 = 0x23090DC;
+SomeTMFunc2 = 0x2309E24;
+StupidBandaidFixHook = 0x2307FC0;
+FunctionThatMakesMeAngry = 0x2308FEC;
+InitTopGroundMenu = 0x2300D5C; /* Defined in a newer version of pmdsky-debug */
+
 
 /* !file overlay29 */
 ApplyMoveEffect = 0x0232E864;

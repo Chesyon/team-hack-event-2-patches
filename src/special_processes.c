@@ -22,6 +22,40 @@ static void __attribute__((naked)) SpToggleDropShadow(bool enable){
     asm("bx lr");
 }
 
+extern void InitTreasureBagMenu();
+
+// Special process 103: treasure bag test
+#define SANDSEAR_STORM_MOVE_ID 544
+#define SANDSEAR_STORM_TM_ID 349
+bool tm_started = false;
+struct item item_0_backup;
+static int SpLearnSandsearStorm(){
+    if(tm_started){
+        if(!GetPerformanceFlagWithChecks(58)){ // has the menu code disabled the flag?
+            tm_started = false;
+            memcpy(BAG_ITEMS_PTR, &item_0_backup, sizeof(struct item)); // restore item at slot 0 to what it was before we overwrote it with tm
+            return 1;
+        }
+        else return -1; // tm still running
+    }
+    int move_slot = 0;
+    for (; move_slot < 4; move_slot++){
+        if(TEAM_MEMBER_TABLE_PTR->members[0].moves[move_slot].id.val == SANDSEAR_STORM_MOVE_ID) break;
+    }
+    if(move_slot < 4) return 0; // move already known
+    else { // move not known
+        tm_started = true;
+        memcpy(&item_0_backup, BAG_ITEMS_PTR, sizeof(struct item)); // backup item at slot 0 in bag because we're about to overwrite it
+        RemoveItem(0);
+        struct item new_item;
+        InitItem(&new_item, SANDSEAR_STORM_TM_ID, 0, false);
+        AddItemToBagNoHeld(&new_item);
+        SaveScriptVariableValueAtIndex(NULL, VAR_PERFORMANCE_PROGRESS_LIST, 58, 1);
+        InitTreasureBagMenu();
+        return -1;
+    }
+}
+
 // Called for special process IDs 100 and greater.
 //
 // Set return_val to the return value that should be passed back to the game's script engine. Return true,
@@ -38,6 +72,9 @@ bool CustomScriptSpecialProcessCall(undefined4* unknown, uint32_t special_proces
             return true;
         case 102:
             *return_val = SpGetLitwickMode();
+            return true;
+        case 103:
+            *return_val = SpLearnSandsearStorm();
             return true;
         default:
             return false;
