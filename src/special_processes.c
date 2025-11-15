@@ -25,7 +25,7 @@ static void __attribute__((naked)) SpToggleDropShadow(bool enable){
 extern void InitTreasureBagMenu();
 
 // Special process 103: Teaches Sandsear Storm to the leader. Returns 0 once learned, otherwise returns -1 (which loops the SP)
-#define SANDSEAR_STORM_MOVE_ID 544
+#define SANDSEAR_STORM_MOVE_ID 411
 #define SANDSEAR_STORM_TM_ID 349
 bool tm_started = false;
 struct item item_0_backup;
