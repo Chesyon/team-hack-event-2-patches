@@ -2,6 +2,9 @@
 
 	push  {r0-r7, r9-r12}
 
+	cmp   r7, r8
+	beq   IgnitionCheckEndPremature
+
 	mov   r0, r8
 	mov   r1, #21
 	bl    OtherMonsterAbilityIsActive
