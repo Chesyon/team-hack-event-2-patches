@@ -177,6 +177,25 @@
 		bl SaveFloor
 	.endarea
 
+	.org OhGodWhyDidIblAllMyHooksBackThen 
+	.area 0x4
+		bl HasUnusedAbilityCrit
+	.endarea
+
+	.org BecauseIWasStupidThatsWhy 
+	.area 0x4
+		bl HasUnusedAbilityAcc
+	.endarea
+
+	.org AnywaysTheseAreHooksForPlotArmor 
+	.area 0x4
+		bl HasUnusedAbilityEffect1
+	.endarea
+
+	.org ButTheyreItemEffectsNowForSomeReason 
+	.area 0x4
+		bl HasUnusedAbilityEffect2
+	.endarea
 .close
 
 
