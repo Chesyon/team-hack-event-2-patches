@@ -5,6 +5,10 @@
 	cmp   r7, r8
 	beq   IgnitionCheckEndPremature
 
+	ldr   r0, [r8, #0]
+	cmp   r0, #1
+	bne   IgnitionCheckEndPremature
+
 	mov   r0, r8
 	mov   r1, #21
 	bl    OtherMonsterAbilityIsActive
