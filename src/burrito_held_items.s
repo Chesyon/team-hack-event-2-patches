@@ -31,10 +31,10 @@ HasUnusedAbilityCrit:
 		ldrh r2, [r0, #0x12]
 		ldrh r3, [r0, #0x16]
 		add r2, r2, r3
-		lsr r1, #1
+		lsl r1, #1
 		cmp r1, r2
-		ldreq r0,=125
-		popeq {r4,r5,r15}
+		ldrle r0,=125
+		pople {r4,r5,r15}
 
 	CheckFailedAcc:
 		mov r0,r4
