@@ -86,13 +86,10 @@
 
 	ldr   r9, [r6,#0xb4]
 	ldrb  r9, [r9,#0x6]
-	cmp   r9, #1
-	bne   BurnChance
-
 	ldr   r0, [r8, #0xb4]
 	ldrb  r0, [r0, #0x6]
-	cmp   r0, #1
-	bne   BurnChance
+	cmp   r9, r0
+	beq   BurnChance
 	
 	CheckImmunities:
 
