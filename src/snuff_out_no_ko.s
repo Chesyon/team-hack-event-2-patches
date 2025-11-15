@@ -1,3 +1,10 @@
+// r1: the ID of the used move
+// r4: user's monster struct
+// r5: whether or not the move can KO
+// r6: ???
+// r7: target's entity struct
+// r8: user's entity struct
+
 CanTheMoveKO:
 
 cmp r0, r1
