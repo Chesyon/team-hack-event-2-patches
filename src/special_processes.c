@@ -24,7 +24,7 @@ static void __attribute__((naked)) SpToggleDropShadow(bool enable){
 
 extern void InitTreasureBagMenu();
 
-// Special process 103: treasure bag test
+// Special process 103: Teaches Sandsear Storm to the leader. Returns 0 once learned, otherwise returns -1 (which loops the SP)
 #define SANDSEAR_STORM_MOVE_ID 544
 #define SANDSEAR_STORM_TM_ID 349
 bool tm_started = false;
@@ -34,7 +34,7 @@ static int SpLearnSandsearStorm(){
         if(!GetPerformanceFlagWithChecks(58)){ // has the menu code disabled the flag?
             tm_started = false;
             memcpy(BAG_ITEMS_PTR, &item_0_backup, sizeof(struct item)); // restore item at slot 0 to what it was before we overwrote it with tm
-            return 1;
+            // we actually DON'T want to return here. we let it keep running down to the for loop where it'll ensure larvesta actually learned the move, and start the process over if not.
         }
         else return -1; // tm still running
     }
@@ -42,7 +42,7 @@ static int SpLearnSandsearStorm(){
     for (; move_slot < 4; move_slot++){
         if(TEAM_MEMBER_TABLE_PTR->members[0].moves[move_slot].id.val == SANDSEAR_STORM_MOVE_ID) break;
     }
-    if(move_slot < 4) return 0; // move already known
+    if(move_slot < 4) return 0; // move known
     else { // move not known
         tm_started = true;
         memcpy(&item_0_backup, BAG_ITEMS_PTR, sizeof(struct item)); // backup item at slot 0 in bag because we're about to overwrite it
