@@ -112,6 +112,11 @@ UNK_BURT_HOOK_5 = 0x23092C0;
 KNOWN_BURT_HOOK_6 = 0x2332DA8;
 IDontKnowMayItKO = 0x2332DAC;
 
+OhGodWhyDidIblAllMyHooksBackThen = 0x02332B58;
+BecauseIWasStupidThatsWhy = 0x02323c64;
+AnywaysTheseAreHooksForPlotArmor = 0x023249A8;
+ButTheyreItemEffectsNowForSomeReason = 0x02324A48;
+
 UNK_ANON_HOOK_1 = 0x0238897C;
 UNK_ANON_HOOK_2 = 0x023888A4;
 EndHookQuickSave = 0x023888A8;
