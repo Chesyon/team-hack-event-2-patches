@@ -436,6 +436,7 @@
 .pool
 	WhyCantWeJustLeaveHimBehind:
     .ascii, "...Huh? Where did [CS:Z]Larvesta[CR] go?"
+	.word 0x0
 	WhyDoesSquareBracketCCloseSquareBracketNotWorkAsIntended:
 	.ascii, "[CS:Z]Larvesta[CR] used the [M:I1][CS:G]Escape Orb[CR]!"
 
