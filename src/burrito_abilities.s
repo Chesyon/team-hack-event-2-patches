@@ -342,10 +342,22 @@
 	mov r0, #0
 	bl AdvanceFrame
 	add r5, #1
-	cmp r5, #60
+	cmp r5, #120
 	bls TimerLoop
+
+	ldr r1, =WhyCantWeJustLeaveHimBehind
+    bl LogMessageWithPopup
+	mov r5, #0
+	
+	TimerLoop2:
+	mov r0, #0
+	bl AdvanceFrame
+	add r5, #1
+	cmp r5, #120
+	bls TimerLoop2
     
     bl LarvestaIsDead
+	
     SkipFloorLarvestaMurder:
 	ldr    r0, =DUNGEON_PTR
 	ldr    r0, [r0, #0x0]	
@@ -423,6 +435,8 @@
 
 .pool
 	WhyCantWeJustLeaveHimBehind:
-    .ascii, "...Huh? Where did [CS:Z]Larvesta[CR] go?[C][CS:Z]Larvesta[CR] used the [M:I1][CS:G]Escape Orb[CR]!"
+    .ascii, "...Huh? Where did [CS:Z]Larvesta[CR] go?"
+	WhyDoesSquareBracketCCloseSquareBracketNotWorkAsIntended:
+	.ascii, "[CS:Z]Larvesta[CR] used the [M:I1][CS:G]Escape Orb[CR]!"
 
 .align
