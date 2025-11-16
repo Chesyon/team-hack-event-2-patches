@@ -345,7 +345,7 @@
 	cmp r5, #120
 	bls TimerLoop
 
-	ldr r1, =WhyCantWeJustLeaveHimBehind
+	ldr r1, =WhyDoesSquareBracketCCloseSquareBracketNotWorkAsIntended
     bl LogMessageWithPopup
 	mov r5, #0
 	
