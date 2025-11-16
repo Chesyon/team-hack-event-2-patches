@@ -177,6 +177,7 @@ GetWishiwashiForm:
 .pool
     IdSayWhyDoTheGoodDieYoungButEvenIfHesYoungLarvestaWouldStillGoToHell:
     .ascii "Oh no! [CS:Z]Larvesta[CR] was defeated!"
+	.word 0
     WhyCantWeJustLeaveHimBehind:
     .ascii, "...Huh? Where did [CS:Z]Larvesta[CR] go?[C][CS:Z]Larvesta[CR] used the [M:I1][CS:G]Escape Orb[CR]!"
 
