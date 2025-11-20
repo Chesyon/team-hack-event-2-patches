@@ -119,11 +119,82 @@
 	cmpne  r1, #2
 	beq    EndLoopI
 
-	CalcTotalDamage: 
-
+	GetUserSpecies:
+	
 	ldr   r0, [r8, #0xb4]
+	ldr   r1, [r0, #0x2]
+	ldr   r2, =#537
+	cmp   r1, r2
+	ldrne r1, [r0, #0x4]
+	cmpne r1, r2
+	
+	beq   UserIsLarvesta
+
+	UserIsNotLarvesta:
+	
+	ldr   r0, [r0, #0x1A]
+	ldrb  r1, [r0, #0x1]
+	add   r1, r1, #15
+
+	ldr   r2, [r0, #0x22]
+	ldrh  r2, [r2, #0x2]
+
+	cmp   r2, #21
+	addls r15, r2, lsl #3
+	nop
+	ldr   r0, =#128
+	b     CalcTotalDamage // -10 atk
+	ldr   r0, =#133
+	b     CalcTotalDamage // -9 atk
+	ldr   r0, =#138
+	b     CalcTotalDamage // -8 atk
+	ldr   r0, =#143
+	b     CalcTotalDamage // -7 atk
+	ldr   r0, =#148
+	b     CalcTotalDamage // -6 atk
+	ldr   r0, =#153
+	b     CalcTotalDamage // -5 atk
+	ldr   r0, =#161
+	b     CalcTotalDamage // -4 atk
+	ldr   r0, =#171
+	b     CalcTotalDamage // -3 atk
+	ldr   r0, =#179
+	b     CalcTotalDamage // -2 atk
+	ldr   r0, =#204
+	b     CalcTotalDamage // -1 atk
+	ldr   r0, =#256
+	b     CalcTotalDamage // neutral
+	ldr   r0, =#307
+	b     CalcTotalDamage // +1 atk
+	ldr   r0, =#332
+	b     CalcTotalDamage // +2 atk
+	ldr   r0, =#358
+	b     CalcTotalDamage // +3 atk
+	ldr   r0, =#384
+	b     CalcTotalDamage // +4 atk
+	ldr   r0, =#409
+	b     CalcTotalDamage // +5 atk
+	ldr   r0, =#422
+	b     CalcTotalDamage // +6 atk
+	ldr   r0, =#435
+	b     CalcTotalDamage // +7 atk
+	ldr   r0, =#448
+	b     CalcTotalDamage // +8 atk
+	ldr   r0, =#460
+	b     CalcTotalDamage // +9 atk
+	ldr   r0, =#473
+	b     CalcTotalDamage // +10 atk
+
+	UserIsLarvesta:
+
 	ldrb  r1, [r0, #0xA]
 	add   r1, r1, #15
+	mov   r0, #256
+
+	CalcTotalDamage: 
+
+	add   r1, r0
+	lsr   r1, #8
 
 	mov   r7, r1
 
