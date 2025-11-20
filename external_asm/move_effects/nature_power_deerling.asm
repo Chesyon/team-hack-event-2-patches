@@ -90,6 +90,19 @@
 	cmp   r1, r2
 	beq   WinterDeerling
 
+	; also also check for espik's deerling forms
+
+	ldr   r2, =#1610
+	add   r2, r2, #1
+	cmp   r1, r2
+	beq   SummerDeerling
+	add   r2, r2, #1
+	cmp   r1, r2
+	beq   FallDeerling
+	add   r2, r2, #1
+	cmp   r1, r2
+	beq   WinterDeerling
+
 	SpringDeerling:
 
 	; spring deerling applies leech seed to the opponent
