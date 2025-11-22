@@ -80,6 +80,8 @@
 	mov  r2, r8
 	bl   DealDamage
 
+	CheckFlashFire:
+
 	mov  r0, r9
 	mov  r1, r9
 	bl   FlashFireShouldActivate
@@ -127,4 +129,5 @@
     .endarea
 
 .close
+
 
