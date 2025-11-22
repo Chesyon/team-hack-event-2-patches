@@ -125,7 +125,7 @@
 	ldrh   r1, [r0, #0x2]
 	ldr    r2, =#537
 	cmp    r1, r2
-	ldrhne r1, [r0, #0x4]
+	ldrneh r1, [r0, #0x4]
 	cmpne  r1, r2
 	
 	beq   UserIsLarvesta
