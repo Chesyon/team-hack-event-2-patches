@@ -134,7 +134,7 @@
 	
 	ldr   r0, [r0, #0x1A]
 	ldrb  r1, [r0, #0x1]
-	add   r1, r1, #15
+	add   r1, r1, #10
 
 	ldr   r2, [r0, #0x22]
 	ldrh  r2, [r2, #0x2]
@@ -142,58 +142,58 @@
 	cmp   r2, #21
 	addls r15, r2, lsl #3
 	nop
-	ldr   r0, =#128
+	ldr   r2, =#128
 	b     CalcTotalDamage // -10 atk
-	ldr   r0, =#133
+	ldr   r2, =#133
 	b     CalcTotalDamage // -9 atk
-	ldr   r0, =#138
+	ldr   r2, =#138
 	b     CalcTotalDamage // -8 atk
-	ldr   r0, =#143
+	ldr   r2, =#143
 	b     CalcTotalDamage // -7 atk
-	ldr   r0, =#148
+	ldr   r2, =#148
 	b     CalcTotalDamage // -6 atk
-	ldr   r0, =#153
+	ldr   r2, =#153
 	b     CalcTotalDamage // -5 atk
-	ldr   r0, =#161
+	ldr   r2, =#161
 	b     CalcTotalDamage // -4 atk
-	ldr   r0, =#171
+	ldr   r2, =#171
 	b     CalcTotalDamage // -3 atk
-	ldr   r0, =#179
+	ldr   r2, =#179
 	b     CalcTotalDamage // -2 atk
-	ldr   r0, =#204
+	ldr   r2, =#204
 	b     CalcTotalDamage // -1 atk
-	ldr   r0, =#256
+	ldr   r2, =#256
 	b     CalcTotalDamage // neutral
-	ldr   r0, =#307
+	ldr   r2, =#307
 	b     CalcTotalDamage // +1 atk
-	ldr   r0, =#332
+	ldr   r2, =#332
 	b     CalcTotalDamage // +2 atk
-	ldr   r0, =#358
+	ldr   r2, =#358
 	b     CalcTotalDamage // +3 atk
-	ldr   r0, =#384
+	ldr   r2, =#384
 	b     CalcTotalDamage // +4 atk
-	ldr   r0, =#409
+	ldr   r2, =#409
 	b     CalcTotalDamage // +5 atk
-	ldr   r0, =#422
+	ldr   r2, =#422
 	b     CalcTotalDamage // +6 atk
-	ldr   r0, =#435
+	ldr   r2, =#435
 	b     CalcTotalDamage // +7 atk
-	ldr   r0, =#448
+	ldr   r2, =#448
 	b     CalcTotalDamage // +8 atk
-	ldr   r0, =#460
+	ldr   r2, =#460
 	b     CalcTotalDamage // +9 atk
-	ldr   r0, =#473
+	ldr   r2, =#473
 	b     CalcTotalDamage // +10 atk
 
 	UserIsLarvesta:
 
 	ldrb  r1, [r0, #0xA]
-	add   r1, r1, #15
-	mov   r0, #256
+	add   r1, r1, #10
+	mov   r2, #256
 
 	CalcTotalDamage: 
 
-	add   r1, r0
+	add   r1, r2
 	lsr   r1, #8
 
 	mov   r7, r1
