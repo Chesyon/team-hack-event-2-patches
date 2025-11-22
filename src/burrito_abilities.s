@@ -86,6 +86,9 @@
 	bl    EndFrozenStatus
 
 	ldr   r9, [r6,#0xb4]
+	ldrb  r0, [r9,#0x9]
+	cmp   r0, #1
+	beq   EndLoopI
 	ldrb  r9, [r9,#0x6]
 	ldr   r0, [r8, #0xb4]
 	ldrb  r0, [r0, #0x6]
