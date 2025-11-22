@@ -121,19 +121,18 @@
 
 	GetUserSpecies:
 	
-	ldrh  r0, [r8, #0xb4]
-	ldr   r1, [r0, #0x2]
-	ldrh  r2, =#537
-	cmp   r1, r2
-	ldrne r1, [r0, #0x4]
-	cmpne r1, r2
+	ldr    r0, [r8, #0xb4]
+	ldrh   r1, [r0, #0x2]
+	ldr    r2, =#537
+	cmp    r1, r2
+	ldrhne r1, [r0, #0x4]
+	cmpne  r1, r2
 	
 	beq   UserIsLarvesta
 
 	UserIsNotLarvesta:
 	
-	ldr   r1, [r0, #0x1A]
-	ldrb  r1, [r1, #0x1]
+	ldrb  r1, [r0, #0x1B]
 	add   r1, r1, #10
 	b     CalcTotalDamage
 	
