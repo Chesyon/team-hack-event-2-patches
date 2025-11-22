@@ -35,6 +35,8 @@
 .definelabel CalcDamageFixed, 0x230D240
 .definelabel AttackUp, 0x231399C
 .definelabel LogMessageByIdWithPopupCheckUserTarget, 0x234B350
+.definelabel FlashFireShouldActivate, 0x2313C74
+.definelabel ActivateFlashFire, 0x2313CE4
 
 ; snuff out heals the targets burn, deals damage to the target, and then boosts the users attack by 1 stage
 ; NOTE: snuff out not KOing allies is not in this file, look inside snuff_out_no_ko.s for that
@@ -69,7 +71,7 @@
 	mov  r3, #128
 	bl   DealDamage
 	
-	b    RaiseAttack
+	b    CheckFlashFire
 
 	IsEnemy:
 
@@ -78,6 +80,17 @@
 	mov  r2, r8
 	bl   DealDamage
 
+	mov  r0, r9
+	mov  r1, r9
+	bl   FlashFireShouldActivate
+	cmp  r0, #1
+	beq  RaiseAttack
+
+	mov  r0, r9
+	mov  r1, r9
+	bl   ActivateFlashFire
+	b    WhoKnewLarvestaWasAFireExtinguisherAllAlong
+
 	RaiseAttack:
 
 	mov  r0, r9
@@ -85,6 +98,8 @@
 	mov  r2, #0
 	mov  r3, #1
 	bl   AttackUp	
+
+	WhoKnewLarvestaWasAFireExtinguisherAllAlong:
 
 	mov  r0, r4
 	bl   EntityIsValid
@@ -112,3 +127,4 @@
     .endarea
 
 .close
+
