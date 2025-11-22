@@ -196,6 +196,11 @@
 	.area 0x4
 		bl HasUnusedAbilityEffect2
 	.endarea
+
+	.org IDoNotKnowIfTheHookIsInApplyDamageOrDealDamageUntilIOpenTheGhidra 
+	.area 0x4
+		b  IsSpecialMove
+	.endarea
 .close
 
 
