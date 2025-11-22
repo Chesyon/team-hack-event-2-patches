@@ -136,3 +136,6 @@ PALETTE_ALLOCATION_DATA = 0x02353534;
 /* !file overlay29 */
 DungeonTilePostPickHook = 0x0233699c;
 DungeonTilePostPickHookFinalJump = 0x023369e8;
+
+LiterallyWhereIsThisWhyDidINotJustUseLabelsForMyExitPoint = 0x2332b48;
+IDoNotKnowIfTheHookIsInApplyDamageOrDealDamageUntilIOpenUpGhidra = 0x02332b44
