@@ -132,11 +132,11 @@
 
 	UserIsNotLarvesta:
 	
-	ldr   r0, [r0, #0x1A]
-	ldrb  r1, [r0, #0x1]
+	ldr   r1, [r0, #0x1A]
+	ldrb  r1, [r1, #0x1]
 	add   r1, r1, #10
 
-	ldr   r2, [r0, #0x22]
+	ldr   r2, [r0, #0x24]
 	ldrh  r2, [r2, #0x2]
 
 	cmp   r2, #21
