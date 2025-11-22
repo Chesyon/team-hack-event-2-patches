@@ -504,6 +504,28 @@
 	mov   r0, #0
 	b     BURT_ExitPoint
 
+	IsSpecialMove:  // GOD WHY DID I USE SO MANY COMMENTS LAST YEAR
+		ldrh  r0, [r5, #0x4]	// load the move id from the given move
+		bl    MoveIsNotPhysical	// branch to move not physical, which returns a bool
+		cmp   r0, #1		// compare the resulting bool to 1, meaning the move is special
+		bne   IGotPunchedButNotInTheGoodWay // if the move is physical, exit immediately
+
+	TargetHasAbility:
+		mov   r1, #0x80 	// unused ability slot
+		mov   r0, r6		// r6 holds the target data
+		bl    AbilityIsActive	// check if the ability is active
+		cmp   r0, #1		// compare the bool to 1
+		bne   IGotPunchedButNotInTheGoodWay	// if the ability is inactive, exit immediately
+
+	HalfDamage:
+		mov   r0, r4		// r4 holds the damage multiplier
+		lsl   r0, #2        // divide r0 by 4
+		sub   r4, r4, r0        // we subtract a quarter from the full number, resulting in 3/4 damage taken
+
+	IGotPunchedButNotInTheGoodWay:
+		mov   r0, r7		// replaced effect
+		b     LiterallyWhereIsThisWhyDidINotJustUseLabelsForMyExitPoint // branch to right after the hook at 0x2332b48
+
 .pool
 	WhyCantWeJustLeaveHimBehind:
     .ascii, "...Huh? Where did [CS:Z]Larvesta[CR] go?"
