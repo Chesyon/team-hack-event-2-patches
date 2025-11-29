@@ -126,14 +126,14 @@
 	
 	ldr    r0, [r8, #0xb4]
 	ldrh   r1, [r0, #0x2]
-	ldr    r2, =#537
+	ldr    r2, =#1237
 	cmp    r1, r2
 	ldrneh r1, [r0, #0x4]
 	cmpne  r1, r2
 	
-	beq   UserIsLarvesta
+	beq   UserIsVolcarona
 
-	UserIsNotLarvesta:
+	UserIsVolcarona:
 	
 	ldrb  r1, [r0, #0x1B]
 	add   r1, r1, #10
