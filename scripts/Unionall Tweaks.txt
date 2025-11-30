@@ -1,0 +1,11 @@
+
+
+
+// Place after "LABEL_BACKTOHOME" in "coro GETOUT_REQUEST_CONQUEST"
+    $SCENARIO_SELECT = scn[49, 0];
+    clear $EVENT_LOCAL;
+    §label_Mission;
+    supervision_ExecuteActingSub(LEVEL_S00P01A, 'R3QU3ST', 0);
+    if ( scn($SCENARIO_SELECT) == [49, 32767] ) {
+        jump @label_Mission;
+    }

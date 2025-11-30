@@ -275,10 +275,7 @@ ApplyFormStatBoosts:
 
 
 ValidateSpeciesFormsWrapper1:
-		popne {r3-r11, pc}; // Original Instruction
-        push {r0-r12,lr}
-        bl LarvestaItemCheckDuringDungeon
-        pop {r0-r12,lr}
+        popne {r3-r11, pc}; // Original Instruction
         mov r0, r10;
         mov r1, #0x1; // Do SFX
 ValidateSpeciesForms:
@@ -399,6 +396,7 @@ ValidateSpeciesForms:
 		ldrb r1, [r6, #0xA]
 		cmp r1, r0;
 		movlt r0, #0x0;
+        bl WishiwashiRosyXor
 		blt ValidationCondition;
 		cmp r11, #0x1; // Is this School or Solo?
 		moveq r7, #0x2; // School: Check for >= Quarter
@@ -409,8 +407,18 @@ ValidateSpeciesForms:
 		cmp r1, r2; // Current >= Max>>X
 		movlt r0, #0x0;
 		movge r0, #0x1;
+        bl WishiwashiRosyXor
 		b ValidationCondition;
-		
+	
+    WishiwashiRosyXor:
+        push {r1-r12,lr}
+        mov r11, r0;
+        bl GetRosyTurnCount
+        cmp r0, #1;
+        eorge r11, #1;
+        and r0, r11, #1;
+        pop {r1-r12,pc}
+
     ValidationCondition:
         cmp r0, r11; // Should be true for final species, false otherwise. If NOT, then the species must change!
         beq ResumeSpeciesLoop;
@@ -568,6 +576,12 @@ IsScenarioMainValid:
         mov r1, #0x3;
         mov r2, #0x0;
         bl LoadScriptVariableValueAtIndex
+        mov r11, r0;
+        bl GetRosyTurnCount
+        cmp r0, #1;
+        lsreq r0, #2;
+        addeq r0, #1;
+        add r0, r11;
 		and r0, #0x3;
 		ldrb r3, [r5, #0x6];
 		cmp r0, r3;
