@@ -215,7 +215,6 @@ InitDestinationOutlaws = 0x23497C8; /* 0x234A3C8 EU */
 RetrieveCurrentBGM = 0x22EAEF0; /* 0x22EB8A0 EU */
 
 OOPS2 = 0x22FEBAC;
-// OOPS = 0x205F29C; /* 0x205F608 EU */
 
 /* Unused but useful offsets
 	CALL_EXIT_TRACKER_HOOK = 0x22DFBC4; 0x22E0500 EU

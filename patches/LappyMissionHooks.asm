@@ -50,10 +50,6 @@
 		bl CheckIfMemoCompleteReward
 	.endarea
 
-	.org OOPS
-	.area 0x4
-		cmp r4, #0xFF;
-	.endarea
 
 	.org MISSION_REWARD_GENERATION_HOOK
 	.area 0x4
@@ -192,10 +188,6 @@
 	.endarea;
 
 
-	.org OOPS2;
-	.area 0x4;
-		b OOPS3;
-	.endarea
 
 	.org MEMO_TWEAK_MISSION_DEST_INFO_HOOK
 	.area 0x10;
