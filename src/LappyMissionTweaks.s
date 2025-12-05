@@ -124,7 +124,7 @@ ToggleRosyMusic:
 	push {r1-r12,lr}
 	mov r11, r0;
 	cmp r11, #2;
-	ldrne r0, =ROSY_BGM_ID;
+	movne r0, #212;
 	bne SetRosyMusic;
 	ldr r10, =DUNGEON_PTR
 	ldr r10, [r10]
@@ -306,8 +306,6 @@ PlayRosyWindMessages:
 		cmp r6, #0;
 		bgt ContinueSwirlAnimation;
 	mov r0, r9;
-	mov r0, #30;
-	bl AdvanceNFrames
 	bl ChangeDungeonMusic
 	RosyWindMessagesReturn:
 		add sp, sp, #0x8;
@@ -522,30 +520,33 @@ SelectPuzzleRoomId:
 		cmp r6, #0x1; // Find Item on Vanilla Floor
 		beq PuzzlesNoFixedRoom
 		ldrb r0, [r8, #0x4]; // Dungeon ID
-		cmp r0, #0x1;
+		cmp r0, #0x2; // DMV
 		moveq r0, #0x73;
 		beq PuzzleRoomIdReturn;
-		cmp r0, #0x2;
+		cmp r0, #0x3; // Grimy Pit
+		cmpne r0, #0x4; // Grimy Forest
 		moveq r0, #0x74;
 		beq PuzzleRoomIdReturn;
-		cmp r0, #0x3;
+		cmp r0, #0x7; // The Shrine I dare not name
 		moveq r0, #0x75;
 		beq PuzzleRoomIdReturn;
-		cmp r0, #0x4;
-		moveq r0, #0x76;
+		cmp r0, #10; // Waffle house
+		moveq r0, #0x76; 
 		beq PuzzleRoomIdReturn;
-		cmp r0, #0x5;
-		moveq r0, #0x77;
-		beq PuzzleRoomIdReturn;
-		cmp r0, #0x6;
+		cmp r0, #14; // Kurokami Shrine
 		moveq r0, #0x78;
 		beq PuzzleRoomIdReturn;
-		cmp r0, #0x7;
+		cmp r0, #13; // Null Tunnels
+		moveq r0, #0x77;
+		beq PuzzleRoomIdReturn;
+		cmp r0, #15; // Snowdrift Slope 
 		moveq r0, #0x79;
 		beq PuzzleRoomIdReturn;
-		cmp r0, #0x8;
+		cmp r0, #17; // Thunderbolt Chasm
+		cmpne r0, #18; // Thunderbolt Rift
 		moveq r0, #0x7A;
 		beq PuzzleRoomIdReturn;
+		// These are all unused for now, we may find them homes in hub orb missions!
 		cmp r0, #0x9;
 		moveq r0, #0x7B;
 		beq PuzzleRoomIdReturn;
@@ -1189,7 +1190,7 @@ TweakMemoDestinationInfo:
 		pop {r2-r12,pc};
 
 TrySpawnMemoOutlaw:
-	push {lr};
+	push {r1-r3,r5-r11,lr};
 	mov r11, r11;
 	mov r0, #0xC;
 	mov r1, #0x2;
@@ -1222,14 +1223,14 @@ TrySpawnMemoOutlaw:
 	// TODO: Should be relatively easy to make the outlaw start sleeping. If we want to do this, we do it here!
 SpawnMemoOutlawReturn:
 	mov r0, r4;
-	pop {pc};
+	pop {r1-r3,r5-r11,pc};
 
 NotActuallyOutlaw:
 	cmp r1, #10; // Helping Ally
 	bne TrySleepSnorlax;
 	mov r0, #0x7F; // terrified forever.
 	strb r0, [r5, #0x104];
-	add r5, r1, #1;
+	add r1, r5, #1;
 	mov r0, #1; // terrified
 	strb r0, [r1, #0x104];
 	b SpawnMemoOutlawReturn
@@ -1237,12 +1238,14 @@ NotActuallyOutlaw:
 TrySleepSnorlax:
 	ldrh r0, [r5, #0x4]; // monster->apparent_id;
 	// TODO: change this to the RIGHT snorlax ID!
-	cmp r0, #0x400;
+	ldr r1, =#0x4D8;
+	cmp r0, r1;
 	bne SpawnMemoOutlawReturn;
-	mov r0, r4;
-	mov r1, r4;
-	mov r2, #0x7F;
-	bl TryInflictNightmareStatus
+	mov r0, #0x7F; // nightmare forever.
+	strb r0, [r5, #0xBD];
+	add r1, r5, #1;
+	mov r0, #1; // nightmare
+	strb r0, [r1, #0xBD];
 	b SpawnMemoOutlawReturn
 
 CheckIfSleeping:
