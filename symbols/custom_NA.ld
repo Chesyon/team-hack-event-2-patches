@@ -140,6 +140,8 @@ DungeonTilePostPickHookFinalJump = 0x023369e8;
 LiterallyWhereIsThisWhyDidINotJustUseLabelsForMyExitPoint = 0x2332b48;
 IDoNotKnowIfTheHookIsInApplyDamageOrDealDamageUntilIOpenTheGhidra = 0x02332b44;
 
+CheckFixedRoomItem = 0x2344454;
+
 /* Hooks & Instruction Changes */
 MEMO_FIXED_ROOM_ID_HOOK = 0x205DF48; /* 0x205E2C4 EU */
 MEMO_PRINT_STRING_HOOK = 0x234A120; /* 0x234AD2C EU */

@@ -201,6 +201,12 @@
 	.area 0x4
 		b  IsSpecialMove
 	.endarea
+
+	; DisableReviverReplacement by Adex
+	.org CheckFixedRoomItem
+	.area 0x4
+		mov r0,#0
+	.endarea
 .close
 
 
