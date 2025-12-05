@@ -354,54 +354,45 @@ PrintPuzzleEntryDialogue:
 	FirstTimeEntered:
 		bl GetLeader
 		mov r6, r0;
-		// Haha woag, I think we made it!
 		ldr r1, =LARVESTA_PUZZLE_STRING_1_1;
-		mov r2, #2; // Happy
+		mov r2, #0; // Normal
 		bl DungeonPortraitStringSpecies;
-		// Wait... Where did Deerling and Wishiwashi go?
 		mov r0, r6;
 		ldr r1, =LARVESTA_PUZZLE_STRING_1_2;
 		mov r2, #24; // Surprised
 		bl DungeonPortraitStringSpecies;
-		// DEERLING! WISHIWASHI! THIS ISNT FUNNY!
 		mov r0, r6;
-		ldr r1, =LARVESTA_PUZZLE_STRING_1_3;
-		mov r2, #14; // Shouting
+		cmp r9, #1;
+
+		ldreq r1, =LARVESTA_PUZZLE_STRING_1_3;
+		moveq r2, #2; // Happy
+
+		ldrne r1, =LARVESTA_PUZZLE_STRING_1_4;
+		movne r2, #6; // Angry
+
 		bl DungeonPortraitStringSpecies;
-		// I guess they left. Fine! I can handle this all on my own! [P]
-		// Wait, why the FUCK am I suddenly level 1? 
-		// And since when was [W:10][CS:B]R[W:10]E[W:10]S[W:10]T[W:10][CR][W:10] my only move? 
-		// Im literally defenseless! [P]
-		// I suppose this is some kind of Level Reset mechanic.
-		// Great.[W:30] Just Great.
 		mov r0, r6;
-		ldr r1, =LARVESTA_PUZZLE_STRING_1_4;
-		mov r2, #6; // Angry
+		ldrne r1, =LARVESTA_PUZZLE_STRING_1_4;
+		movne r2, #6; // Angry
 		bl DungeonPortraitStringSpecies;
-		// Ugh, I dont like feeling so weak. 
-		// All I have to do is grab the [item], and get out.
+		// Ugh, I dont like this.... 
+		// All I have to do is grab the [M:T6][CS:I]Orb[CR], and get out.
 		// How hard could it be, right?
 		mov r0, r6;
 		ldr r1, =LARVESTA_PUZZLE_STRING_1_5;
-		mov r2, #4; // Pain
+		mov r2, #8; // Worried
 		bl DungeonPortraitStringSpecies;
 		b PrintPuzzleEntryDialogueReturn;
 	SecondTimeEntered:
 		bl GetLeader
-		// God, I was REALLY hoping that was a fluke. I guess
-		// ALL of these stupid mission floors separate me from
-		// my friends, and reset me to level 1? This sucks!
 		ldr r1, =LARVESTA_PUZZLE_STRING_2;
 		mov r2, #32; // Sigh
 		bl DungeonPortraitStringSpecies;
 		b PrintPuzzleEntryDialogueReturn;
 	ThirdTimeEntered:
 		bl GetLeader
-		// Lets see...[W:30] yup!
-		// They both went missing, and Im level 1 again.
-		// Figures. Here we go again...
-		ldr r1, =LARVESTA_PUZZLE_STRING_2;
-		mov r2, #8; // Worried
+		ldr r1, =LARVESTA_PUZZLE_STRING_3;
+		mov r2, #32; // Sigh
 		bl DungeonPortraitStringSpecies;
 		b PrintPuzzleEntryDialogueReturn;		
 	PrintPuzzleEntryDialogueReturn:

@@ -15,7 +15,7 @@
 .definelabel MaxSize, 0x2598
 .definelabel MoveStartAddress, 0x02330134
 .definelabel MoveJumpAddress, 0x023326CC
-.definelabel LoadScriptVariableValue, 
+.definelabel LogMessageByIdWithPopup, 0x234B498
 .definelabel GenerateItem, 0x023472C4
 .definelabel InitItem, 0x0200CE9C
 .definelabel GetMoneyCarried, 0x200ECFC
@@ -45,6 +45,7 @@
         cmp r0, #800;
         movle r0, #0;
         subgt r0, #800;
+        bl SetMoneyCarried
         add r0, sp, #0x0
         mov r1, #105;
         mov r2, #0x0
