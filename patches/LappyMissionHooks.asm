@@ -1183,6 +1183,20 @@
 		moveq r0, #0;
 		pop {r1-r3,pc}
 	.endarea
+	.org Lappy_Oops_1;
+	.area 0x4;
+		mov r3,#0x1;
+	.endarea;
+
+	.org Lappy_Oops_2;
+	.area 0x4;
+		mov r1,r5;
+	.endarea;
+
+	.org ManyKeysGoBrrr;
+	.area 0x4;
+		nop;
+	.endarea
 .close
 
 // ov_26

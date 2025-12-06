@@ -1,3 +1,4 @@
+.align
 .global GetNbPuzzleFloorsEntered
 .global GetNbOrbsObtained
 .global GetNbOrbsGiven
@@ -431,7 +432,7 @@ DungeonPrintTextString:
 	mov r1, r0;
 	mov r0,#0x0
 	mov r2,#0x1
-	bl DisplayMessage2
+	bl DisplayMessage
 	pop {r1-r12,pc}
 
 GenerateItemWithProperFlags:
@@ -538,35 +539,35 @@ SelectPuzzleRoomId:
 		moveq r0, #0x7A;
 		beq PuzzleRoomIdReturn;
 		// These are all unused for now, we may find them homes in hub orb missions!
-		cmp r0, #0x9;
+		cmp r0, #0x100;
 		moveq r0, #0x7B;
 		beq PuzzleRoomIdReturn;
-		cmp r0, #0xA;
+		cmp r0, #0x100;
 		moveq r0, #0x7C;
 		beq PuzzleRoomIdReturn;
-		cmp r0, #0xB;
+		cmp r0, #0x100;
 		moveq r0, #0x7D;
 		beq PuzzleRoomIdReturn;
-		cmp r0, #0xC;
+		cmp r0, #0x100;
 		moveq r0, #0x7E;
 		beq PuzzleRoomIdReturn;
-		cmp r0, #0xD;
+		cmp r0, #0x100;
 		moveq r0, #0x7F;
 		beq PuzzleRoomIdReturn;
-		cmp r0, #0xE;
+		cmp r0, #0x100;
 		moveq r0, #0x80;
 		beq PuzzleRoomIdReturn;
-		cmp r0, #0xF;
+		cmp r0, #0x100;
 		moveq r0, #0x81;
 		beq PuzzleRoomIdReturn;
-		cmp r0, #0x10;
+		cmp r0, #0x100;
 		moveq r0, #0x82;
 		beq PuzzleRoomIdReturn;
-		cmp r0, #0x11;
+		cmp r0, #0x100;
 		moveq r0, #0x83;
 		beq PuzzleRoomIdReturn;
 	SelectTreasureHoardMemo:
-		ldr r0, =MEMO_FIXED_ROOM_IDS; // bytes 8 thru 16 of MEMO_FIXED_ROOM_IDS;
+		ldr r0, =MEMO_FIXED_ROOM_IDS; // bytes 8 thru 15 of MEMO_FIXED_ROOM_IDS;
 		mvn r1, #0; // -1
 		bl SelectRandomFixedRoomInRange
 		b PuzzleRoomIdReturn;

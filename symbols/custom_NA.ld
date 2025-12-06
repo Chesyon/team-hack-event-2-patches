@@ -28,6 +28,7 @@ FunctionThatMakesMeAngry = 0x2308FEC;
 InitTopGroundMenu = 0x2300D5C; /* Defined in a newer version of pmdsky-debug */
 
 
+
 /* !file overlay29 */
 ApplyMoveEffect = 0x0232E864;
 ApplyMoveEffectHookAddr = 0x0232F8A4;
@@ -48,6 +49,10 @@ MoveShortcutsMainCheckNormalUnhook = 0x22F11E4; /* In SetLeaderAction */
 MessageLogShortcutButtonOneCheck = 0x22F1E44;   /* In SetLeaderAction */
 MessageLogShortcutButtonTwoCheck = 0x22F1E54;   /* In SetLeaderAction */
 SaveFloorHook = 0x22DF670;
+Lappy_Oops_1 = 0x023445E4; /* Accidentally overwrote this instruction */
+Lappy_Oops_2 = 0x02344868; /* Accidentally overwrote this instruction */
+ManyKeysGoBrrr = 0x02343A00; /* Applies ManyKeysCheck */
+
 
 /* !file arm9 */
 ShowKeyboardTypeCase3 = 0x02036914;
