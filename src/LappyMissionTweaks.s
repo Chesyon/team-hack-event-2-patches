@@ -227,13 +227,14 @@ CheckClearedPuzzleFloor:
 		bne CheckClearedPuzzleFloorIncrement;
 		bl GetLeader
 		ldr r1, =LARVESTA_PUZZLE_STRING_C1;
-		mov r2, #32; // Worried Portrait
+		mov r2, #2; // Happy Portrait
 		bl DungeonPortraitStringSpecies;
 
 	CheckClearedPuzzleFloorIncrement:
 		mov r0, r11;
 		pop {r1-r12}
-		ldr r6, =MEMO_MISSION_COMPLETE_STRING_1
+		ldr r6, =#0xE24; // Original Instruction
+		ldr r0, =MEMO_MISSION_COMPLETE_STRING_1
 		pop {pc};
 	CheckClearedPuzzleFloorOriginal:
 		mov r0, r11;
@@ -246,7 +247,11 @@ DecrementRosyTurnsWrapper:
 	bl DecrementRosyTurnCount
 	mov r0, #0;
 	mov r1, #1;
+	bl GetRosyTurnCount
+	cmp r0, #0;
+	bne SkipActivatingWeather1;
 	bl TryActivateWeather;
+	SkipActivatingWeather1:
 	bl GetLeader; // Original Instruction
 	pop {r1-r12,pc}
 	
@@ -359,40 +364,35 @@ PrintPuzzleEntryDialogue:
 		bl DungeonPortraitStringSpecies;
 		mov r0, r6;
 		ldr r1, =LARVESTA_PUZZLE_STRING_1_2;
-		mov r2, #24; // Surprised
+		mov r2, #12; // Surprised
 		bl DungeonPortraitStringSpecies;
 		mov r0, r6;
 		cmp r9, #1;
 
 		ldreq r1, =LARVESTA_PUZZLE_STRING_1_3;
-		moveq r2, #2; // Happy
+		moveq r2, #1; // Happy
 
 		ldrne r1, =LARVESTA_PUZZLE_STRING_1_4;
-		movne r2, #6; // Angry
-
-		bl DungeonPortraitStringSpecies;
-		mov r0, r6;
-		ldrne r1, =LARVESTA_PUZZLE_STRING_1_4;
-		movne r2, #6; // Angry
+		movne r2, #3; // Angry
 		bl DungeonPortraitStringSpecies;
 		// Ugh, I dont like this.... 
 		// All I have to do is grab the [M:T6][CS:I]Orb[CR], and get out.
 		// How hard could it be, right?
 		mov r0, r6;
 		ldr r1, =LARVESTA_PUZZLE_STRING_1_5;
-		mov r2, #8; // Worried
+		mov r2, #4; // Worried
 		bl DungeonPortraitStringSpecies;
 		b PrintPuzzleEntryDialogueReturn;
 	SecondTimeEntered:
 		bl GetLeader
 		ldr r1, =LARVESTA_PUZZLE_STRING_2;
-		mov r2, #32; // Sigh
+		mov r2, #16; // Sigh
 		bl DungeonPortraitStringSpecies;
 		b PrintPuzzleEntryDialogueReturn;
 	ThirdTimeEntered:
 		bl GetLeader
 		ldr r1, =LARVESTA_PUZZLE_STRING_3;
-		mov r2, #32; // Sigh
+		mov r2, #16; // Sigh
 		bl DungeonPortraitStringSpecies;
 		b PrintPuzzleEntryDialogueReturn;		
 	PrintPuzzleEntryDialogueReturn:
@@ -431,7 +431,7 @@ DungeonPrintTextString:
 	mov r1, r0;
 	mov r0,#0x0
 	mov r2,#0x1
-	bl DisplayMessage
+	bl DisplayMessage2
 	pop {r1-r12,pc}
 
 GenerateItemWithProperFlags:
@@ -525,10 +525,10 @@ SelectPuzzleRoomId:
 		moveq r0, #0x76; 
 		beq PuzzleRoomIdReturn;
 		cmp r0, #14; // Kurokami Shrine
-		moveq r0, #0x78;
+		moveq r0, #0x77;
 		beq PuzzleRoomIdReturn;
 		cmp r0, #13; // Null Tunnels
-		moveq r0, #0x77;
+		moveq r0, #0x78;
 		beq PuzzleRoomIdReturn;
 		cmp r0, #15; // Snowdrift Slope 
 		moveq r0, #0x79;
@@ -603,8 +603,14 @@ SelectPuzzleRoomId:
 			mov r1, #0x90;
 			cmp r0, #0x84; // Hoard or Outlaw, no bag swap!
 			cmpge r1, r0;
+			ldr r0, =DUNGEON_PTR
+			ldr r0, [r0]
+			ldr r1, =#0x286CE
+			mov r2, #151;
 			bge OnlySwapTheTeam;
 		ActuallySwapTheBag:
+			// floor_properties
+			strh r2, [r0, r1];
 			// Note: I need to remember if the bag has been swapped, and swap it back on normal gameplay!
 			bl ReadBagSwapByte;
 			tst r0, #1;
@@ -1192,7 +1198,7 @@ TrySpawnMemoOutlaw:
 	ldr r5, [r4, #0xB4]; // monster struct
 	ldrb r1, [r5, #0xBC];
 	cmp r1, #1;
-	bne NotActuallyOutlaw;
+	bne SpawnMemoOutlawReturn;
 	strb r0, [r5, #0xBC]; // statuses.monster_behavior
 	mov r0, #0x89; // Bitfield n' shit
 	strb r0, [r5, #0x62];
@@ -1209,35 +1215,10 @@ TrySpawnMemoOutlaw:
 	strh r0, [r5, #0x2]; // monster_id
 	strh r0, [r5, #0x4]; // apparent_monster_id
 
-
-
 	// TODO: Should be relatively easy to make the outlaw start sleeping. If we want to do this, we do it here!
 SpawnMemoOutlawReturn:
 	mov r0, r4;
 	pop {r1-r3,r5-r11,pc};
-
-NotActuallyOutlaw:
-	cmp r1, #10; // Helping Ally
-	bne TrySleepSnorlax;
-	mov r0, #0x7F; // terrified forever.
-	strb r0, [r5, #0x104];
-	add r1, r5, #1;
-	mov r0, #1; // terrified
-	strb r0, [r1, #0x104];
-	b SpawnMemoOutlawReturn
-
-TrySleepSnorlax:
-	ldrh r0, [r5, #0x4]; // monster->apparent_id;
-	// TODO: change this to the RIGHT snorlax ID!
-	ldr r1, =#0x4D8;
-	cmp r0, r1;
-	bne SpawnMemoOutlawReturn;
-	mov r0, #0x7F; // nightmare forever.
-	strb r0, [r5, #0xBD];
-	add r1, r5, #1;
-	mov r0, #1; // nightmare
-	strb r0, [r1, #0xBD];
-	b SpawnMemoOutlawReturn
 
 CheckIfSleeping:
 	push {r1-r12,lr}
