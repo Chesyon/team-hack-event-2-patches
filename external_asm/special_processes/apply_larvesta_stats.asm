@@ -71,7 +71,7 @@
 		ldr r1, =#411; // Sandsear Storm
 		cmp r0, r1;
 		bne MoveLoopEnd;
-		mov r0, #240; // Heat Wave
+		mov r0, #230; // Heat Wave
 		strh r0, [r11, r8]
 	MoveLoopEnd:
 		add r4, #1;
