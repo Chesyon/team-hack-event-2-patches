@@ -631,11 +631,10 @@ SelectPuzzleRoomId:
 				ldr r0, [r0]
 				ldr r1, =#0x286CE
 				mov r2, #151;
+				strh r2, [r0, r1];
 			*/
 			bge OnlySwapTheTeam;
 		ActuallySwapTheBag:
-			// floor_properties
-			strh r2, [r0, r1];
 			// Note: I need to remember if the bag has been swapped, and swap it back on normal gameplay!
 			bl ReadBagSwapByte;
 			tst r0, #1;
