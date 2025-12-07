@@ -144,7 +144,6 @@
             cmp r0, #255;
             addlt r0, #1;
             strb r0, [r1,#0xE6];
-	        bne MoveJumpAddress
             mov r0, #0;
 	        mov r1, #1;
 	        bl TryActivateWeather;

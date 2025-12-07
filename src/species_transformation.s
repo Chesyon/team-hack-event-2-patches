@@ -396,7 +396,6 @@ ValidateSpeciesForms:
 		ldrb r1, [r6, #0xA]
 		cmp r1, r0;
 		movlt r0, #0x0;
-        bl WishiwashiRosyXor
 		blt ValidationCondition;
 		cmp r11, #0x1; // Is this School or Solo?
 		moveq r7, #0x2; // School: Check for >= Quarter
@@ -407,17 +406,19 @@ ValidateSpeciesForms:
 		cmp r1, r2; // Current >= Max>>X
 		movlt r0, #0x0;
 		movge r0, #0x1;
-        bl WishiwashiRosyXor
+        // bl WishiwashiRosyXor
 		b ValidationCondition;
 	
     WishiwashiRosyXor:
-        push {r1-r12,lr}
-        mov r11, r0;
+        push {r1-r10,r12,lr}
+        mov r10, r0;
         bl GetRosyTurnCount
-        cmp r0, #1;
-        eorge r11, #1;
-        and r0, r11, #1;
-        pop {r1-r12,pc}
+        cmp r0, #0;
+        moveq r0, r10;
+        popeq {r1-r10,r12,pc};
+        mov r0, #0;
+        mov r11, #1;
+        pop {r1-r10,r12,pc}
 
     ValidationCondition:
         cmp r0, r11; // Should be true for final species, false otherwise. If NOT, then the species must change!

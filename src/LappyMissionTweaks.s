@@ -38,6 +38,7 @@ TRASH_ITEM_MENU_OPTION_BYTES:
 	.byte 0x0;
 	.word 0x00000000;
 
+.align
 InitRosyFloorFields:
 	push {r0-r12,lr}
 	ldr r9, =DUNGEON_PTR;
@@ -48,6 +49,27 @@ InitRosyFloorFields:
 	strb r0, [r9,#0xE6]
 	strb r0, [r9,#0xE7]
 	pop {r0-r12,pc}
+
+
+AttemptActivateWeatherBecauseRosy:
+	push {r2-r12,lr}
+	mov r11, r0;
+	mov r10, r1;
+	bl GetFloorRosiness
+	mov r4, #0;
+	bl GetRosyItemCount
+	cmp r0, #0;
+	orrgt r4, #1;
+	bl GetRosyTurnCount
+	cmp r0, #0;
+	orrgt r4, #1;
+	bl GetFloorRosiness;
+	cmp r0, r4;
+	popeq {r2-r12,pc}
+	mov r0, r11;
+	mov r1, r10;
+	bl TryActivateWeather
+	pop {r2-r12,pc}
 
 SetRosyItemCount:
 	push {r1-r12,lr}
@@ -190,7 +212,7 @@ MaybeDestroyRosyItem:
 	bl DecrementRosyItemCount;
 	mov r0, #0;
 	mov r1, #1;
-	bl TryActivateWeather;
+	bl AttemptActivateWeatherBecauseRosy;
 	mov r0, r7;
 	NotDestroyRosyItem:
 		pop {r1-r12,pc};
@@ -204,7 +226,7 @@ MaybeSpawnRosyItem:
 	bl IncrementRosyItemCount;
 	mov r0, #0;
 	mov r1, #1;
-	bl TryActivateWeather;
+	bl AttemptActivateWeatherBecauseRosy;
 	NotSpawnRosyItem:
 		pop {r1-r12,pc};
 
@@ -221,7 +243,7 @@ CheckClearedPuzzleFloor:
 		bl DecrementRosyItemCount; // For visual effect, remove the rosy effect early by decrementing early.
 		mov r0, #0;
 		mov r1, #1;
-		bl TryActivateWeather; // Should remove the rosy filter from the floor, if no others are present!
+		bl AttemptActivateWeatherBecauseRosy; // Should remove the rosy filter from the floor, if no others are present!
 		// Apparently incrementing again causes a desync. Maybe Despawning the item just fails if its a mission item?
 		bl GetNbOrbsObtained;
 		cmp r0, #0x0;
@@ -251,7 +273,7 @@ DecrementRosyTurnsWrapper:
 	bl GetRosyTurnCount
 	cmp r0, #0;
 	bne SkipActivatingWeather1;
-	bl TryActivateWeather;
+	bl AttemptActivateWeatherBecauseRosy;
 	SkipActivatingWeather1:
 	bl GetLeader; // Original Instruction
 	pop {r1-r12,pc}
@@ -354,7 +376,7 @@ PrintPuzzleEntryDialogue:
 	EnteredManyTimes:
 		bl GetLeader
 		ldr r1, =LARVESTA_PUZZLE_STRING_GENERIC;
-		mov r2, #32; // Worried Portrait
+		mov r2, #0; // Normal
 		bl DungeonPortraitStringSpecies;
 		b PrintPuzzleEntryDialogueReturn;
 	FirstTimeEntered:
@@ -604,10 +626,12 @@ SelectPuzzleRoomId:
 			mov r1, #0x90;
 			cmp r0, #0x84; // Hoard or Outlaw, no bag swap!
 			cmpge r1, r0;
-			ldr r0, =DUNGEON_PTR
-			ldr r0, [r0]
-			ldr r1, =#0x286CE
-			mov r2, #151;
+			/*
+				ldr r0, =DUNGEON_PTR
+				ldr r0, [r0]
+				ldr r1, =#0x286CE
+				mov r2, #151;
+			*/
 			bge OnlySwapTheTeam;
 		ActuallySwapTheBag:
 			// floor_properties

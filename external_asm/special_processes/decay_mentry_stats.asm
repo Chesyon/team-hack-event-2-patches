@@ -20,16 +20,18 @@
 .definelabel ProcJumpAddress, 0x022E7AC0
 .definelabel AssemblyPointer, 0x20B0A48
 .definelabel Copy4BytesArray, 0x0200330C
+.definelabel GetLvlUpEntry, 0x205379C
 
 ; File creation
 .create "./code_out.bin", 0x022E7248 ; For EU: 0x022E7B88
 	.org ProcStartAddress
 	.area MaxSize ; Define the size of the area
+		push {r4,r5,r8-r12}
 		cmp r6, #1;
 		bne SkipAssignment;
 		push {r6,r7}
-		mov r7, #9;
-		mov r6, #0;
+		mov r7, #0;
+		mov r6, #9;
 		ldr r0,=AssemblyPointer
 		ldr r1,[r0]
 		mov r2,#0x44
@@ -57,6 +59,23 @@
 		bl TakeStatDelta
 		strb r0, [r10, #0x1]; // volc_decay
 		
+		// Exp
+		mov r0, #0;
+		str r0, [r10, #0x10];
+		/*
+		mov r5, r0;
+		mov r4, #0;
+		StartExpLoop:			
+			mov r1, r5;
+			ldrh r2, [r10, #0x4];
+			bl GetLvlUpEntry
+			ldr r0, [r0, #0]; // level_up_entry.exp
+			add r4, r0;
+			cmp r5, #0;
+			subgt r5, #1;
+			bgt StartExpLoop;
+		str r4, [r10, #0x10];
+		*/
 		// IQ
 		ldrh r0, [r9, #0x8]; // larv_true
 		ldrh r1, [r8, #0x8]; // volc_max
@@ -92,7 +111,7 @@
 		ldrb r1, [r8, #0xF]; // volc_max
 		bl TakeStatDelta
 		strb r0, [r10, #0xF]; // volc_decay
-		
+		pop {r4,r5,r8-r12}
 		b ProcJumpAddress
 
 	// r0: larv_true, out: volc_decay 
