@@ -52,6 +52,8 @@ SaveFloorHook = 0x22DF670;
 Lappy_Oops_1 = 0x023445E4; /* Accidentally overwrote this instruction */
 Lappy_Oops_2 = 0x02344868; /* Accidentally overwrote this instruction */
 ManyKeysGoBrrr = 0x02343A00; /* Applies ManyKeysCheck */
+/* Mini Randomizer Hooks */
+GetTypeHook = 0x2052A04;
 
 
 /* !file arm9 */
@@ -87,6 +89,9 @@ SomethingTextRelatedIdk = 0x2021EC8;
 UppercaseUVTagHook = 0x2020FC8;
 UppercaseTagCodeError = 0x2021A10;
 AfterUppercaseTagIsFound = 0x2021AA0;
+/* Randomizer Hooks */
+GetTypeHook = 0x2052A08;
+GetTypeUnhook = 0x2052A0C;
 
 
 /* ngl I don't remember which file these are from. Or if I use all of them. - Lappy */
