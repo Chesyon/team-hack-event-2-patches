@@ -443,54 +443,54 @@ union rgba_hex type_swap_color_table[TYPE_NEUTRAL + 1][4][12] = {
     {
         // Variant 0
         {
-            {.hex = 0x773f0000}, {.hex = 0x7c410100}, {.hex = 0x87480500}, {.hex = 0x934e0800},
-            {.hex = 0x9b520a00}, {.hex = 0xa6580e00}, {.hex = 0xae5c1000}, {.hex = 0xb25e1100},
-            {.hex = 0xba631400}, {.hex = 0xc76a1800}, {.hex = 0xd06f1a00}, {.hex = 0xde771f00}
+            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
+            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
+            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
         },
         // Variant 1
         {
-            {.hex = 0xd7bf6700}, {.hex = 0xdac46c00}, {.hex = 0xdec97100}, {.hex = 0xe1cd7500},
-            {.hex = 0xe5d37b00}, {.hex = 0xe8d77f00}, {.hex = 0xebdc8400}, {.hex = 0xefe18900},
-            {.hex = 0xf2e58d00}, {.hex = 0xf6ea9200}, {.hex = 0xf8ee9600}, {.hex = 0xfff79f00}
+            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
+            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
+            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
         },
         // Variant 2
         {
             {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
             {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
         },
         // Variant 3
         {
             {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
             {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
         }
     },
     // Normal
     {
         // Variant 0
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x773f0000}, {.hex = 0x7c410100}, {.hex = 0x87480500}, {.hex = 0x934e0800},
+            {.hex = 0x9b520a00}, {.hex = 0xa6580e00}, {.hex = 0xae5c1000}, {.hex = 0xb25e1100},
+            {.hex = 0xba631400}, {.hex = 0xc76a1800}, {.hex = 0xd06f1a00}, {.hex = 0xde771f00},
         },
         // Variant 1
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0xd7bf6700}, {.hex = 0xdac46c00}, {.hex = 0xdec97100}, {.hex = 0xe1cd7500},
+            {.hex = 0xe5d37b00}, {.hex = 0xe8d77f00}, {.hex = 0xebdc8400}, {.hex = 0xefe18900},
+            {.hex = 0xf2e58d00}, {.hex = 0xf6ea9200}, {.hex = 0xf8ee9600}, {.hex = 0xfff79f00},
         },
         // Variant 2
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x47676f00}, {.hex = 0x4b6b7200}, {.hex = 0x57747b00}, {.hex = 0x5e7a8100},
+            {.hex = 0x627d8400}, {.hex = 0x6a848a00}, {.hex = 0x748d9200}, {.hex = 0x7c939800},
+            {.hex = 0x82989d00}, {.hex = 0x889da100}, {.hex = 0x8da1a500}, {.hex = 0x94a7ab00},
         },
         // Variant 3
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0xe35c7a00}, {.hex = 0xe4617e00}, {.hex = 0xe6698500}, {.hex = 0xe9728d00},
+            {.hex = 0xeb7a9400}, {.hex = 0xed849c00}, {.hex = 0xef8aa200}, {.hex = 0xf295ab00},
+            {.hex = 0xf49db200}, {.hex = 0xf6a6ba00}, {.hex = 0xfbb7c900}, {.hex = 0xfec2d200},
         }
     },
     // Fire
@@ -499,295 +499,295 @@ union rgba_hex type_swap_color_table[TYPE_NEUTRAL + 1][4][12] = {
         {
             {.hex = 0x9F000000}, {.hex = 0xAD100000}, {.hex = 0xBB200000}, {.hex = 0xC92F0000},
             {.hex = 0xD73F0000}, {.hex = 0xE1511800}, {.hex = 0xEB633000}, {.hex = 0xF5754700},
-            {.hex = 0xFF875F00}, {.hex = 0xFF997700}, {.hex = 0xFFAA8E00}, {.hex = 0xFFBCA600}
+            {.hex = 0xFF875F00}, {.hex = 0xFF997700}, {.hex = 0xFFAA8E00}, {.hex = 0xFFBCA600},
         },
         // Variant 1
         {
             {.hex = 0xA76F0000}, {.hex = 0xB5810000}, {.hex = 0xC3930000}, {.hex = 0xD1A50000},
             {.hex = 0xDFB70000}, {.hex = 0xE7C70000}, {.hex = 0xEFD70000}, {.hex = 0xF7E70000},
-            {.hex = 0xFFF70000}, {.hex = 0xFFF82600}, {.hex = 0xFFFA4B00}, {.hex = 0xFFFB7100}
+            {.hex = 0xFFF70000}, {.hex = 0xFFF82600}, {.hex = 0xFFFA4B00}, {.hex = 0xFFFB7100},
         },
         // Variant 2
         {
             {.hex = 0x773F0000}, {.hex = 0x8F4F1000}, {.hex = 0xA75F1F00}, {.hex = 0xC36B1F00},
             {.hex = 0xDF771F00}, {.hex = 0xD76B1700}, {.hex = 0xCF5F0F00}, {.hex = 0xE7670F00},
-            {.hex = 0xFF6F0F00}, {.hex = 0xFF832B00}, {.hex = 0xFF974700}, {.hex = 0xFFC19100}
+            {.hex = 0xFF6F0F00}, {.hex = 0xFF832B00}, {.hex = 0xFF974700}, {.hex = 0xFFC19100},
         },
         // Variant 3
         {
             {.hex = 0x414B8D00}, {.hex = 0x4E579400}, {.hex = 0x5A649A00}, {.hex = 0x6770A100},
             {.hex = 0x727CB400}, {.hex = 0x7C87C600}, {.hex = 0x8793D900}, {.hex = 0x959DD600},
-            {.hex = 0xA2A6D200}, {.hex = 0xB0B0CF00}, {.hex = 0xB0B0CF00}, {.hex = 0xB0B0CF00}
+            {.hex = 0xA2A6D200}, {.hex = 0xB0B0CF00}, {.hex = 0xB0B0CF00}, {.hex = 0xB0B0CF00},
         }
     },
     // Water
     {
         // Variant 0
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x07125800}, {.hex = 0x08156800}, {.hex = 0x09187700}, {.hex = 0x0a1b8700},
+            {.hex = 0x0b1e9500}, {.hex = 0x0c209d00}, {.hex = 0x0c22a700}, {.hex = 0x0d25b700},
+            {.hex = 0x0f29c700}, {.hex = 0x0f2bd200}, {.hex = 0x102cd500}, {.hex = 0x102cd500},
         },
         // Variant 1
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x06616100}, {.hex = 0x076c6c00}, {.hex = 0x07737300}, {.hex = 0x08777700},
+            {.hex = 0x087b7b00}, {.hex = 0x09888800}, {.hex = 0x0a979700}, {.hex = 0x0ca7a700},
+            {.hex = 0x0db8b800}, {.hex = 0x0fc8c800}, {.hex = 0x0fd0d000}, {.hex = 0x10d1d100},
         },
         // Variant 2
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x05264b00}, {.hex = 0x06356b00}, {.hex = 0x06397300}, {.hex = 0x063d7b00},
+            {.hex = 0x06418300}, {.hex = 0x07458b00}, {.hex = 0x07499300}, {.hex = 0x074d9b00}, 
+            {.hex = 0x0851a300}, {.hex = 0x0855ab00}, {.hex = 0x0859b300}, {.hex = 0x095ebc00},
         },
         // Variant 3
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x0a014b00}, {.hex = 0x0d035700}, {.hex = 0x0f046000}, {.hex = 0x12066800},
+            {.hex = 0x16087800}, {.hex = 0x1b0b8800}, {.hex = 0x1e0d9400}, {.hex = 0x200f9c00},
+            {.hex = 0x220fa000}, {.hex = 0x2411a800}, {.hex = 0x2813b700}, {.hex = 0x2c16c400},
         }
     },
     // Grass
     {
         // Variant 0
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x25540c00}, {.hex = 0x2c670d00}, {.hex = 0x32770e00}, {.hex = 0x38850f00},
+            {.hex = 0x3b8d1000}, {.hex = 0x3e941000}, {.hex = 0x419b1100}, {.hex = 0x46a71200},
+            {.hex = 0x4cb71300}, {.hex = 0x53c71400}, {.hex = 0x5bdd1600}, {.hex = 0x5bdd1600},
         },
         // Variant 1
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x1f6d2d00}, {.hex = 0x20722f00}, {.hex = 0x227a3200}, {.hex = 0x26883700},
+            {.hex = 0x29963d00}, {.hex = 0x2b9e4000}, {.hex = 0x2ea74300}, {.hex = 0x30af4600},
+            {.hex = 0x32b74a00}, {.hex = 0x35c34e00}, {.hex = 0x37cb5100}, {.hex = 0x39d15400},
         },
         // Variant 2
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x0b5c0000}, {.hex = 0x0b630000}, {.hex = 0x0c6b0000}, {.hex = 0x0e760000},
+            {.hex = 0x0f820000}, {.hex = 0x108b0000}, {.hex = 0x12980000}, {.hex = 0x13a70000},
+            {.hex = 0x15b70000}, {.hex = 0x17c80000}, {.hex = 0x19d80000}, {.hex = 0x1be20000},
         },
         // Variant 3
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x3b600a00}, {.hex = 0x426c0a00}, {.hex = 0x49770b00}, {.hex = 0x4e810c00},
+            {.hex = 0x548a0d00}, {.hex = 0x5c960e00}, {.hex = 0x609e0e00}, {.hex = 0x66a70f00},
+            {.hex = 0x6db31000}, {.hex = 0x72bb1000}, {.hex = 0x7bc81200}, {.hex = 0x7bc81200},
         }
     },
     // Electric
     {
         // Variant 0
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x998e2c00}, {.hex = 0x9d922c00}, {.hex = 0xa69a2d00}, {.hex = 0xaea12e00},
+            {.hex = 0xb4a62f00}, {.hex = 0xbbad3000}, {.hex = 0xbfb03000}, {.hex = 0xc7b83100},
+            {.hex = 0xd7c73400}, {.hex = 0xe8d63600}, {.hex = 0xf1de3700}, {.hex = 0xfeea3900},
         },
         // Variant 1
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x755b2300}, {.hex = 0x7d612400}, {.hex = 0x87692700}, {.hex = 0x98752a00},
+            {.hex = 0xa37d2d00}, {.hex = 0xab832e00}, {.hex = 0xb68b3100}, {.hex = 0xbe913300},
+            {.hex = 0xc7983500}, {.hex = 0xd09f3700}, {.hex = 0xd8a53800}, {.hex = 0xe2ac3b00},
         },
         // Variant 2
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x6a752000}, {.hex = 0x717d2200}, {.hex = 0x79862400}, {.hex = 0x818e2600},
+            {.hex = 0x89972800}, {.hex = 0x98a82c00}, {.hex = 0xa2b32f00}, {.hex = 0xa9ba3100},
+            {.hex = 0xb6c93400}, {.hex = 0xbed13600}, {.hex = 0xc5d93800}, {.hex = 0xcde23b00},
         },
         // Variant 3
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x544c2a00}, {.hex = 0x5c532d00}, {.hex = 0x665c3100}, {.hex = 0x6d623400},
+            {.hex = 0x756a3800}, {.hex = 0x7d713c00}, {.hex = 0x83763e00}, {.hex = 0x8a7d4100},
+            {.hex = 0x97894700}, {.hex = 0xa5964d00}, {.hex = 0xad9d5000}, {.hex = 0xbba95700},
         }
     },
     // Ice
     {
         // Variant 0
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x077c8600}, {.hex = 0x08828d00}, {.hex = 0x0a8a9500}, {.hex = 0x0c919d00},
+            {.hex = 0x0e99a500}, {.hex = 0x0f9ea900}, {.hex = 0x10a1ad00}, {.hex = 0x11a5b200},
+            {.hex = 0x12a9b500}, {.hex = 0x13adb900}, {.hex = 0x14b1be00}, {.hex = 0x16b7c400},
         },
         // Variant 1
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x06597200}, {.hex = 0x065f7800}, {.hex = 0x06627c00}, {.hex = 0x066a8700},
+            {.hex = 0x06708f00}, {.hex = 0x06779700}, {.hex = 0x067ea100}, {.hex = 0x0685a900},
+            {.hex = 0x068db300}, {.hex = 0x0693bb00}, {.hex = 0x079ac400}, {.hex = 0x079ac400},
         },
         // Variant 2
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x4a839300}, {.hex = 0x518c9d00}, {.hex = 0x5a96a800}, {.hex = 0x619fb000},
+            {.hex = 0x67a6b900}, {.hex = 0x6daec100}, {.hex = 0x6fb0c300}, {.hex = 0x74b6ca00},
+            {.hex = 0x7abed200}, {.hex = 0x7ec2d600}, {.hex = 0x82c7dc00}, {.hex = 0x87cde200},
         },
         // Variant 3
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x15366500}, {.hex = 0x1a3e7200}, {.hex = 0x1d437a00}, {.hex = 0x1f468100},
+            {.hex = 0x224b8900}, {.hex = 0x27549700}, {.hex = 0x2c5ca400}, {.hex = 0x2f61ab00},
+            {.hex = 0x3063ae00}, {.hex = 0x3368b700}, {.hex = 0x376ec100}, {.hex = 0x3870c400},
         }
     },
     // Fighting
     {
         // Variant 0
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0xa75f1f00}, {.hex = 0xab652500}, {.hex = 0xb16d2c00}, {.hex = 0xb3702f00},
+            {.hex = 0xb9783600}, {.hex = 0xbf813d00}, {.hex = 0xc4894500}, {.hex = 0xcb924d00},
+            {.hex = 0xce975100}, {.hex = 0xd29c5600}, {.hex = 0xd7a35c00}, {.hex = 0xdeae6600},
         },
         // Variant 1
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x8f000000}, {.hex = 0x97060400}, {.hex = 0xa20e0a00}, {.hex = 0xa9120d00},
+            {.hex = 0xae161000}, {.hex = 0xb51b1400}, {.hex = 0xbd211900}, {.hex = 0xc5261d00},
+            {.hex = 0xcd2c2100}, {.hex = 0xd02f2300}, {.hex = 0xd8342700}, {.hex = 0xe73f2f00},
         },
         // Variant 2
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0xdf3f0000}, {.hex = 0xe2440200}, {.hex = 0xe54a0600}, {.hex = 0xe74d0800},
+            {.hex = 0xe84f0900}, {.hex = 0xea540b00}, {.hex = 0xee590e00}, {.hex = 0xf05e1100},
+            {.hex = 0xf4631400}, {.hex = 0xf7691700}, {.hex = 0xf96d1900}, {.hex = 0xff771f00},
         },
         // Variant 3
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0xa75f1f00}, {.hex = 0xac621f00}, {.hex = 0xb1661f00}, {.hex = 0xb5691f00},
+            {.hex = 0xbb6d1f00}, {.hex = 0xbf701f00}, {.hex = 0xc4731f00}, {.hex = 0xc8771f00},
+            {.hex = 0xcd7a1f00}, {.hex = 0xd27e1f00}, {.hex = 0xd6811f00}, {.hex = 0xdf871f00},
         }
     },
     // Poison
     {
         // Variant 0
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x873f8700}, {.hex = 0x8b438b00}, {.hex = 0x8f489000}, {.hex = 0x934c9400},
+            {.hex = 0x9a549c00}, {.hex = 0x9e59a100}, {.hex = 0xa25da500}, {.hex = 0xaf6cb400},
+            {.hex = 0xbd7ac200}, {.hex = 0xc17ec600}, {.hex = 0xd494dc00}, {.hex = 0xd494dc00},
         },
         // Variant 1
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x28880100}, {.hex = 0x33950c00}, {.hex = 0x3a9d1300}, {.hex = 0x3ea11600},
+            {.hex = 0x42a71b00}, {.hex = 0x4fb52800}, {.hex = 0x5bc43400}, {.hex = 0x63cc3c00},
+            {.hex = 0x6ed94600}, {.hex = 0x7ae75200}, {.hex = 0x84f25c00}, {.hex = 0x8fff6700},
         },
         // Variant 2
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x31313100}, {.hex = 0x43434300}, {.hex = 0x4c4c4c00}, {.hex = 0x53535300},
+            {.hex = 0x5b5b5b00}, {.hex = 0x64646400}, {.hex = 0x6b6b6b00}, {.hex = 0x73737300},
+            {.hex = 0x7c7c7c00}, {.hex = 0x83838300}, {.hex = 0x8b8b8b00}, {.hex = 0x94949400},
         },
         // Variant 3
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x5f175700}, {.hex = 0x631b5c00}, {.hex = 0x732d6e00}, {.hex = 0x813b7e00},
+            {.hex = 0x843e8100}, {.hex = 0x924d9100}, {.hex = 0x9f5ca000}, {.hex = 0xa15ea200},
+            {.hex = 0xaf6cb200}, {.hex = 0xbd7cc200}, {.hex = 0xc07fc500}, {.hex = 0xd493db00},
         }
     },
     // Ground
     {
         // Variant 0
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x773f0000}, {.hex = 0x773f0000}, {.hex = 0x7c420300}, {.hex = 0x8f4f0d00},
+            {.hex = 0xa45c1700}, {.hex = 0xae631d00}, {.hex = 0xb96a2200}, {.hex = 0xcd762d00},
+            {.hex = 0xdd813500}, {.hex = 0xe8883b00}, {.hex = 0xfb944500}, {.hex = 0xfb944500},
         },
         // Variant 1
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0xa76f0000}, {.hex = 0xab760000}, {.hex = 0xb7870000}, {.hex = 0xbe920000},
+            {.hex = 0xc39a0000}, {.hex = 0xcba70000}, {.hex = 0xd6b70000}, {.hex = 0xddc30000},
+            {.hex = 0xe2cb0000}, {.hex = 0xead70000}, {.hex = 0xf5e80000}, {.hex = 0xfff60000},
         },
         // Variant 2
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x47676f00}, {.hex = 0x4b6a7200}, {.hex = 0x516e7600}, {.hex = 0x58747c00},
+            {.hex = 0x5e788000}, {.hex = 0x647d8500}, {.hex = 0x74899100}, {.hex = 0x83959d00},
+            {.hex = 0x8b9ba300}, {.hex = 0x99a6ae00}, {.hex = 0xaeb6be00}, {.hex = 0xaeb6be00},
         },
         // Variant 3
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0xa75f1f00}, {.hex = 0xb0702d00}, {.hex = 0xbb823d00}, {.hex = 0xbe874100},
+            {.hex = 0xc6954d00}, {.hex = 0xd0a65b00}, {.hex = 0xd9b66800}, {.hex = 0xdfc07000},
+            {.hex = 0xe4c97800}, {.hex = 0xedd98500}, {.hex = 0xfbf19a00}, {.hex = 0xfbf19a00},
         }
     },
     // Flying
     {
         // Variant 0
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0xafb7bf00}, {.hex = 0xb4bcc300}, {.hex = 0xbcc3c900}, {.hex = 0xc2c8ce00},
+            {.hex = 0xc7cdd200}, {.hex = 0xcdd2d700}, {.hex = 0xd4d8dc00}, {.hex = 0xdadee100},
+            {.hex = 0xdee1e400}, {.hex = 0xe6e8eb00}, {.hex = 0xedeff000}, {.hex = 0xf6f7f800},
         },
         // Variant 1
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x0268b800}, {.hex = 0x0d72be00}, {.hex = 0x0f74c000}, {.hex = 0x177ac400},
+            {.hex = 0x1f80c800}, {.hex = 0x2f8ed200}, {.hex = 0x429ddc00}, {.hex = 0x46a1df00},
+            {.hex = 0x54abe600}, {.hex = 0x66baf100}, {.hex = 0x79cafb00}, {.hex = 0x79cafb00},
         },
         // Variant 2
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x3f373f00}, {.hex = 0x40373f00}, {.hex = 0x443c4300}, {.hex = 0x544a5100},
+            {.hex = 0x63585d00}, {.hex = 0x685d6200}, {.hex = 0x75696d00}, {.hex = 0x85787b00},
+            {.hex = 0x8c7e8000}, {.hex = 0x97888900}, {.hex = 0xa6969600}, {.hex = 0xa6969600},
         },
         // Variant 3
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x773f0000}, {.hex = 0x7c410100}, {.hex = 0x87480500}, {.hex = 0x934e0800},
+            {.hex = 0x9b520a00}, {.hex = 0xa6580e00}, {.hex = 0xae5c1000}, {.hex = 0xb25e1100},
+            {.hex = 0xba631400}, {.hex = 0xc76a1800}, {.hex = 0xd06f1a00}, {.hex = 0xdc751e00},
         }
     },
     // Psychic
     {
         // Variant 0
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x8f67bf00}, {.hex = 0x9068bf00}, {.hex = 0x946cc100}, {.hex = 0x9b74c600},
+            {.hex = 0xa37cca00}, {.hex = 0xb38dd300}, {.hex = 0xc29ddc00}, {.hex = 0xc6a2de00},
+            {.hex = 0xd4b1e600}, {.hex = 0xe1beed00}, {.hex = 0xf4d3f800}, {.hex = 0xf4d3f800},
         },
         // Variant 1
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0xa76f0000}, {.hex = 0xab760000}, {.hex = 0xb7880000}, {.hex = 0xbe920000},
+            {.hex = 0xc39a0000}, {.hex = 0xcba70000}, {.hex = 0xd6b70000}, {.hex = 0xddc30000},
+            {.hex = 0xe2cb0000}, {.hex = 0xead70000}, {.hex = 0xf5e70000}, {.hex = 0xfef60000},
         },
         // Variant 2
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x572f9f00}, {.hex = 0x572f9f00}, {.hex = 0x58309f00}, {.hex = 0x5c34a200},
+            {.hex = 0x633ca700}, {.hex = 0x734db100}, {.hex = 0x825dbb00}, {.hex = 0x8662be00},
+            {.hex = 0x9471c700}, {.hex = 0xa07fd000}, {.hex = 0xad8dd800}, {.hex = 0xad8dd800},
         },
         // Variant 3
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x97375f00}, {.hex = 0x9c396200}, {.hex = 0xa33d6700}, {.hex = 0xab426d00},
+            {.hex = 0xb7487500}, {.hex = 0xc24e7d00}, {.hex = 0xcb538300}, {.hex = 0xd6598b00},
+            {.hex = 0xe15f9200}, {.hex = 0xe9639800}, {.hex = 0xf2689e00}, {.hex = 0xfb6da400},
         }
     },
     // Bug
     {
         // Variant 0
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x2e8b0700}, {.hex = 0x44981c00}, {.hex = 0x4d9d2400}, {.hex = 0x58a42f00},
+            {.hex = 0x65ab3a00}, {.hex = 0x75b54a00}, {.hex = 0x83bd5700}, {.hex = 0x95c86900},
+            {.hex = 0xa7d27900}, {.hex = 0xb5db8700}, {.hex = 0xc7e59800}, {.hex = 0xd6efa600},
         },
         // Variant 1
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x572f9f00}, {.hex = 0x58309f00}, {.hex = 0x5c34a200}, {.hex = 0x633ba600},
+            {.hex = 0x673fa800}, {.hex = 0x6b43aa00}, {.hex = 0x724aae00}, {.hex = 0x764eb000},
+            {.hex = 0x7b53b400}, {.hex = 0x8159b700}, {.hex = 0x855db900}, {.hex = 0x8e66be00},
         },
         // Variant 2
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0xa76f0000}, {.hex = 0xab760000}, {.hex = 0xb7880000}, {.hex = 0xbe920000},
+            {.hex = 0xc39a0000}, {.hex = 0xcba70000}, {.hex = 0xd6b80000}, {.hex = 0xddc30000},
+            {.hex = 0xe2cb0000}, {.hex = 0xead70000}, {.hex = 0xf5e80000}, {.hex = 0xfbf20000},
         },
         // Variant 3
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x773f0000}, {.hex = 0x7c420100}, {.hex = 0x88480500}, {.hex = 0x934e0800},
+            {.hex = 0x9b520a00}, {.hex = 0xa5580e00}, {.hex = 0xad5c1000}, {.hex = 0xb15e1100},
+            {.hex = 0xba631400}, {.hex = 0xc86a1800}, {.hex = 0xd06f1a00}, {.hex = 0xdb751e00},
         }
     },
     // Rock
@@ -848,27 +848,27 @@ union rgba_hex type_swap_color_table[TYPE_NEUTRAL + 1][4][12] = {
     {
         // Variant 0
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x1b025c00}, {.hex = 0x1f085c00}, {.hex = 0x220c5c00}, {.hex = 0x26125c00},
+            {.hex = 0x29165c00}, {.hex = 0x2d1b5c00}, {.hex = 0x301f5c00}, {.hex = 0x33245c00},
+            {.hex = 0x37295c00}, {.hex = 0x392d5c00}, {.hex = 0x3e335c00}, {.hex = 0x3e335c00},
         },
         // Variant 1
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x1f024700}, {.hex = 0x21054700}, {.hex = 0x23094700}, {.hex = 0x260e4700},
+            {.hex = 0x27104700}, {.hex = 0x28124700}, {.hex = 0x2a154700}, {.hex = 0x2d1a4700},
+            {.hex = 0x2f1d4700}, {.hex = 0x31224700}, {.hex = 0x33244700}, {.hex = 0x34264700},
         },
         // Variant 2
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x6d071900}, {.hex = 0x6a091a00}, {.hex = 0x680c1c00}, {.hex = 0x660e1d00},
+            {.hex = 0x65101f00}, {.hex = 0x64112000}, {.hex = 0x63122000}, {.hex = 0x61152200},
+            {.hex = 0x5e192500}, {.hex = 0x5c1c2700}, {.hex = 0x5a1e2800}, {.hex = 0x58222b00},
         },
         // Variant 3
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x053c6900}, {.hex = 0x0a3e6900}, {.hex = 0x0c3f6900}, {.hex = 0x0e406900},
+            {.hex = 0x13436a00}, {.hex = 0x1a466a00}, {.hex = 0x1e486b00}, {.hex = 0x234b6b00},
+            {.hex = 0x2a4e6b00}, {.hex = 0x2e506c00}, {.hex = 0x34536c00}, {.hex = 0x38556d00},
         }
     },
     // Dark
@@ -929,27 +929,27 @@ union rgba_hex type_swap_color_table[TYPE_NEUTRAL + 1][4][12] = {
     {
         // Variant 0
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x8e226b00}, {.hex = 0x92236e00}, {.hex = 0x9a257400}, {.hex = 0xa4297c00},
+            {.hex = 0xac2b8200}, {.hex = 0xb42e8900}, {.hex = 0xbb308e00}, {.hex = 0xc7349800},
+            {.hex = 0xd83aa500}, {.hex = 0xe33dad00}, {.hex = 0xe83fb100}, {.hex = 0xea40b300},
         },
         // Variant 1
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x86284b00}, {.hex = 0x8b294d00}, {.hex = 0x972c5400}, {.hex = 0xa32f5a00},
+            {.hex = 0xaa305d00}, {.hex = 0xaf326100}, {.hex = 0xb8346500}, {.hex = 0xc5376c00},
+            {.hex = 0xcd397000}, {.hex = 0xd83b7600}, {.hex = 0xe43e7c00}, {.hex = 0xea408000},
         },
         // Variant 2
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x710d2300}, {.hex = 0x7b0d2600}, {.hex = 0x870f2900}, {.hex = 0x910f2c00},
+            {.hex = 0x98102e00}, {.hex = 0x9e113000}, {.hex = 0xa8113300}, {.hex = 0xb8133700},
+            {.hex = 0xc7143c00}, {.hex = 0xd2153f00}, {.hex = 0xda164100}, {.hex = 0xe2174400},
         },
         // Variant 3
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x6d0f6300}, {.hex = 0x750f6a00}, {.hex = 0x7d107200}, {.hex = 0x86107a00},
+            {.hex = 0x8e118100}, {.hex = 0x97118900}, {.hex = 0xa7139800}, {.hex = 0xb814a700},
+            {.hex = 0xc915b600}, {.hex = 0xd115be00}, {.hex = 0xd916c500}, {.hex = 0xe217cd00},
         }
     },
 };
@@ -1003,17 +1003,16 @@ void SwapTypeWanPalette(int wan_index, enum type_id type_0, enum type_id type_1,
             int replace_color_variant = (i + seed) & 0x3;
             int color_iterator = _s32_div_f(12, luminance_entries);
             enum type_id type_to_use;
-            if(type_1 == TYPE_NONE) {
+            if(type_1 == TYPE_NONE || i == 0) {
                 type_to_use = type_0;
             } else {
-                if(seed & 0x1) {
+                if(((seed * i)) & 0x3) {
                     type_to_use = type_0;
                 } else {
                     type_to_use = type_1;
                 }
             }
-            type_to_use = TYPE_FIRE; // TODO: Remove this when done.
-            struct rgba color = type_swap_color_table[TYPE_FIRE][replace_color_variant][color_iterator * j].rgba;
+            struct rgba color = type_swap_color_table[type_to_use][replace_color_variant][color_iterator * j].rgba;
             // TODO: Fix this. I'm too lazy to fix this.
             palette[original_index].r = color.a;
             palette[original_index].g = color.b;
@@ -1094,7 +1093,7 @@ void HueShiftWanPalette(int wan_index, int shift) {
     }
 }
 
-bool __attribute__((used)) ReseedRandomizer() {
+void __attribute__((used)) ReseedRandomizer() {
     randomizer_mode_seed = DungeonRand16Bit() || (DungeonRand16Bit() << 16);
     DetermineAllTilesWalkableNeighbors(); // original instruction
 }
@@ -1125,12 +1124,12 @@ bool __attribute__((used)) MonsterIgnoresRandomizer(enum monster_id monster_id) 
 
 enum type_id __attribute__((used)) GetRandomizedType(enum monster_id monster_id, int type_index) {\
     int rotate = monster_id % 32;
-    enum type_id r_type_0 = (((randomizer_mode_seed << rotate) | ((randomizer_mode_seed) >> (32 - rotate))) ^ monster_id) % TYPE_NEUTRAL;
+    enum type_id r_type_0 = ((((randomizer_mode_seed << rotate) | ((randomizer_mode_seed) >> (32 - rotate))) ^ monster_id) % TYPE_NEUTRAL) + 1;
     if(type_index == 0) {
         return r_type_0;
     }
 
-    enum type_id r_type_1 = ((randomizer_mode_seed) ^ ((randomizer_mode_seed) >> (32 - rotate))) % TYPE_NEUTRAL;
+    enum type_id r_type_1 = (((randomizer_mode_seed) ^ ((randomizer_mode_seed) >> (32 - rotate))) % TYPE_NEUTRAL) + 1;
     if(r_type_0 == r_type_1) {
         return TYPE_NONE;
     }
@@ -1147,6 +1146,48 @@ void __attribute__((naked)) __attribute__((used)) GetRandomizedTypeTrampoline(en
     asm("b   GetTypeUnhook");
 
 }
+
+
+int hue_type_list[TYPE_NEUTRAL + 1][3] = {
+    // None
+    {0, 0, 0},
+    // TYPE_NORMAL
+    {0, 0, 0},
+    // TYPE_FIRE
+    {4, 33, 50},
+    // TYPE_WATER
+    {191, 250, 170},
+    // TYPE_GRASS
+    {80, 133, 116},
+    // TYPE_ELECTRIC
+    {55, 55, 65},
+    // TYPE_ICE
+    {165, 200, 255},
+    // TYPE_FIGHTING
+    {30, 45, 38},
+    // TYPE_POISON
+    {278, 126, 290},
+    // TYPE_GROUND
+    {25, 355, 36},
+    // TYPE_FLYING
+    {180, 220, 190},
+    // TYPE_PSYCHIC
+    {300, 330, 315}, 
+    // TYPE_BUG
+    {100, 45, 33},
+    // TYPE_ROCK
+    {30, 30, 30},
+    // TYPE_GHOST
+    {265, 285, 300},
+    // TYPE_DRAGON
+    {240, 270, 211},
+    // TYPE_DARK
+    {0, 0, 0},
+    // TYPE_STEEL
+    {0, 0, 0},
+    // TYPE_FAIRY
+    {300, 280, 160},
+};
 
 void __attribute__((used)) RandomizePaletteForMonster(enum monster_id monster_id) {
     if(!IsGameInEnemyRandomizerMode()) {
@@ -1171,12 +1212,12 @@ void __attribute__((used)) RandomizePaletteForMonster(enum monster_id monster_id
         default:
             break;
         case TYPE_NORMAL:
-            if(method_randomness <= 32) {
+            if(method_randomness >= 64) {
                 GrayscaleWanPalette(wan_index);
                 return;
             }
         case TYPE_STEEL:
-            if(method_randomness <= 16) {
+            if(method_randomness >= 64) {
                 GrayscaleWanPalette(wan_index);
                 return;
             }
@@ -1186,20 +1227,28 @@ void __attribute__((used)) RandomizePaletteForMonster(enum monster_id monster_id
                 return;
             }
         case TYPE_DARK:
-            if(method_randomness <= 8) {
+            if(method_randomness >= 96) {
                 InvertWanPalette(wan_index);
-                // return; fall through to the next case on purpose
+                return;
             }
-            if(method_randomness <= 16) {
+            if(method_randomness >= 64) {
                 GrayscaleWanPalette(wan_index);
                 InvertWanPalette(wan_index);
                 return;
             }
     }
 
-    if(method_randomness < 84) {
+    // Swap the colors out.
+    if(method_randomness < 64) {
         SwapTypeWanPalette(wan_index, r_type_0, r_type_1, ((randomizer_mode_seed << 7) | ((randomizer_mode_seed) >> (32 - 7))) - monster_id);
     }
+
+    // Otherwise, use the prettiest looking function we have and shift palettes.
+    int primary_hue_index = method_randomness % 3;
+    enum type_id secondary_hue_index = (method_randomness >> 2) % 3;
+    enum type_id tertiary_hue_index = (method_randomness >> 4) % 3;
+    enum type_id tertiary_type_hue = r_type_1 == TYPE_NONE ? r_type_0 : r_type_1;
+    HueForceWanPalette(wan_index, hue_type_list[r_type_0][primary_hue_index], hue_type_list[r_type_0][(secondary_hue_index + 1)], hue_type_list[tertiary_type_hue][tertiary_hue_index]);
 }
 
 void __attribute__((used)) RandomizeSpawnlistPalettes() {
@@ -1214,4 +1263,43 @@ void __attribute__((used)) RandomizeSpawnlistPalettes() {
     CountItemsOnFloorForAcuteSniffer(); // original instruction
 }
 
-// TODO:
+void __attribute__((used)) RandomizeAttackPalette(int wan_index){
+    if (false == IsGameInEnemyRandomizerMode()) {
+        return;
+    }
+
+    if(wan_index == -1) {
+        return;
+    }
+
+    struct wan_palettes *palettes_to = WAN_TABLE->sprites[wan_index].sprite_start->image_header->palettes;
+    struct rgba *palette = palettes_to->palette_bytes;
+    int palette_size = palettes_to->nb_color;
+
+    int number_entries = DUNGEON_PTR->monster_spawn_entries_length;
+    for (int i = 0; i < number_entries; i++){
+        int monster_id = DUNGEON_PTR->spawn_entries[i].id.val;
+        // TODO: Fix.
+        if(GetLoadedWanTableEntry(WAN_TABLE, PACK_ARCHIVE_M_ATTACK, GetSpriteIndex(monster_id)) == wan_index) {
+            int wan_index_base = GetLoadedWanTableEntry(WAN_TABLE, PACK_ARCHIVE_MONSTER, GetSpriteIndex(monster_id));
+            if(wan_index_base == -1) {
+                return;
+            }
+            struct wan_palettes *palettes_from = WAN_TABLE->sprites[wan_index_base].sprite_start->image_header->palettes;
+            struct rgba *palette_from = palettes_from->palette_bytes;
+            for(int j = 0; j < palette_size; j++) {
+                palette[j].r = palette_from[j].r;
+                palette[j].g = palette_from[j].g;
+                palette[j].b = palette_from[j].b;
+            }
+            return;
+        }
+    }
+}
+
+void __attribute__((naked)) __attribute__((used)) RandomizeAttackPaletteTrampoline(){
+    asm("push {r2, r14}");
+    asm("strh r0,[r1]"); // original instruction
+    asm("bl RandomizeAttackPalette");
+    asm("pop {r2, r15}"); // return
+}

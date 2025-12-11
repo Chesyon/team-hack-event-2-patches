@@ -18,4 +18,9 @@
     .area 0x4
         bl RandomizeSpawnlistPalettes
     .endarea
+
+    .org RandomizeAttackPalettesHook
+    .area 0x4
+        bl RandomizeAttackPaletteTrampoline
+    .endarea
 .close

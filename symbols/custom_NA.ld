@@ -55,6 +55,7 @@ ManyKeysGoBrrr = 0x02343A00; /* Applies ManyKeysCheck */
 /* Mini Randomizer Hooks */
 RandomizeReseedHook = 0x22DF690;
 RandomizePalettesHook = 0x22DF7B4;
+RandomizeAttackPalettesHook = 0x22F6FDC;
 
 
 /* !file arm9 */
