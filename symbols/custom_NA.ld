@@ -53,7 +53,8 @@ Lappy_Oops_1 = 0x023445E4; /* Accidentally overwrote this instruction */
 Lappy_Oops_2 = 0x02344868; /* Accidentally overwrote this instruction */
 ManyKeysGoBrrr = 0x02343A00; /* Applies ManyKeysCheck */
 /* Mini Randomizer Hooks */
-GetTypeHook = 0x2052A04;
+RandomizeReseedHook = 0x22DF690;
+RandomizePalettesHook = 0x22DF7B4;
 
 
 /* !file arm9 */

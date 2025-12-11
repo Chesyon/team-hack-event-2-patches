@@ -1,7 +1,7 @@
 #include <pmdsky.h>
 #include <cot.h>
 
-#define HUE_DEGREE_CLOSE_CUTOFF 10
+#define HUE_DEGREE_CLOSE_CUTOFF 15
 #define ARE_HUES_CLOSE(h1, h2) (h1 <= (HUE_DEGREE_CLOSE_CUTOFF/2)) && \
                                   (h2 >= 360 - (HUE_DEGREE_CLOSE_CUTOFF/2))
 
@@ -9,7 +9,8 @@
 // a variable aside.
 int randomizer_mode_seed = 0;
 
-bool IsGameInEnemyRandomizerMode() {
+bool __attribute__((used)) IsGameInEnemyRandomizerMode() {
+    return true;
     return LoadScriptVariableValueAtIndex(NULL, VAR_STATION_ITEM_STATIC, 0);
 }
 
@@ -442,15 +443,15 @@ union rgba_hex type_swap_color_table[TYPE_NEUTRAL + 1][4][12] = {
     {
         // Variant 0
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0x773f0000}, {.hex = 0x7c410100}, {.hex = 0x87480500}, {.hex = 0x934e0800},
+            {.hex = 0x9b520a00}, {.hex = 0xa6580e00}, {.hex = 0xae5c1000}, {.hex = 0xb25e1100},
+            {.hex = 0xba631400}, {.hex = 0xc76a1800}, {.hex = 0xd06f1a00}, {.hex = 0xde771f00}
         },
         // Variant 1
         {
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000},
-            {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}, {.hex = 0x00000000}
+            {.hex = 0xd7bf6700}, {.hex = 0xdac46c00}, {.hex = 0xdec97100}, {.hex = 0xe1cd7500},
+            {.hex = 0xe5d37b00}, {.hex = 0xe8d77f00}, {.hex = 0xebdc8400}, {.hex = 0xefe18900},
+            {.hex = 0xf2e58d00}, {.hex = 0xf6ea9200}, {.hex = 0xf8ee9600}, {.hex = 0xfff79f00}
         },
         // Variant 2
         {
@@ -1093,7 +1094,12 @@ void HueShiftWanPalette(int wan_index, int shift) {
     }
 }
 
-bool __attribute__((used)) MonsterIgnoresRandomizer(enum monster_id) {
+bool __attribute__((used)) ReseedRandomizer() {
+    randomizer_mode_seed = DungeonRand16Bit() || (DungeonRand16Bit() << 16);
+    DetermineAllTilesWalkableNeighbors(); // original instruction
+}
+
+bool __attribute__((used)) MonsterIgnoresRandomizer(enum monster_id monster_id) {
     if ( // Deerling :(
         monster_id == 0x474 || monster_id == 0x475 || monster_id == 0x476 || monster_id == 0x477 ||
         monster_id == 0x21C || monster_id == 0x21D || monster_id == 0x21E || monster_id == 0x21F
@@ -1117,31 +1123,37 @@ bool __attribute__((used)) MonsterIgnoresRandomizer(enum monster_id) {
     return false;
 }
 
-enum type_id __attribute__((used)) GetRandomizedType(enum monster_id, int type_index) {
-    if(type_index == 1) {
-        return (monster_id ^ randomizer_mode_seed) % TYPE_NEUTRAL;
-    } else {
-        return (monster_id ^ randomizer_mode_seed ^ (randomizer_mode_seed >> 5)) % TYPE_NEUTRAL;
+enum type_id __attribute__((used)) GetRandomizedType(enum monster_id monster_id, int type_index) {\
+    int rotate = monster_id % 32;
+    enum type_id r_type_0 = (((randomizer_mode_seed << rotate) | ((randomizer_mode_seed) >> (32 - rotate))) ^ monster_id) % TYPE_NEUTRAL;
+    if(type_index == 0) {
+        return r_type_0;
     }
+
+    enum type_id r_type_1 = ((randomizer_mode_seed) ^ ((randomizer_mode_seed) >> (32 - rotate))) % TYPE_NEUTRAL;
+    if(r_type_0 == r_type_1) {
+        return TYPE_NONE;
+    }
+    return r_type_1;
 }
 
-void __attribute__((used)) __attribute__((naked)) GetRandomizedTypeTrampoline(enum monster_id) {
-    asm("push r0,r1,r2,r3");
+void __attribute__((naked)) __attribute__((used)) GetRandomizedTypeTrampoline(enum monster_id) {
+    asm("push {r0,r1,r2,r3,lr}");
     asm("bl  IsGameInEnemyRandomizerMode");
     asm("cmp r0,#0x1");
-    asm("pop r0,r1,r2,r3");
+    asm("pop {r0,r1,r2,r3,lr}");
     asm("beq GetRandomizedType");
     asm("mov r2,#0x44"); // original instruction
     asm("b   GetTypeUnhook");
 
 }
 
-void __attribute__((used)) RandomizePaletteForMonster(enum monster_id) {
-    if(!IsGameInEnemyRandomizerMode) {
+void __attribute__((used)) RandomizePaletteForMonster(enum monster_id monster_id) {
+    if(!IsGameInEnemyRandomizerMode()) {
         return;
     }
 
-    if(MonsterIgnoresRandomizer) {
+    if(MonsterIgnoresRandomizer(monster_id)) {
         return;
     }
 
@@ -1151,14 +1163,15 @@ void __attribute__((used)) RandomizePaletteForMonster(enum monster_id) {
     }
 
     enum type_id r_type_0 = GetRandomizedType(monster_id, 0);
-    enum type_id r_type_0 = GetRandomizedType(monster_id, 1);
+    enum type_id r_type_1 = GetRandomizedType(monster_id, 1);
     int method_randomness = ((randomizer_mode_seed * monster_id) ^ randomizer_mode_seed ^ monster_id) & 0x7F;
 
     // Handle any special cases here.
     switch(r_type_0) {
         default:
+            break;
         case TYPE_NORMAL:
-            if(method_randomness <= 64) {
+            if(method_randomness <= 32) {
                 GrayscaleWanPalette(wan_index);
                 return;
             }
@@ -1167,19 +1180,26 @@ void __attribute__((used)) RandomizePaletteForMonster(enum monster_id) {
                 GrayscaleWanPalette(wan_index);
                 return;
             }
-        case TYPE_FAIRY:
-            if(method_randomness <= 64) { // Pink!
+        case TYPE_NEUTRAL:
+            if(method_randomness <= 32) { // Pink!
                 HueForceWanPalette(wan_index, 313, 280, 344);
                 return;
             }
         case TYPE_DARK:
-            if(method_randomness <= 64) {
+            if(method_randomness <= 8) {
+                InvertWanPalette(wan_index);
+                // return; fall through to the next case on purpose
+            }
+            if(method_randomness <= 16) {
+                GrayscaleWanPalette(wan_index);
                 InvertWanPalette(wan_index);
                 return;
             }
     }
 
-    SwapTypeWanPalette(wan_index, r_type_0, r_type_1, method_randomness >> 7);
+    if(method_randomness < 84) {
+        SwapTypeWanPalette(wan_index, r_type_0, r_type_1, ((randomizer_mode_seed << 7) | ((randomizer_mode_seed) >> (32 - 7))) - monster_id);
+    }
 }
 
 void __attribute__((used)) RandomizeSpawnlistPalettes() {
