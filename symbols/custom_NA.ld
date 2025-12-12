@@ -56,7 +56,18 @@ ManyKeysGoBrrr = 0x02343A00; /* Applies ManyKeysCheck */
 RandomizeReseedHook = 0x22DF690;
 RandomizePalettesHook = 0x22DF7B4;
 RandomizeAttackPalettesHook = 0x22F6FDC;
-
+/* Chaos & Entropy Hooks */
+EntropyAccuracyHook = 0x2323D0C;
+EntropyAccuracyOnUnhook = 0x2324008;
+EntropyAccuracyOffUnhook = 0x2323D10;
+EntropySecondaryEffectHook = 0x2324A04;
+EntropySecondaryEffectOnUnhook = 0x2324A08;
+EntropySecondaryEffectOffUnhook = 0x2324A18;
+EntropyStatusDurationHook = 0x22EAC0C;
+ChaosTypeHook = 0x22F9FFC;
+ChaosTypeOverwrittenFunction = 0x2307DD0;
+ChaosWeatherHook = 0x2334D74;
+ChaosExplosionHook = 0x230AA28;
 
 /* !file arm9 */
 ShowKeyboardTypeCase3 = 0x02036914;
