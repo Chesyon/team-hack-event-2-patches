@@ -93,6 +93,9 @@
 	mov   r1, r8
 	bl    EndFrozenStatus
 
+	cmp   r6, r8
+	beq   EndLoopI
+
 	ldr   r9, [r6,#0xb4]
 	ldrb  r0, [r9,#0x9]
 	cmp   r0, #1
