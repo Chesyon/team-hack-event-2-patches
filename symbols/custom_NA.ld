@@ -52,7 +52,22 @@ SaveFloorHook = 0x22DF670;
 Lappy_Oops_1 = 0x023445E4; /* Accidentally overwrote this instruction */
 Lappy_Oops_2 = 0x02344868; /* Accidentally overwrote this instruction */
 ManyKeysGoBrrr = 0x02343A00; /* Applies ManyKeysCheck */
-
+/* Mini Randomizer Hooks */
+RandomizeReseedHook = 0x22DF690;
+RandomizePalettesHook = 0x22DF7B4;
+RandomizeAttackPalettesHook = 0x22F6FDC;
+/* Chaos & Entropy Hooks */
+EntropyAccuracyHook = 0x2323D0C;
+EntropyAccuracyOnUnhook = 0x2324008;
+EntropyAccuracyOffUnhook = 0x2323D10;
+EntropySecondaryEffectHook = 0x2324A04;
+EntropySecondaryEffectOnUnhook = 0x2324A08;
+EntropySecondaryEffectOffUnhook = 0x2324A18;
+EntropyStatusDurationHook = 0x22EAC0C;
+ChaosTypeHook = 0x22F9FFC;
+ChaosTypeOverwrittenFunction = 0x2307DD0;
+ChaosWeatherHook = 0x2334D74;
+ChaosExplosionHook = 0x230AA28;
 
 /* !file arm9 */
 ShowKeyboardTypeCase3 = 0x02036914;
@@ -87,6 +102,9 @@ SomethingTextRelatedIdk = 0x2021EC8;
 UppercaseUVTagHook = 0x2020FC8;
 UppercaseTagCodeError = 0x2021A10;
 AfterUppercaseTagIsFound = 0x2021AA0;
+/* Randomizer Hooks */
+GetTypeHook = 0x2052A08;
+GetTypeUnhook = 0x2052A0C;
 
 
 /* ngl I don't remember which file these are from. Or if I use all of them. - Lappy */

@@ -312,7 +312,7 @@ PlayRosyWindMessages:
 	mov r10, r1; // entity* 
 	bl GetFloorRosiness;
 	cmp r0, #1;
-	popne {r3-r12,pc}
+	popne {r0,r3-r12,pc}
 	ldr r1, =ROSY_WIND_250;
 	add r1, r11;
 	mov r0, r10;
@@ -336,8 +336,8 @@ PlayRosyWindMessages:
 	mov r0, r9;
 	bl ChangeDungeonMusic
 	RosyWindMessagesReturn:
-		add sp, sp, #0x8;
 		pop {r0,r3-r12,lr};
+		add sp, sp, #0x8;
 		pop {r4-r6,pc};
 
 SubRosyDeathMessage:
@@ -1246,6 +1246,7 @@ SpawnMemoOutlawReturn:
 
 CheckIfSleeping:
 	push {r1-r12,lr}
+	mov r0,r1
 	bl IsMonsterSleeping
 	cmp r0, #1;
 	pop {r1-r12,pc}
