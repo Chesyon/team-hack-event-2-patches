@@ -1,7 +1,7 @@
 #include <pmdsky.h>
 #include <cot.h>
 
-#define HUE_DEGREE_CLOSE_CUTOFF 15
+#define HUE_DEGREE_CLOSE_CUTOFF 10
 #define ARE_HUES_CLOSE(h1, h2) (h1 <= (HUE_DEGREE_CLOSE_CUTOFF/2)) && \
                                   (h2 >= 360 - (HUE_DEGREE_CLOSE_CUTOFF/2))
 
@@ -1001,10 +1001,13 @@ void SwapTypeWanPalette(int wan_index, enum type_id type_0, enum type_id type_1,
         }
         
         // Replace the colors with predetermined palettes.
+        int color_iterator = _s32_div_f(12, luminance_entries - 1);
+        if(color_iterator < 1) {
+            color_iterator = 1;
+        }
         for (int j = 0; j < luminance_entries; j++) {
             int original_index = original_indexes_lum[j];
             int replace_color_variant = (i + seed) & 0x3;
-            int color_iterator = _s32_div_f(12, luminance_entries);
             enum type_id type_to_use;
             if(type_1 == TYPE_NONE || i == 0) {
                 type_to_use = type_0;
@@ -1015,7 +1018,13 @@ void SwapTypeWanPalette(int wan_index, enum type_id type_0, enum type_id type_1,
                     type_to_use = type_1;
                 }
             }
-            struct rgba color = type_swap_color_table[type_to_use][replace_color_variant][color_iterator * j].rgba;
+            // TODO: Fix this. I put the colors in the wrong order. So... uhhh
+            // it uses 11 MINUS color iterator instead.
+            int next_index = 11 - color_iterator * j;
+            if(next_index < 0) {
+                next_index = 0;
+            }
+            struct rgba color = type_swap_color_table[type_to_use][replace_color_variant][11 - color_iterator * j].rgba;
             // TODO: Fix this. I'm too lazy to fix this.
             palette[original_index].r = color.a;
             palette[original_index].g = color.b;
@@ -1121,6 +1130,10 @@ bool __attribute__((used)) MonsterIgnoresRandomizer(enum monster_id monster_id) 
         return true;
     }
 
+    if(monster_id == 1213) { // Ruffles
+        return true;
+    }
+
     if(monster_id == 553) { // Decoy
         return true;
     }
@@ -1196,7 +1209,7 @@ int hue_type_list[TYPE_NEUTRAL + 1][3] = {
 };
 
 void __attribute__((used)) RandomizePaletteForMonster(enum monster_id monster_id) {
-    if(!IsGameInEnemyRandomizerMode()) {
+    if(false == IsGameInEnemyRandomizerMode()) {
         return;
     }
 
