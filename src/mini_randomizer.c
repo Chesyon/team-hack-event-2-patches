@@ -1163,7 +1163,6 @@ void __attribute__((naked)) __attribute__((used)) GetRandomizedTypeTrampoline(en
     asm("beq GetRandomizedType");
     asm("mov r2,#0x44"); // original instruction
     asm("b   GetTypeUnhook");
-
 }
 
 
