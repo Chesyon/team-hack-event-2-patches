@@ -1020,11 +1020,11 @@ void SwapTypeWanPalette(int wan_index, enum type_id type_0, enum type_id type_1,
             }
             // TODO: Fix this. I put the colors in the wrong order. So... uhhh
             // it uses 11 MINUS color iterator instead.
-            int next_index = 11 - color_iterator * j;
+            int next_index = 11 - (color_iterator * j);
             if(next_index < 0) {
                 next_index = 0;
             }
-            struct rgba color = type_swap_color_table[type_to_use][replace_color_variant][11 - color_iterator * j].rgba;
+            struct rgba color = type_swap_color_table[type_to_use][replace_color_variant][next_index].rgba;
             // TODO: Fix this. I'm too lazy to fix this.
             palette[original_index].r = color.a;
             palette[original_index].g = color.b;
