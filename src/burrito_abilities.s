@@ -41,8 +41,16 @@
 	ldr   r2, =#3889
 	bl    LogMessageByIdWithPopupCheckUserTarget
 
+	ldr    r0, [r8, #0xb4]
+	ldrh   r1, [r0, #0x2]
+	ldr    r2, =#1237
+	cmp    r1, r2
+	ldrneh r1, [r0, #0x4]
+	cmpne  r1, r2
+	ldreq  r1, =#132
+	ldrne  r1, =#317
+
 	mov   r0, r7
-	ldr   r1, =#317
 	bl    PlayEffectAnimationEntityStandard
 
 	ldrh  r10, [r7, #0x4]

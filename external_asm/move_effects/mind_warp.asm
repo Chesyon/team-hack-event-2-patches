@@ -2,8 +2,8 @@
 ; ------------------------------------------------------------------------------
 ; By happylappy
 ; This move will instantly kill the user. However, it will also deal psychic
-; type damage and confuse all enemies on the floor, as well as make the floor
-; have a pink hue.
+; type damage and afflict all enemies on the floor, with a random mental status
+; as well as make the floor have a pink hue.
 ; ------------------------------------------------------------------------------
 
 
