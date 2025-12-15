@@ -1155,7 +1155,7 @@ enum type_id __attribute__((used)) GetRandomizedType(enum monster_id monster_id,
     return r_type_1;
 }
 
-void __attribute__((naked)) __attribute__((used)) GetRandomizedTypeTrampoline(enum monster_id) {
+void __attribute__((naked)) __attribute__((used)) GetRandomizedTypeTrampoline(enum monster_id monster_id) {
     asm("push {r0,r1,r2,r3,lr}");
     asm("bl  IsGameInEnemyRandomizerMode");
     asm("cmp r0,#0x1");
