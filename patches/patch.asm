@@ -81,36 +81,36 @@
 	.org ToxicTable
 	.area 0x60
 		.pool
-		.halfword #0x1
-		.halfword #0x1
-		.halfword #0x1
-		.halfword #0x1
-		.halfword #0x1
-		.halfword #0x2
-		.halfword #0x2
-		.halfword #0x2
-		.halfword #0x2
-		.halfword #0x2
-		.halfword #0x3
-		.halfword #0x3
-		.halfword #0x3
-		.halfword #0x3
-		.halfword #0x3
-		.halfword #0x4
-		.halfword #0x4
-		.halfword #0x4
-		.halfword #0x4
-		.halfword #0x4
-		.halfword #0x5
-		.halfword #0x5
-		.halfword #0x5
-		.halfword #0x5
-		.halfword #0x5
-		.halfword #0x6
-		.halfword #0x6
-		.halfword #0x6
-		.halfword #0x6
-		.halfword #0x6
+		.hword 0x1
+		.halfword 0x1
+		.halfword 0x1
+		.halfword 0x1
+		.hword 0x1
+		.hword 0x2
+		.hword 0x2
+		.hword 0x2
+		.halfword 0x2
+		.hword 0x2
+		.halfword 0x3
+		.hword 0x3
+		.hword 0x3
+		.halfword 0x3
+		.hword 0x3
+		.hword 0x4
+		.halfword 0x4
+		.halfword 0x4
+		.halfword 0x4
+		.hword 0x4
+		.halfword 0x5
+		.halfword 0x5
+		.hword 0x5
+		.hword 0x5
+		.hword 0x5
+		.hword 0x6
+		.hword 0x6
+		.halfword 0x6
+		.halfword 0x6
+		.hword 0x6
 	.endarea
 .close
 
@@ -242,6 +242,18 @@
 	.org CheckFixedRoomItem
 	.area 0x4
 		mov r0,#0
+	.endarea
+
+	.org UnnamedDungeonHookPoisonHeal
+	.area 0x8
+		mov r3, #0
+		bl  WhichToxicTable
+	.endarea
+
+	.org UnnamedDungeonHookPoisonDamage
+	.area 0x8
+		mov r3, #1
+		bl  WhichToxicTable
 	.endarea
 .close
 
