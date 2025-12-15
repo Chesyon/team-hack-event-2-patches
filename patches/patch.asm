@@ -77,6 +77,42 @@
 	.endarea
 .close
 
+.open "overlay10.bin", overlay10_start
+	.org ToxicTable
+	.area 0x60
+		.pool
+		.halfword #0x1
+		.halfword #0x1
+		.halfword #0x1
+		.halfword #0x1
+		.halfword #0x1
+		.halfword #0x2
+		.halfword #0x2
+		.halfword #0x2
+		.halfword #0x2
+		.halfword #0x2
+		.halfword #0x3
+		.halfword #0x3
+		.halfword #0x3
+		.halfword #0x3
+		.halfword #0x3
+		.halfword #0x4
+		.halfword #0x4
+		.halfword #0x4
+		.halfword #0x4
+		.halfword #0x4
+		.halfword #0x5
+		.halfword #0x5
+		.halfword #0x5
+		.halfword #0x5
+		.halfword #0x5
+		.halfword #0x6
+		.halfword #0x6
+		.halfword #0x6
+		.halfword #0x6
+		.halfword #0x6
+	.endarea
+.close
 
 .open "overlay29.bin", overlay29_start
     .org CALC_DAMAGE_FORM_OFFENSE_HOOK
