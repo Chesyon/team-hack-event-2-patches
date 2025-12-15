@@ -165,6 +165,10 @@ IDoNotKnowIfTheHookIsInApplyDamageOrDealDamageUntilIOpenTheGhidra = 0x02332b44;
 
 CheckFixedRoomItem = 0x2344454;
 
+ToxicTable = 0x22c4c9c;
+UnnamedDungeonHookPoisonHeal = 0x23108d4;
+UnnamedDungeonHookPoisonDamage = 0x23108fc;
+
 /* Hooks & Instruction Changes */
 MEMO_FIXED_ROOM_ID_HOOK = 0x205DF48; /* 0x205E2C4 EU */
 MEMO_PRINT_STRING_HOOK = 0x234A120; /* 0x234AD2C EU */
