@@ -259,13 +259,11 @@
 	.org SweeterScentEffect ; 0x2332dc8
 	.area 0x4
 		b   SweeterScent
-		SweeterSkemp:
 	.endarea
 	
-	.org SweeterScentText ; 0x230e814
+	.org SweeterScentTextEffect ; 0x230e814
 	.area 0x4
 		b	SweeterScentText
-		SweetTEnd:
 	.endarea
 	
 	.org LongReachEffect ; 0x23087fc
