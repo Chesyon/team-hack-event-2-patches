@@ -169,6 +169,12 @@ ToxicTable = 0x22c4c9c;
 UnnamedDungeonHookPoisonHeal = 0x23108d0;
 UnnamedDungeonHookPoisonDamage = 0x23108f8;
 
+SweeterScentEffect = 0x2332dc8;
+SweeterSkemp = 0x2332dcc;
+SweeterScentTextEffect = 0x230e814;
+SweetTEnd = 0x230e818;
+LongReachEffect = 0x23087fc;
+
 /* Hooks & Instruction Changes */
 MEMO_FIXED_ROOM_ID_HOOK = 0x205DF48; /* 0x205E2C4 EU */
 MEMO_PRINT_STRING_HOOK = 0x234A120; /* 0x234AD2C EU */
