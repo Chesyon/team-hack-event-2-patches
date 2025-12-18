@@ -255,6 +255,23 @@
 		mov r3, #1
 		bl  WhichToxicTable
 	.endarea
+
+	.org SweeterScentEffect ; 0x2332dc8
+	.area 0x4
+		b   SweeterScent
+		SweeterSkemp:
+	.endarea
+	
+	.org SweeterScentText ; 0x230e814
+	.area 0x4
+		b	SweeterScentText
+		SweetTEnd:
+	.endarea
+	
+	.org LongReachEffect ; 0x23087fc
+	.area 0x4
+		bl	LongReach
+	.endarea
 .close
 
 
