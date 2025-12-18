@@ -175,7 +175,7 @@ SweeterScentTextEffect = 0x230e814;
 SweetTEnd = 0x230e818;
 LongReachEffect = 0x23087fc;
 SweeterScentExit = 0x2332dfc;
-SweeterScentVFXExit = 0x230e828;
+SweetScentVFXExit = 0x230e828;
 
 /* Hooks & Instruction Changes */
 MEMO_FIXED_ROOM_ID_HOOK = 0x205DF48; /* 0x205E2C4 EU */
