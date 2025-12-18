@@ -6,11 +6,11 @@ SweeterScent:
     bl  CheckDungeonId
     cmp r0, #1
     beq SweeterSkemp
-    b   SweeterScentExit ; 0x2332dfc
+    b   SweeterScentExit
 
 SweeterScentText:
 	mov r0, r6
-	mov r1, 0x2E
+	mov r1, #0x2E
 	bl	AbilityIsActive
 	cmp r0, #1
 	ldreq r1, =#0xC5D
@@ -23,7 +23,7 @@ SweeterScentVFX:
 	mov r0, r6
 	mov r1, #12
 	bl	PlayEffectAnimationEntityStandard
-	b	SweetScentVFXExit ; 0x230e828
+	b	SweetScentVFXExit
 
 LongReach:
 	push {r1-r9,r11,r12,lr}
@@ -31,7 +31,7 @@ LongReach:
 	cmp r0, #1
 	popgt {r1-r9,r11,r12,pc}
 	mov r0, r10
-	mov r1, 0x81
+	mov r1, #0x81
 	bl  AbilityIsActive
 	cmp r0, #0
 	moveq r0, #1
