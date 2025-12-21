@@ -69,6 +69,7 @@ ChaosTypeOverwrittenFunction = 0x2307DD0;
 ChaosWeatherHook = 0x2334D74;
 ChaosExplosionHook = 0x230AA28;
 
+
 /* !file arm9 */
 ShowKeyboardTypeCase3 = 0x02036914;
 ShowKeyboardTypeDefaultCase = 0x02036A40;
@@ -176,6 +177,8 @@ SweetTEnd = 0x230e818;
 LongReachEffect = 0x23087fc;
 SweeterScentExit = 0x2332dfc;
 SweetScentVFXExit = 0x230e828;
+AfterCallToSafeguard = 0x2312370;
+
 
 /* Hooks & Instruction Changes */
 MEMO_FIXED_ROOM_ID_HOOK = 0x205DF48; /* 0x205E2C4 EU */

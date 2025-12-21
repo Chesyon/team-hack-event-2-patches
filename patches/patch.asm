@@ -270,6 +270,11 @@
 	.area 0x4
 		bl	LongReach
 	.endarea
+
+	.org AfterCallToSafeguard
+	.area 0x4
+		bl IsRawstScarfActive
+	.endarea
 .close
 
 
