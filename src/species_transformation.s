@@ -388,7 +388,7 @@ ValidateSpeciesForms:
 		
 	ValidateDeerlingScenMain:
 		mov r0, r9;
-		bl IsScenarioMainValid
+		bl IsScenarioMainValidDungeon
 		b ValidationCondition
 	
 	ValidateWishiwashiHP:
@@ -571,6 +571,20 @@ IsScriptVariableValid:
         pop {r1-r12,pc}
 
 IsScenarioMainValid:
+        push {r1-r12,lr}
+        mov r5, r0;
+        mov r0, #0x0;
+        mov r1, #0x3;
+        mov r2, #0x0;
+        bl LoadScriptVariableValueAtIndex
+		and r0, #0x3;
+		ldrb r3, [r5, #0x6];
+		cmp r0, r3;
+		moveq r0, #0x1;
+		movne r0, #0x0;
+        pop {r1-r12,pc}
+
+IsScenarioMainValidDungeon:
         push {r1-r12,lr}
         mov r5, r0;
         mov r0, #0x0;
