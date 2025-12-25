@@ -1156,7 +1156,7 @@
 
 	.org ALLOW_ALL_NATURAL_SLEEP
 	.area 0x4;
-		bl CheckIfSleeping
+		bl UpdatedSleepCheck 
 	.endarea
 
 	.org MEMO_TWEAK_MISSION_DEST_INFO_HOOK

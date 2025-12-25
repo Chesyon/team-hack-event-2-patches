@@ -10,6 +10,13 @@
 .global RemoveOneOrbFromBags
 .global GetRosyTurnCount
 
+UpdatedSleepCheck:
+	// Runs the same code, except it actually does the comparison now. This will prevent sleeping mons from remaining asleep...
+	push {r1-r12,lr};
+	bl CheckIfSleeping
+	cmp r0, #1;
+	pop {r1-r12,pc}
+
 RevertSwappedParty:
 	push {r0-r8,lr};
 	// We need to revert here, because immediately after is when the team is allocated their monster sprites!
