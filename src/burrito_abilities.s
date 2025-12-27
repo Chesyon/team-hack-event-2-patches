@@ -190,9 +190,12 @@
 	bl    GetApparentWeather
 	cmp   r0, #1
 	ldreq r0, =#384
+	beq   DontDecreaseDamageInTheSunYouDumbass
 	cmpne r0, #4
 	ldreq r0, =#192
 	ldrne r0, =#256
+
+	DontDecreaseDamageInTheSunYouDumbass
 
 	mul   r7, r0
 	lsr   r7, #8
@@ -307,18 +310,20 @@
 	cmp   r0, #4
 	addls r15, r0, lsl #0x3
 	nop
-	mov   r0, #0
+	mov   r2, #0
 	b     EndLoopI
-	mov   r0, #5
+	mov   r2, #5
 	b     DoRng
-	mov   r0, #2
+	mov   r2, #2
 	b     DoRng
 	nop
 	b     CauseBurn
 
 	DoRng: 
-
-	bl    DungeonRandInt
+	
+	mov   r0, r8
+	mov   r1, r6
+	bl    DungeonRandOutcomeUserTargetInteraction
 	cmp   r0, #0
 	beq   CauseBurn
 
