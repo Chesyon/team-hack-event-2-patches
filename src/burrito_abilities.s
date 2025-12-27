@@ -195,7 +195,7 @@
 	ldreq r0, =#192
 	ldrne r0, =#256
 
-	DontDecreaseDamageInTheSunYouDumbass
+	DontDecreaseDamageInTheSunYouDumbass:
 
 	mul   r7, r0
 	lsr   r7, #8
