@@ -26,6 +26,11 @@ SomeTMFunc2 = 0x2309E24;
 StupidBandaidFixHook = 0x2307FC0;
 FunctionThatMakesMeAngry = 0x2308FEC;
 InitTopGroundMenu = 0x2300D5C; /* Defined in a newer version of pmdsky-debug */
+
+/* Top screen actors */
+DefaultActorTypeBranch = 0x22F80D0;
+AfterAttributeBitfieldSwitchCase = 0x22F816C;
+
 MENU_START_HOOK = 0x022e60f0;
 MENU_END_HOOK = 0x022e68f8;
 item_Set = 0x2065CB4; /* Huh? */
