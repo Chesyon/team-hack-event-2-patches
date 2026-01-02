@@ -30,28 +30,30 @@
 	.org ProcStartAddress
 	.area MaxSize ; Define the size of the area
 		push {r8}
+		sub sp, #0x4;
 		mov r0, r7;
+		mov r1, sp;
 		bl ItemAtTableIdx
-		mov r8, r1;
-		ldrh r0, [r8, #0x0];
+		ldrh r0, [sp, #0x0]
 		bl IsShoppableItem
 		cmp r0, #1;
 		movne r2, #0;
 		bne return;
-		ldrh r0, [r8, #0x0];
+		ldrh r0, [sp, #0x0]
 		bl GetItemSellPrice
 		push {r0}
-		ldrh r0, [r8, #0x0];
+		ldrh r0, [sp, #0x0]
 		bl IsThrownItem; // Stick and Stones will have their sell price multiplied by the item count. Treasure Boxes will not!
 		cmp r0, #1;
 		pop {r0}
 		movne r2, r0;
 		bne return;
-		ldrh r1, [r8, #0x2];
+		ldrh r0, [sp, #0x2];
 		mul r2, r0, r1;
 	return:
 		mov r1, #1;
 		bl SaveScriptVariableValue
+		add sp, #0x4;
 		pop {r8}
 		b ProcJumpAddress
 		.pool

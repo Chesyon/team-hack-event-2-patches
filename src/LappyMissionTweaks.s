@@ -10,6 +10,24 @@
 .global RemoveOneOrbFromBags
 .global GetRosyTurnCount
 
+
+ModifiedExploreNewDungeonCheck:
+   push {r14}
+   cmp r1, #0x3;
+   ldrbeq r0, [r4, #0x2]
+   cmp r0, #0x3;
+   popeq {r15}
+   cmp r1, #0x2;
+   ldrbeq r0, [r4, #0x2]
+   cmp r0, #0x1;
+   ldrheq r0, [r4, #0xE]
+   ldr r1, =#0x1F6;
+   cmpeq r0, r1;
+   ldrheq r0, [r4, #0x10]
+   ldreq r1, =#0x429;
+   pop {r15}	
+
+
 UpdatedSleepCheck:
 	// Runs the same code, except it actually does the comparison now. This will prevent sleeping mons from remaining asleep...
 	push {r1-r12,lr};
