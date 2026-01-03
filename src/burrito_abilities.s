@@ -485,7 +485,7 @@
 
 	HalfDamage:
 		mov   r0, r4		// r4 holds the damage multiplier
-		lsl   r0, #2        // divide r0 by 4
+		lsr   r0, #2        // divide r0 by 4
 		sub   r4, r4, r0        // we subtract a quarter from the full number, resulting in 3/4 damage taken
 
 	IGotPunchedButNotInTheGoodWay:
