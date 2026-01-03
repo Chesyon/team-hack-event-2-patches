@@ -23,10 +23,10 @@
 	cmp   r0, #1
 	beq   PunchHimSoHardHeExplodes
 
-	mov   r0, r7
+	ldr   r0, [r8, #0xb4]
+	ldrh  r0, [r0, #0x66]
 	mov   r1, #1360
-	bl    ItemIsActive
-	cmp   r0, #1
+	cmp   r0, r1
 	bne   IgnitionCheckEndPremature
 
 	PunchHimSoHardHeExplodes:
