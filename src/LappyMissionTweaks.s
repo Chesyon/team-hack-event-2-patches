@@ -14,18 +14,33 @@
 ModifiedExploreNewDungeonCheck:
    push {r14}
    cmp r1, #0x3;
-   ldrbeq r0, [r4, #0x2]
+   ldreqb r0, [r4, #0x2]
    cmp r0, #0x3;
    popeq {r15}
    cmp r1, #0x2;
-   ldrbeq r0, [r4, #0x2]
+   ldreqb r0, [r4, #0x2]
    cmp r0, #0x1;
-   ldrheq r0, [r4, #0xE]
+   ldreqh r0, [r4, #0xE]
    ldr r1, =#0x1F6;
    cmpeq r0, r1;
-   ldrheq r0, [r4, #0x10]
+   ldreqh r0, [r4, #0x10]
    ldreq r1, =#0x429;
    pop {r15}	
+
+ModifiedExploreNewDungeonCheckTheSecond:
+   push {r7, r14}
+   mov r7, r0;
+   ldreqb r0, [r4, #0x2]
+   cmp r0, #0x1;
+   ldreqh r0, [r4, #0xE]
+   ldr r1, =#0x1F6;
+   cmpeq r0, r1;
+   ldreqh r0, [r4, #0x10]
+   ldreq r1, =#0x429;
+   moveq r0, r7
+   movne r0, #0;
+   cmp r0, #1;
+   pop {r7, r15}
 
 
 UpdatedSleepCheck:

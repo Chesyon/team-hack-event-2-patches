@@ -102,7 +102,7 @@ MENU_label_4:
 	mov	r0, r7
 	bl	GetItemCategoryVeneer
 	mov	r3, r0
-	mov	r2, #1
+	mov	r2, r9
 	mov	r0, r5
 	mov	r5, r3
 	add	r1, sp, #4

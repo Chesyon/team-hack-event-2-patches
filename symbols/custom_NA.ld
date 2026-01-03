@@ -27,7 +27,7 @@ StupidBandaidFixHook = 0x2307FC0;
 FunctionThatMakesMeAngry = 0x2308FEC;
 InitTopGroundMenu = 0x2300D5C; /* Defined in a newer version of pmdsky-debug */
 OpenExploreNewDungeonMissionHook = 0x2067E70;
-
+OpenExploreNewDungeonMissionHookTheSecond = 0x2067E88;
 /* Top screen actors */
 DefaultActorTypeBranch = 0x22F80D0;
 AfterAttributeBitfieldSwitchCase = 0x22F816C;

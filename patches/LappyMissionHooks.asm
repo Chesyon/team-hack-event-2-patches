@@ -22,6 +22,11 @@
 	   nop;
 	.endarea
 
+	.org OpenExploreNewDungeonMissionHookTheSecond;
+	.area 0x4;
+	   bl ModifiedExploreNewDungeonCheckTheSecond
+	.endarea
+
 	.org ALWAYS_GENERATE_MISSIONS
 	.area 0x4
 		nop; // Original Instruction: ldmiaeq sp!,{r3,r4,r5,r6,r7,r8,r9,r10,r11,pc}. Prevents a return if Performance Flag 3 is disabled, which I intend for it to be.
