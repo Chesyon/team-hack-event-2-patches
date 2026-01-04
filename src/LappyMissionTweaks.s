@@ -37,8 +37,8 @@ ModifiedExploreNewDungeonCheckTheSecond:
    cmpeq r0, r1;
    ldreqh r0, [r4, #0x10]
    ldreq r1, =#0x429;
-   moveq r0, r7
-   movne r0, #0;
+   movne r0, r7
+   moveq r0, #0;
    cmp r0, #1;
    pop {r7, r15}
 
@@ -649,6 +649,52 @@ SelectPuzzleRoomId:
 			push {lr};
 			push {r1-r12};
 			mov r11, r0; // Fixed Room ID
+			OkButActuallyCheckForGuestAbomasnowFirst:
+				// hi burt here writing the code, sorry if it looks cursed!	
+				ldr r8, =DUNGEON_PTR
+				mov r5, #0
+				// first, check if there is an abomasnow in the party
+				WhereIsPresidentObama:
+					ldr   r0, [r8, #0x0]
+					add   r0, r0, r5, lsl #2
+					add   r0, r0, #0x12000
+					ldr   r6, [r0, #0xB28]
+
+					mov   r0, r6
+					bl    EntityIsValid
+					cmp   r0, #1
+					bne   HesNotPresidentObama
+
+					ldr r1, [r6, #0xb4]
+					ldr r1, [r1]
+					ldrh r2, [r1, #0x2]
+					ldr r3, =#502
+					cmp r2, r3
+					bne HesNotPresidentObama
+
+					FoundYouMisterPresident:
+						mov r11, r11
+						mov r0, #127 // max HP
+						strh r0, [r1, #0x12]
+						mov r0, #50 // level
+						strb r0, [r1, #0xA]
+						mov r0, #82 // atk
+						strb r0, [r1, #0x1A]
+						mov r0, #77 // sp atk
+						strb r0, [r1, #0x1B]
+						mov r0, #88 // def
+						strb r0, [r1, #0x1C]
+						mov r0, #86 // sp def
+						strb r0, [r1, #0x1D]
+						b PresidentObamaHasRecievedHisStatBoosts
+
+				HesNotPresidentObama:
+					add r5, r5, #1
+					cmp r5, #16
+					bne WhereIsPresidentObama
+
+			PresidentObamaHasRecievedHisStatBoosts:
+					
 			mov r0, #0xC;
 			mov r1, #0x1;
 			bl IsCurrentMissionTypeExact; // Is it a Treasure Memo subtype 1 (Find Orb On Floor?)
@@ -890,6 +936,10 @@ MemoSwapBag:
 
 MemoSwapParty:
 	push {r2-r12,lr};
+
+	
+
+
 	mov r7, r0;
 	mov r6, r1;
 		mov r0,#0
