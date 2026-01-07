@@ -9,6 +9,11 @@
 		cmp r2, #0x10;
 	.endarea
 
+	.org InterruptEscortMissionClientStats; // original instruction: strb r12, [r3, #0x1D]
+	.area 0x4
+	   bl MakeThePresidentBuff
+	.endarea
+
 	.org MEMO_FIXED_ROOM_ID_HOOK
 	.area 0x8
 		mov r0, r8; 

@@ -38,6 +38,8 @@ item_Set = 0x2065CB4; /* Huh? */
 MenuStartFinish = 0x22E68AC;
 MenuEndFinish = 0x22E6E58;
 GetItemNameAdvanced = 0x200D310;
+InterruptEscortMissionClientStats = 0x204E898;
+
 
 /* !file overlay29 */
 ApplyMoveEffect = 0x0232E864;
