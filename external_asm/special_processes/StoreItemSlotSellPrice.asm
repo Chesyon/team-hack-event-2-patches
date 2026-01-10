@@ -41,15 +41,14 @@
 		bne return;
 		ldrh r0, [sp, #0x0]
 		bl GetItemSellPrice
-		push {r0}
+		mov r8, r0;
 		ldrh r0, [sp, #0x0]
 		bl IsThrownItem; // Stick and Stones will have their sell price multiplied by the item count. Treasure Boxes will not!
 		cmp r0, #1;
-		pop {r0}
-		movne r2, r0;
+		movne r2, r8;
 		bne return;
 		ldrh r0, [sp, #0x2];
-		mul r2, r0, r1;
+		mul r2, r0, r8;
 	return:
 		mov r1, #1;
 		bl SaveScriptVariableValue

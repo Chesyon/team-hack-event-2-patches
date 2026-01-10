@@ -109,6 +109,7 @@ MENU_label_4:
 	strh	r7, [sp, #4]
 	strh	r2, [sp, #6]
 	bl	item_Set
+	// Needs to be changed to not dupe stackables!
 	cmp	r5, #1
 	movls	r5, #1
 	movhi	r5, #0
