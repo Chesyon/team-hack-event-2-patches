@@ -492,6 +492,60 @@
 		mov   r0, r7		// replaced effect
 		b     LiterallyWhereIsThisWhyDidINotJustUseLabelsForMyExitPoint // branch to right after the hook at 0x2332b48
 
+	DoNotEatTheOrbsOrYouWillChokeToDeath:
+	push {r1} // replaced instruction
+	mov r5, r0
+	ldrh r1, [r0, #0x4]
+	ldr r2, =#1355
+	cmp r1, r2
+	pop {r1}
+	beq HowTheFuckDoIMakeConditionalldmiaCommandsAndWhyIsItSoFuckingWeird // using ldmias from other functions is fun! the two just happened to line up
+	b   ThatWasntTheFoeStealOrb
+
+	
+
+	// NOTE: the above is currently broken. a bandaid fix is in place, but fix this before submission!
+
+	CommenceTheUltimatePlan:
+	mov r0, #37
+	bl CheckDungeonId
+	cmp r0, #1
+	movne r0, #0
+	bne HowTheFuckDoIMakeConditionalldmiaCommandsAndWhyIsItSoFuckingWeird
+	ldr r0, [r5, #0xb4]
+	ldrb r1, [r0, #0x7]
+	cmp r1, #1
+	moveq r0, #0
+	beq HowTheFuckDoIMakeConditionalldmiaCommandsAndWhyIsItSoFuckingWeird
+	ldrh r1, [r0, #0x4]
+	ldr r2, =#1273
+	cmp r1, r2
+	addne r2, r2, #1
+	cmpne r1, r2
+	addne r2, r2, #1
+	cmpne r1, r2
+	addne r2, r2, #1
+	cmpne r1, r2
+	addne r2, r2, #1
+	cmpne r1, r2
+	addne r2, r2, #1
+	cmpne r1, r2
+	addne r2, r2, #1
+	cmpne r1, r2
+	addne r2, r2, #1
+	cmpne r1, r2
+	addne r2, r2, #1
+	cmpne r1, r2
+	addne r2, r2, #1
+	cmpne r1, r2
+	movne r0, #1
+	moveq r0, #0
+
+	HowTheFuckDoIMakeConditionalldmiaCommandsAndWhyIsItSoFuckingWeird:
+	ldmia sp!,{r3, r4, r5, pc}
+	
+
+
 .pool
 	WhyCantWeJustLeaveHimBehind:
     .ascii, "...Huh? Where did [CS:Z]Larvesta[CR] go?"
