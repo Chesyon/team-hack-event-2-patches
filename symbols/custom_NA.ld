@@ -253,6 +253,13 @@ ROSY_WIND_50 = 15337;
 ROSY_WIND_0 = 15338;
 */
 
+RunAwayHook = 0x230169c;
+
+ClearItem = 0x200d81c;
+ClearItemAfterUse = 0x22eb62C;
+ThatWasntTheFoeStealOrb = 0x22eb630;
+
+
 /* This leaves lots of strings (15289 thru 15334) for the mission stuff. */
 
 /* Functions */

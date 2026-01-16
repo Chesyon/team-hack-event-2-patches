@@ -275,6 +275,18 @@
 	.area 0x4
 		bl IsRawstScarfActive
 	.endarea
+
+	.org RunAwayHook
+	.area 0x4
+		b CommenceTheUltimatePlan
+	.endarea
+
+	; for non-consumable gracedia (code made originally by adex, modified by me)
+
+	.org ClearItemAfterUse
+	.area 0x4
+		b DoNotEatTheOrbsOrYouWillChokeToDeath
+	.endarea
 .close
 
 
