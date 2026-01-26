@@ -77,6 +77,13 @@
 	.endarea
 .close
 
+.open "overlay1.bin", overlay1_start
+	.org BanishScizorClearMark
+	.area 0x4
+		.word 0x0
+	.endarea
+.close
+
 .open "overlay10.bin", overlay10_start
 	.org ToxicTable
 	.area 0x60
