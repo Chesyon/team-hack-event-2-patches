@@ -120,7 +120,7 @@ GetTypeHook = 0x2052A08;
 GetTypeUnhook = 0x2052A0C;
 
 /* !file overlay1 */
-BanishScizorClearMark = 0x233BED0;
+BanishScizorClearMark = 0x233B784;
 
 /* ngl I don't remember which file these are from. Or if I use all of them. - Lappy */
 UnknownFunction1 = 0x234B294;
