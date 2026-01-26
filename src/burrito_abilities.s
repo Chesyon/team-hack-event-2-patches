@@ -38,7 +38,7 @@
 
 	mov   r0, r8
 	mov   r1, r7
-	ldr   r2, =#3889
+	ldr   r2, =#3898
 	bl    LogMessageByIdWithPopupCheckUserTarget
 
 	ldr    r0, [r8, #0xb4]
