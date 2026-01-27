@@ -273,10 +273,9 @@
 	CheckProtect:
 
 	ldr   r0, [r6, #0xB4]
-	ldr   r1, [r0, #0xA9]
-	ldrb  r1, [r1, #0x2C]
+	ldrb  r1, [r0, #0xD5]
 	cmp   r1, #7
-	moveq r7, #0
+	beq   EndLoopI
 
 	InflictDamage:
 
