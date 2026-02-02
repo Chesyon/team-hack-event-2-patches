@@ -10,6 +10,85 @@
 .global RemoveOneOrbFromBags
 .global GetRosyTurnCount
 
+
+
+
+
+.align
+// r0 = level 1 ground monster about to be leveled up into an escort client
+// r1 = level the ground monster should be leveled to
+// r2 = do
+MakeThePresidentBuff:
+	strb r12, [r3, #0x1D]
+	push {r2-r12,lr}
+	sub sp, #0x4;
+	mov r11, r1; // int level
+	mov r10, r0; // struct ground_monster
+
+	mov r2, #1;
+	str r2, [sp,#0x0];
+	mov r0, #0;
+	mov r1, #2;
+	mov r2, sp;
+	mov r3, #87;
+	bl GetMissionByTypeAndDungeon
+	ldrh r2, =#502;
+	cmp r0, #-1;
+		ldreqh r0, [r10, #0x4];
+		cmpeq r0, r2;
+			moveq r11, #50;
+			ldreq r0, [r10, #0xC]; // All Stats Except HP
+			ldreq r1, =#0x201B201B;
+			addeq r0, r1;
+			streq r0, [r10, #0xC];
+			ldreqh r0, [r10, #0xA];
+			addeq r0, #43;
+			streq r0, [r10, #0xA];
+	mov r1, r11;
+	mov r0, r10;
+	add sp, #0x4;
+pop {r2-r12, pc}
+
+.pool
+ModifiedExploreNewDungeonCheck:
+   push {r14}
+   cmp r1, #0x3;
+   ldreqb r0, [r4, #0x2]
+   cmp r0, #0x3;
+   popeq {r15}
+   cmp r1, #0x2;
+   ldreqb r0, [r4, #0x2]
+   cmp r0, #0x1;
+   ldreqh r0, [r4, #0xE]
+   ldr r1, =#0x1F6;
+   cmpeq r0, r1;
+   ldreqh r0, [r4, #0x10]
+   ldreq r1, =#0x429;
+   pop {r15}	
+
+ModifiedExploreNewDungeonCheckTheSecond:
+   push {r7, r14}
+   mov r7, r0;
+   ldreqb r0, [r4, #0x2]
+   cmp r0, #0x1;
+   ldreqh r0, [r4, #0xE]
+   ldr r1, =#0x1F6;
+   cmpeq r0, r1;
+   ldreqh r0, [r4, #0x10]
+   ldreq r1, =#0x429;
+   movne r0, r7
+   moveq r0, #0;
+   cmp r0, #1;
+   pop {r7, r15}
+
+
+UpdatedSleepCheck:
+	// Runs the same code, except it actually does the comparison now. This will prevent sleeping mons from remaining asleep...
+	push {r1-r12,lr};
+	bl CheckIfSleeping
+	cmp r0, #1;
+	pop {r1-r12,pc}
+
 RevertSwappedParty:
 	push {r0-r8,lr};
 	// We need to revert here, because immediately after is when the team is allocated their monster sprites!
@@ -157,7 +236,7 @@ ToggleRosyMusic:
 	SetRosyMusic:
 		bl ChangeDungeonMusic;
 	pop {r1-r12,pc}
-
+.pool
 UpdateAndRetrieveFloorRosiness:
 	push {r1-r12,lr}
 	mov r10, r0;
@@ -609,6 +688,53 @@ SelectPuzzleRoomId:
 			push {lr};
 			push {r1-r12};
 			mov r11, r0; // Fixed Room ID
+											/*
+											OkButActuallyCheckForGuestAbomasnowFirst:
+												// hi burt here writing the code, sorry if it looks cursed!	
+												ldr r8, =DUNGEON_PTR
+												mov r5, #0
+												// first, check if there is an abomasnow in the party
+												WhereIsPresidentObama:
+													ldr   r0, [r8, #0x0]
+													add   r0, r0, r5, lsl #2
+													add   r0, r0, #0x12000
+													ldr   r6, [r0, #0xB28]
+
+													mov   r0, r6
+													bl    EntityIsValid
+													cmp   r0, #1
+													bne   HesNotPresidentObama
+
+													ldr r1, [r6, #0xb4]
+													ldr r1, [r1]
+													ldrh r2, [r1, #0x2]
+													ldr r3, =#502
+													cmp r2, r3
+													bne HesNotPresidentObama
+
+													FoundYouMisterPresident:
+														mov r11, r11
+														mov r0, #127 // max HP
+														strh r0, [r1, #0x12]
+														mov r0, #50 // level
+														strb r0, [r1, #0xA]
+														mov r0, #82 // atk
+														strb r0, [r1, #0x1A]
+														mov r0, #77 // sp atk
+														strb r0, [r1, #0x1B]
+														mov r0, #88 // def
+														strb r0, [r1, #0x1C]
+														mov r0, #86 // sp def
+														strb r0, [r1, #0x1D]
+														b PresidentObamaHasRecievedHisStatBoosts
+
+												HesNotPresidentObama:
+													add r5, r5, #1
+													cmp r5, #16
+													bne WhereIsPresidentObama
+
+											PresidentObamaHasRecievedHisStatBoosts:
+											*/	
 			mov r0, #0xC;
 			mov r1, #0x1;
 			bl IsCurrentMissionTypeExact; // Is it a Treasure Memo subtype 1 (Find Orb On Floor?)
@@ -850,6 +976,10 @@ MemoSwapBag:
 
 MemoSwapParty:
 	push {r2-r12,lr};
+
+	
+
+
 	mov r7, r0;
 	mov r6, r1;
 		mov r0,#0

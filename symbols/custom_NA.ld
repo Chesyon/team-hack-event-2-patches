@@ -26,7 +26,19 @@ SomeTMFunc2 = 0x2309E24;
 StupidBandaidFixHook = 0x2307FC0;
 FunctionThatMakesMeAngry = 0x2308FEC;
 InitTopGroundMenu = 0x2300D5C; /* Defined in a newer version of pmdsky-debug */
+OpenExploreNewDungeonMissionHook = 0x2067E70;
+OpenExploreNewDungeonMissionHookTheSecond = 0x2067E88;
+/* Top screen actors */
+DefaultActorTypeBranch = 0x22F80D0;
+AfterAttributeBitfieldSwitchCase = 0x22F816C;
 
+MENU_START_HOOK = 0x022e60f0;
+MENU_END_HOOK = 0x022e68f8;
+item_Set = 0x2065CB4; /* Huh? */
+MenuStartFinish = 0x22E68AC;
+MenuEndFinish = 0x22E6E58;
+GetItemNameAdvanced = 0x200D310;
+InterruptEscortMissionClientStats = 0x204E898;
 
 
 /* !file overlay29 */
@@ -69,6 +81,7 @@ ChaosTypeOverwrittenFunction = 0x2307DD0;
 ChaosWeatherHook = 0x2334D74;
 ChaosExplosionHook = 0x230AA28;
 
+
 /* !file arm9 */
 ShowKeyboardTypeCase3 = 0x02036914;
 ShowKeyboardTypeDefaultCase = 0x02036A40;
@@ -106,6 +119,8 @@ AfterUppercaseTagIsFound = 0x2021AA0;
 GetTypeHook = 0x2052A08;
 GetTypeUnhook = 0x2052A0C;
 
+/* !file overlay1 */
+BanishScizorClearMark = 0x233B784;
 
 /* ngl I don't remember which file these are from. Or if I use all of them. - Lappy */
 UnknownFunction1 = 0x234B294;
@@ -164,6 +179,20 @@ LiterallyWhereIsThisWhyDidINotJustUseLabelsForMyExitPoint = 0x2332b48;
 IDoNotKnowIfTheHookIsInApplyDamageOrDealDamageUntilIOpenTheGhidra = 0x02332b44;
 
 CheckFixedRoomItem = 0x2344454;
+
+ToxicTable = 0x22c4c9c;
+UnnamedDungeonHookPoisonHeal = 0x23108d0;
+UnnamedDungeonHookPoisonDamage = 0x23108f8;
+
+SweeterScentEffect = 0x2332dc8;
+SweeterSkemp = 0x2332dcc;
+SweeterScentTextEffect = 0x230e814;
+SweetTEnd = 0x230e818;
+LongReachEffect = 0x23087fc;
+SweeterScentExit = 0x2332dfc;
+SweetScentVFXExit = 0x230e828;
+AfterCallToSafeguard = 0x2312370;
+
 
 /* Hooks & Instruction Changes */
 MEMO_FIXED_ROOM_ID_HOOK = 0x205DF48; /* 0x205E2C4 EU */
@@ -225,6 +254,13 @@ ROSY_WIND_150 = 15336;
 ROSY_WIND_50 = 15337;
 ROSY_WIND_0 = 15338;
 */
+
+RunAwayHook = 0x230169c;
+
+ClearItem = 0x200d81c;
+ClearItemAfterUse = 0x22eb62C;
+ThatWasntTheFoeStealOrb = 0x22eb630;
+
 
 /* This leaves lots of strings (15289 thru 15334) for the mission stuff. */
 

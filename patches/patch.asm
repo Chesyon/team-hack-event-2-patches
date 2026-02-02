@@ -77,6 +77,49 @@
 	.endarea
 .close
 
+.open "overlay1.bin", overlay1_start
+	.org BanishScizorClearMark
+	.area 0x4
+		.word 0x0
+	.endarea
+.close
+
+.open "overlay10.bin", overlay10_start
+	.org ToxicTable
+	.area 0x60
+		.pool
+		.hword 0x1
+		.halfword 0x1
+		.halfword 0x1
+		.halfword 0x1
+		.hword 0x2
+		.hword 0x2
+		.hword 0x2
+		.hword 0x2
+		.halfword 0x3
+		.hword 0x3
+		.halfword 0x3
+		.hword 0x3
+		.hword 0x4
+		.halfword 0x4
+		.hword 0x4
+		.hword 0x4
+		.halfword 0x5
+		.halfword 0x5
+		.halfword 0x5
+		.hword 0x5
+		.halfword 0x6
+		.halfword 0x6
+		.hword 0x6
+		.hword 0x6
+		.hword 0x7
+		.hword 0x7
+		.hword 0x7
+		.halfword 0x7
+		.halfword 0x8
+		.hword 0x8
+	.endarea
+.close
 
 .open "overlay29.bin", overlay29_start
     .org CALC_DAMAGE_FORM_OFFENSE_HOOK
@@ -206,6 +249,50 @@
 	.org CheckFixedRoomItem
 	.area 0x4
 		mov r0,#0
+	.endarea
+
+	.org UnnamedDungeonHookPoisonHeal
+	.area 0x8
+		mov r3, #0
+		bl  WhichToxicTable
+	.endarea
+
+	.org UnnamedDungeonHookPoisonDamage
+	.area 0x8
+		mov r3, #1
+		bl  WhichToxicTable
+	.endarea
+
+	.org SweeterScentEffect ; 0x2332dc8
+	.area 0x4
+		b   SweeterScent
+	.endarea
+	
+	.org SweeterScentTextEffect ; 0x230e814
+	.area 0x4
+		b	SweeterScentText
+	.endarea
+	
+	.org LongReachEffect ; 0x23087fc
+	.area 0x4
+		bl	LongReach
+	.endarea
+
+	.org AfterCallToSafeguard
+	.area 0x4
+		bl IsRawstScarfActive
+	.endarea
+
+	.org RunAwayHook
+	.area 0x4
+		b CommenceTheUltimatePlan
+	.endarea
+
+	; for non-consumable gracedia (code made originally by adex, modified by me)
+
+	.org ClearItemAfterUse
+	.area 0x4
+		b DoNotEatTheOrbsOrYouWillChokeToDeath
 	.endarea
 .close
 

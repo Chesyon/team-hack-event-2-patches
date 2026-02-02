@@ -9,10 +9,27 @@
 		cmp r2, #0x10;
 	.endarea
 
+	.org InterruptEscortMissionClientStats; // original instruction: strb r12, [r3, #0x1D]
+	.area 0x4
+	   bl MakeThePresidentBuff
+	.endarea
+
 	.org MEMO_FIXED_ROOM_ID_HOOK
 	.area 0x8
 		mov r0, r8; 
 		bl SelectPuzzleRoomId
+	.endarea
+
+	.org OpenExploreNewDungeonMissionHook;
+	.area 0xC;
+	   bl ModifiedExploreNewDungeonCheck;
+	   nop;
+	   nop;
+	.endarea
+
+	.org OpenExploreNewDungeonMissionHookTheSecond;
+	.area 0x4;
+	   bl ModifiedExploreNewDungeonCheckTheSecond
 	.endarea
 
 	.org ALWAYS_GENERATE_MISSIONS
@@ -1156,7 +1173,8 @@
 
 	.org ALLOW_ALL_NATURAL_SLEEP
 	.area 0x4;
-		bl CheckIfSleeping
+		cmp r0, #1; // Original Instruction
+		// bl UpdatedSleepCheck 
 	.endarea
 
 	.org MEMO_TWEAK_MISSION_DEST_INFO_HOOK

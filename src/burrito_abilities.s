@@ -23,10 +23,10 @@
 	cmp   r0, #1
 	beq   PunchHimSoHardHeExplodes
 
-	mov   r0, r7
+	ldr   r0, [r8, #0xb4]
+	ldrh  r0, [r0, #0x66]
 	mov   r1, #1360
-	bl    ItemIsActive
-	cmp   r0, #1
+	cmp   r0, r1
 	bne   IgnitionCheckEndPremature
 
 	PunchHimSoHardHeExplodes:
@@ -38,7 +38,7 @@
 
 	mov   r0, r8
 	mov   r1, r7
-	ldr   r2, =#3889
+	ldr   r2, =#3898
 	bl    LogMessageByIdWithPopupCheckUserTarget
 
 	ldr    r0, [r8, #0xb4]
@@ -92,6 +92,9 @@
 	mov   r0, r6
 	mov   r1, r8
 	bl    EndFrozenStatus
+
+	cmp   r6, r8
+	beq   EndLoopI
 
 	ldr   r9, [r6,#0xb4]
 	ldrb  r0, [r9,#0x9]
@@ -187,9 +190,12 @@
 	bl    GetApparentWeather
 	cmp   r0, #1
 	ldreq r0, =#384
+	beq   DontDecreaseDamageInTheSunYouDumbass
 	cmpne r0, #4
 	ldreq r0, =#192
 	ldrne r0, =#256
+
+	DontDecreaseDamageInTheSunYouDumbass:
 
 	mul   r7, r0
 	lsr   r7, #8
@@ -267,10 +273,9 @@
 	CheckProtect:
 
 	ldr   r0, [r6, #0xB4]
-	ldr   r1, [r0, #0xA9]
-	ldrb  r1, [r1, #0x2C]
+	ldrb  r1, [r0, #0xD5]
 	cmp   r1, #7
-	moveq r7, #0
+	beq   EndLoopI
 
 	InflictDamage:
 
@@ -304,18 +309,20 @@
 	cmp   r0, #4
 	addls r15, r0, lsl #0x3
 	nop
-	mov   r0, #0
+	mov   r2, #0
 	b     EndLoopI
-	mov   r0, #5
+	mov   r2, #5
 	b     DoRng
-	mov   r0, #2
+	mov   r2, #2
 	b     DoRng
 	nop
 	b     CauseBurn
 
 	DoRng: 
-
-	bl    DungeonRandInt
+	
+	mov   r0, r8
+	mov   r1, r6
+	bl    DungeonRandOutcomeUserTargetInteraction
 	cmp   r0, #0
 	beq   CauseBurn
 
@@ -477,12 +484,66 @@
 
 	HalfDamage:
 		mov   r0, r4		// r4 holds the damage multiplier
-		lsl   r0, #2        // divide r0 by 4
+		lsr   r0, #2        // divide r0 by 4
 		sub   r4, r4, r0        // we subtract a quarter from the full number, resulting in 3/4 damage taken
 
 	IGotPunchedButNotInTheGoodWay:
 		mov   r0, r7		// replaced effect
 		b     LiterallyWhereIsThisWhyDidINotJustUseLabelsForMyExitPoint // branch to right after the hook at 0x2332b48
+
+	DoNotEatTheOrbsOrYouWillChokeToDeath:
+	push {r1} // replaced instruction
+	mov r5, r0
+	ldrh r1, [r0, #0x4]
+	ldr r2, =#1355
+	cmp r1, r2
+	pop {r1}
+	beq HowTheFuckDoIMakeConditionalldmiaCommandsAndWhyIsItSoFuckingWeird // using ldmias from other functions is fun! the two just happened to line up
+	b   ThatWasntTheFoeStealOrb
+
+	
+
+	// NOTE: the above is currently broken. a bandaid fix is in place, but fix this before submission!
+
+	CommenceTheUltimatePlan:
+	mov r0, #37
+	bl CheckDungeonId
+	cmp r0, #1
+	movne r0, #0
+	bne HowTheFuckDoIMakeConditionalldmiaCommandsAndWhyIsItSoFuckingWeird
+	ldr r0, [r5, #0xb4]
+	ldrb r1, [r0, #0x7]
+	cmp r1, #1
+	moveq r0, #0
+	beq HowTheFuckDoIMakeConditionalldmiaCommandsAndWhyIsItSoFuckingWeird
+	ldrh r1, [r0, #0x4]
+	ldr r2, =#1273
+	cmp r1, r2
+	addne r2, r2, #1
+	cmpne r1, r2
+	addne r2, r2, #1
+	cmpne r1, r2
+	addne r2, r2, #1
+	cmpne r1, r2
+	addne r2, r2, #1
+	cmpne r1, r2
+	addne r2, r2, #1
+	cmpne r1, r2
+	addne r2, r2, #1
+	cmpne r1, r2
+	addne r2, r2, #1
+	cmpne r1, r2
+	addne r2, r2, #1
+	cmpne r1, r2
+	addne r2, r2, #1
+	cmpne r1, r2
+	movne r0, #1
+	moveq r0, #0
+
+	HowTheFuckDoIMakeConditionalldmiaCommandsAndWhyIsItSoFuckingWeird:
+	ldmia sp!,{r3, r4, r5, pc}
+	
+
 
 .pool
 	WhyCantWeJustLeaveHimBehind:

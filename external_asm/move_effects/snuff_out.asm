@@ -58,10 +58,12 @@
 	cmp  r1, #1
 	bne  NotBurned
 
-	; is the target an ally? cut damage in half if so
+	; are the target and user on the same team? reduce damage if so
 
 	ldrb  r1, [r0, #0x6]
-	cmp   r1, #1
+	ldr   r0, [r9, #0xb4]
+	ldrb  r0, [r0, #0x6]
+	cmp   r1, r0
 	moveq r3, #256
 	beq   IsEnemy
 
@@ -129,5 +131,6 @@
     .endarea
 
 .close
+
 
 
