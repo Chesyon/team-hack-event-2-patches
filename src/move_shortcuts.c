@@ -336,7 +336,7 @@ int __attribute__((used)) TryHandleMoveShortcuts(struct entity *leader) {
             } else if (equipped_item_index < 0) {
                 PlaySeByIdVolume(16131, 256); // Item Not Set
             } else {
-                DUNGEON_PTR->field_0x78c = false;
+                DUNGEON_PTR->prevent_misinputs = false;
                 SetLeaderActionFields(ACTION_THROW_ITEM_PLAYER);
                 leader_monster->action.action_parameters[0].action_use_idx = equipped_item_index + 1;
                 leader_monster->action.action_parameters[0].item_pos.x = 0;
@@ -371,7 +371,7 @@ int __attribute__((used)) TryHandleMoveShortcuts(struct entity *leader) {
                 if(move_to_use->f_disabled || move_to_use->f_sealed || move_to_use->f_subsequent_in_link_chain || move_to_use->pp == 0) {
                     PlaySeByIdVolume(16131, 256);
                 } else {
-                    DUNGEON_PTR->field_0x78c = false;
+                    DUNGEON_PTR->prevent_misinputs = false;
                     SetActionUseMovePlayer(&leader_monster->action, GetTeamMemberIndex(leader), move_to_use_index);
                     CloseMoveBoxes();
                     AdvanceFrame(0xF);
