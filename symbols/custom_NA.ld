@@ -289,3 +289,7 @@ OOPS2 = 0x22FEBAC;
 	// Guild Display Money Multiplier: 0x0203daec EU
 
 */
+
+/* Boss HP Hooks */
+BossHPCheckHook =  0x2309964;
+BossHPCheckUnhook = 0x2309970;
