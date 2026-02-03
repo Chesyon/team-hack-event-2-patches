@@ -9,7 +9,7 @@ int16_t __attribute__((used)) TryHandleBossHp(int damage, struct entity *attacke
     struct monster *defender_monster = (struct monster*)defender->info;
     int current_hp = defender_monster->hp;
     int16_t new_hp = current_hp - damage;
-    if(0 < new_hp) {
+    if (0 < new_hp) {
         return new_hp;
     }
 
@@ -17,7 +17,7 @@ int16_t __attribute__((used)) TryHandleBossHp(int damage, struct entity *attacke
         return 0;
     }
 
-    if(false == defender_monster->statuses.boss_flag) {
+    if (false == defender_monster->statuses.boss_flag) {
         return 0;
     }
 
@@ -36,12 +36,12 @@ int16_t __attribute__((used)) TryHandleBossHp(int damage, struct entity *attacke
     SaveScriptVariableValue(NULL, VAR_CRYSTAL_COLOR_03, phase - 1);
 
     int boss_max_hp = defender_monster->max_hp_stat + defender_monster->max_hp_boost;
-    if(boss_max_hp > 999) {
+    if (999 < boss_max_hp) {
         boss_max_hp = 999;
     }
     // This check is just in case the total damage exceeds a single HP Bar/Phase. Extremely
     // unlikely, but not impossible.
-    if(damage >= boss_max_hp + current_hp) {
+    if (damage >= boss_max_hp + current_hp) {
         return 1;
     }
 
