@@ -193,6 +193,7 @@ SweeterScentExit = 0x2332dfc;
 SweetScentVFXExit = 0x230e828;
 AfterCallToSafeguard = 0x2312370;
 
+StopAttackingHook = 0x231A0BC;
 
 /* Hooks & Instruction Changes */
 MEMO_FIXED_ROOM_ID_HOOK = 0x205DF48; /* 0x205E2C4 EU */

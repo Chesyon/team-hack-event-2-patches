@@ -294,6 +294,11 @@
 	.area 0x4
 		b DoNotEatTheOrbsOrYouWillChokeToDeath
 	.endarea
+
+	.org StopAttackingHook
+	.area 0x4
+		bl Cease
+	.endarea
 .close
 
 
