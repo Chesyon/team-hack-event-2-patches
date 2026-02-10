@@ -395,6 +395,26 @@
     bl LarvestaIsDead
 	
     SkipFloorLarvestaMurder:
+
+	// gah damn im getting massive mileage out of this hook
+	// this is for the shadow volcarona bossfight
+
+	mov    r0, #132
+	bl     CheckDungeonId
+	cmp    r0, #1
+	bne    DoRegenerator
+
+	mov  r0,sp ; keep this one as-is
+	ldr  r1,=#1293
+	mov  r2,#0
+	bl   GetPortraitData
+	mov  r0,sp
+	ldr  r1,=#22693
+	mov  r2,#0x1
+	bl   DisplayMessage2
+
+	DoRegenerator:
+	
 	ldr    r0, =DUNGEON_PTR
 	ldr    r0, [r0, #0x0]	
 	mov    r4, r0
