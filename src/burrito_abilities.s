@@ -404,7 +404,7 @@
 	cmp    r0, #1
 	bne    DoRegenerator
 
-	mov  r0,sp ; keep this one as-is
+	mov  r0,sp
 	ldr  r1,=#1293
 	mov  r2,#0
 	bl   GetPortraitData
