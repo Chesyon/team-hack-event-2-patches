@@ -407,7 +407,7 @@
 	mov  r0,sp
 	ldr  r1,=#1293
 	mov  r2,#0
-	bl   GetPortraitData
+	bl   InitPortraitDungeon
 	mov  r0,sp
 	ldr  r1,=#22693
 	mov  r2,#0x1
