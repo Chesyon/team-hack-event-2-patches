@@ -28,6 +28,41 @@ int16_t __attribute__((used)) TryHandleBossHp(int damage, struct entity *attacke
             return 0; // See Note 1*
         case 1:
             // TODO: Put something cool here on the last hp reset/phase?
+            EndNegativeStatusConditionWrapper(defender, defender, false, false);
+
+            // oh to hell with learning C
+            // looks easy, i just cant be bothered to learn how to parse the stack as a parameter
+            asm("mov r0, sp");
+            asm("ldr r1, =#1293");
+            asm("mov r2, #9");
+            asm("bl GetPortraitData");
+            asm("mov r0, sp");
+            asm("ldr r1, =#22696");
+            asm("mov r2, #1");
+            asm("bl DisplayMessage2");
+            break;
+        case 2:
+            EndNegativeStatusConditionWrapper(defender, defender, false, false);
+            asm("mov r0, sp");
+            asm("ldr r1, =#1293");
+            asm("mov r2, #3");
+            asm("bl GetPortraitData");
+            asm("mov r0, sp");
+            asm("ldr r1, =#22695");
+            asm("mov r2, #1");
+            asm("bl DisplayMessage2");
+            break;
+        case 3:
+            EndNegativeStatusConditionWrapper(defender, defender, false, false);
+            asm("mov r0, sp");
+            asm("ldr r1, =#1293");
+            asm("mov r2, #3");
+            asm("bl GetPortraitData");
+            asm("mov r0, sp");
+            asm("ldr r1, =#22694");
+            asm("mov r2, #1");
+            asm("bl DisplayMessage2");
+            break;
         default:
             EndNegativeStatusConditionWrapper(defender, defender, false, false);
             break;
