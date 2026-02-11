@@ -35,7 +35,7 @@ int16_t __attribute__((used)) TryHandleBossHp(int damage, struct entity *attacke
             asm("mov r0, sp");
             asm("ldr r1, =#1293");
             asm("mov r2, #9");
-            asm("bl GetPortraitData");
+            asm("bl InitPortraitDungeon");
             asm("mov r0, sp");
             asm("ldr r1, =#22696");
             asm("mov r2, #1");
@@ -46,7 +46,7 @@ int16_t __attribute__((used)) TryHandleBossHp(int damage, struct entity *attacke
             asm("mov r0, sp");
             asm("ldr r1, =#1293");
             asm("mov r2, #3");
-            asm("bl GetPortraitData");
+            asm("bl InitPortraitDungeon");
             asm("mov r0, sp");
             asm("ldr r1, =#22695");
             asm("mov r2, #1");
@@ -57,7 +57,7 @@ int16_t __attribute__((used)) TryHandleBossHp(int damage, struct entity *attacke
             asm("mov r0, sp");
             asm("ldr r1, =#1293");
             asm("mov r2, #3");
-            asm("bl GetPortraitData");
+            asm("bl InitPortraitDungeon");
             asm("mov r0, sp");
             asm("ldr r1, =#22694");
             asm("mov r2, #1");
