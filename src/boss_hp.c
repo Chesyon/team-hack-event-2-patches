@@ -21,7 +21,7 @@ int16_t __attribute__((used)) TryHandleBossHp(int damage, struct entity *attacke
         return 0;
     }
 
-    asm("sub sp, sp, #0x10");
+    
     int phase = LoadScriptVariableValue(NULL, VAR_CRYSTAL_COLOR_03);
     switch (phase) {
         case 0:
@@ -33,6 +33,7 @@ int16_t __attribute__((used)) TryHandleBossHp(int damage, struct entity *attacke
 
             // oh to hell with learning C
             // looks easy, i just cant be bothered to learn how to parse the stack as a parameter
+            asm("sub sp, sp, #0x10");
             asm("mov r0, sp");
             asm("ldr r1, =#1293");
             asm("mov r2, #9");
@@ -41,9 +42,11 @@ int16_t __attribute__((used)) TryHandleBossHp(int damage, struct entity *attacke
             asm("ldr r1, =#22696");
             asm("mov r2, #1");
             asm("bl DisplayMessage2");
+            asm("add sp, sp, #0x10");
             break;
         case 2:
             EndNegativeStatusConditionWrapper(defender, defender, true, false);
+            asm("sub sp, sp, #0x10");
             asm("mov r0, sp");
             asm("ldr r1, =#1293");
             asm("mov r2, #3");
@@ -52,9 +55,11 @@ int16_t __attribute__((used)) TryHandleBossHp(int damage, struct entity *attacke
             asm("ldr r1, =#22695");
             asm("mov r2, #1");
             asm("bl DisplayMessage2");
+            asm("add sp, sp, #0x10");
             break;
         case 3:
             EndNegativeStatusConditionWrapper(defender, defender, true, false);
+            asm("sub sp, sp, #0x10");
             asm("mov r0, sp");
             asm("ldr r1, =#1293");
             asm("mov r2, #3");
@@ -63,13 +68,12 @@ int16_t __attribute__((used)) TryHandleBossHp(int damage, struct entity *attacke
             asm("ldr r1, =#22694");
             asm("mov r2, #1");
             asm("bl DisplayMessage2");
+            asm("add sp, sp, #0x10");
             break;
         default:
             EndNegativeStatusConditionWrapper(defender, defender, true, false);
             break;
     }
-
-    asm("add sp, sp, #0x10");
     SaveScriptVariableValue(NULL, VAR_CRYSTAL_COLOR_03, phase - 1);
 
     int boss_max_hp = defender_monster->max_hp_stat + defender_monster->max_hp_boost;
