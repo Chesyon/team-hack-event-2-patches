@@ -9,7 +9,7 @@ Cease:
     mov   r1,#0x16
     bl    LoadScriptVariableValue // load CRYSTAL_COLOR_02
     cmp   r0,#10
-    pople {pc}                    // is less than 10 -> return to standard control flow
+    poplt {pc}                    // is less than 10 -> return to standard control flow
     // force function to return false
     pop   {r0}                    // just fixing the stack after we pushed lr at the start
     mov   r0,#0
