@@ -38,7 +38,7 @@
 
 	mov   r0, r8
 	mov   r1, r7
-	ldr   r2, =#3889
+	ldr   r2, =#3898
 	bl    LogMessageByIdWithPopupCheckUserTarget
 
 	ldr    r0, [r8, #0xb4]
@@ -273,10 +273,9 @@
 	CheckProtect:
 
 	ldr   r0, [r6, #0xB4]
-	ldr   r1, [r0, #0xA9]
-	ldrb  r1, [r1, #0x2C]
+	ldrb  r1, [r0, #0xD5]
 	cmp   r1, #7
-	moveq r7, #0
+	beq   EndLoopI
 
 	InflictDamage:
 
@@ -396,6 +395,26 @@
     bl LarvestaIsDead
 	
     SkipFloorLarvestaMurder:
+
+	// gah damn im getting massive mileage out of this hook
+	// this is for the shadow volcarona bossfight
+
+	mov    r0, #132
+	bl     CheckDungeonId
+	cmp    r0, #1
+	bne    DoRegenerator
+
+	mov  r0,sp
+	ldr  r1,=#1293
+	mov  r2,#0
+	bl   InitPortraitDungeon
+	mov  r0,sp
+	ldr  r1,=#22693
+	mov  r2,#0x1
+	bl   DisplayMessage2
+
+	DoRegenerator:
+	
 	ldr    r0, =DUNGEON_PTR
 	ldr    r0, [r0, #0x0]	
 	mov    r4, r0

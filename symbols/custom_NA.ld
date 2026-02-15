@@ -119,6 +119,8 @@ AfterUppercaseTagIsFound = 0x2021AA0;
 GetTypeHook = 0x2052A08;
 GetTypeUnhook = 0x2052A0C;
 
+/* !file overlay1 */
+BanishScizorClearMark = 0x233B784;
 
 /* ngl I don't remember which file these are from. Or if I use all of them. - Lappy */
 UnknownFunction1 = 0x234B294;
@@ -191,6 +193,7 @@ SweeterScentExit = 0x2332dfc;
 SweetScentVFXExit = 0x230e828;
 AfterCallToSafeguard = 0x2312370;
 
+StopAttackingHook = 0x231A0BC;
 
 /* Hooks & Instruction Changes */
 MEMO_FIXED_ROOM_ID_HOOK = 0x205DF48; /* 0x205E2C4 EU */
@@ -287,3 +290,7 @@ OOPS2 = 0x22FEBAC;
 	// Guild Display Money Multiplier: 0x0203daec EU
 
 */
+
+/* Boss HP Hooks */
+BossHPCheckHook =  0x2309964;
+BossHPCheckUnhook = 0x2309970;
