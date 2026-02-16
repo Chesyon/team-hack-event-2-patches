@@ -34,16 +34,18 @@ MakeThePresidentBuff:
 	bl GetMissionByTypeAndDungeon
 	ldrh r2, =#502;
 	cmp r0, #-1;
-		ldreqh r0, [r10, #0x4];
-		cmpeq r0, r2;
-			moveq r11, #50;
-			ldreq r0, [r10, #0xC]; // All Stats Except HP
-			ldreq r1, =#0x201B201B;
-			addeq r0, r1;
-			streq r0, [r10, #0xC];
-			ldreqh r0, [r10, #0xA];
-			addeq r0, #43;
-			streq r0, [r10, #0xA];
+	beq SkipClientAdjustments;
+	ldrh r0, [r10, #0x4];
+	cmp r0, r2;
+		moveq r11, #50;
+		ldreq r0, [r10, #0xC]; // All Stats Except HP
+		ldreq r1, =#0x201B201B;
+		addeq r0, r1;
+		streq r0, [r10, #0xC];
+		ldreqh r0, [r10, #0xA];
+		addeq r0, #43;
+		streqh r0, [r10, #0xA];
+SkipClientAdjustments:
 	mov r1, r11;
 	mov r0, r10;
 	add sp, #0x4;
@@ -64,7 +66,16 @@ ModifiedExploreNewDungeonCheck:
    cmpeq r0, r1;
    ldreqh r0, [r4, #0x10]
    ldreq r1, =#0x429;
-   pop {r15}	
+   popne {r15}
+   push {r0-r12}
+   mov r0, #0;
+   mov r1, #0x12;
+   mov r2, #8;
+   bl LoadScriptVariableValueAtIndex
+   cmp r0, #1;
+   pop {r0-r12}
+   pop {r15}
+
 
 ModifiedExploreNewDungeonCheckTheSecond:
    push {r7, r14}
