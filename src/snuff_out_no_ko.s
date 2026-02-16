@@ -18,7 +18,7 @@ bne IDontKnowMayItKO
 
 ldr r0, [r7, #0xb4] // r7 is the target, r8 is the user and r4 is the user's monster struct, but nothing holds the target's monster struct????
 ldrb r1, [r0, #0x6]
-ldr r0, [r6, #0xb4]
+ldr r0, [r8, #0xb4]
 ldrb r0, [r0, #0x6]
 cmp r1, r0
 moveq r5, #1
