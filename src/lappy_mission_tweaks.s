@@ -72,7 +72,7 @@ ModifiedExploreNewDungeonCheck:
    mov r1, #0x12;
    mov r2, #8;
    bl LoadScriptVariableValueAtIndex
-   cmp r0, #1;
+   cmp r0, #0;
    pop {r0-r12}
    pop {r15}
 
