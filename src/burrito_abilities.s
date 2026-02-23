@@ -108,7 +108,7 @@
 
 	ldrb  r1, [r0, #0x8]
 	cmp   r9, r1
-	bne   BurnChance
+	beq   BurnChance
 	
 	
 	CheckImmunities:
