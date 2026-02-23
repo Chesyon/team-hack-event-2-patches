@@ -102,9 +102,14 @@
 	beq   EndLoopI
 	ldrb  r9, [r9,#0x6]
 	ldr   r0, [r8, #0xb4]
-	ldrb  r0, [r0, #0x6]
-	cmp   r9, r0
+	ldrb  r1, [r0, #0x6]
+	cmp   r9, r1
 	beq   BurnChance
+
+	ldrb  r1, [r0, #0x8]
+	cmp   r9, r1
+	bne   BurnChance
+	
 	
 	CheckImmunities:
 
