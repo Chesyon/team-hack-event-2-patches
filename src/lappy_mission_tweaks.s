@@ -66,14 +66,6 @@ ModifiedExploreNewDungeonCheck:
    cmpeq r0, r1;
    ldreqh r0, [r4, #0x10]
    ldreq r1, =#0x429;
-   popne {r15}
-   push {r0-r12}
-   mov r0, #0;
-   mov r1, #0x12;
-   mov r2, #8;
-   bl LoadScriptVariableValueAtIndex
-   cmp r0, #0;
-   pop {r0-r12}
    pop {r15}
 
 
