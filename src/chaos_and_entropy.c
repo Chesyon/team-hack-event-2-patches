@@ -48,6 +48,10 @@ bool __attribute__((used)) EntropyStatusDurationCheck(struct entity *entity, enu
 void __attribute__((used)) __attribute__((naked)) ChaosTypeCheck() {
     asm("push {lr}");
     asm("mov r0,r5");
+    asm("bl EntityIsValid");
+    asm("cmp r0,#0x0");
+    asm("bleq ChaosTypeCheckReturn");
+    asm("mov r0,r5");
     asm("mov r1,#114"); // Chaos Scarf
     asm("bl ItemIsActive");
     asm("cmp r0,#0x0");
@@ -61,6 +65,7 @@ void __attribute__((used)) __attribute__((naked)) ChaosTypeCheck() {
     asm("strb r2,[r4,#0x5F]");
     asm("mov r3,#1");
     asm("strb r10,[r4,#0xFF]");
+    asm("ChaosTypeCheckReturn:");
     asm("pop {lr}");
     asm("b ChaosTypeOverwrittenFunction");
 }
