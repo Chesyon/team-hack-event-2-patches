@@ -13,3 +13,5 @@ symbols/generated_*.ld
 *.mch
 
 /.vscode
+/.ccls-cache
+compile_commands.json

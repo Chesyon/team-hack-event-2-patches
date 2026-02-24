@@ -39,53 +39,48 @@ static int SpLearnSandsearStorm(){
         }
         else return -1; // tm still running
     }
-    int move_slot = 0;
-    for (; move_slot < 4; move_slot++){
-        if(TEAM_MEMBER_TABLE_PTR->members[0].moves[move_slot].id.val == SANDSEAR_STORM_MOVE_ID) break;
+    for (int i = 0; i < 4; i++){
+        if(TEAM_MEMBER_TABLE_PTR->active_roster[0].moves[i].id.val == SANDSEAR_STORM_MOVE_ID) return 0; // move known
     }
-    if(move_slot < 4) return 0; // move known
-    else { // move not known
-        tm_started = true;
-        memcpy(&item_0_backup, BAG_ITEMS_PTR, sizeof(struct item)); // backup item at slot 0 in bag because we're about to overwrite it
-        RemoveItem(0);
-        struct item new_item;
-        InitItem(&new_item, SANDSEAR_STORM_TM_ID, 0, false);
-        AddItemToBagNoHeld(&new_item);
-        SaveScriptVariableValueAtIndex(NULL, VAR_PERFORMANCE_PROGRESS_LIST, 58, 1);
-        InitTreasureBagMenu();
-        return -1;
-    }
+    // move not known
+    tm_started = true;
+    memcpy(&item_0_backup, BAG_ITEMS_PTR, sizeof(struct item)); // backup item at slot 0 in bag because we're about to overwrite it
+    RemoveItem(0);
+    struct item new_item;
+    InitItem(&new_item, SANDSEAR_STORM_TM_ID, 0, false);
+    AddItemToBagNoHeld(&new_item);
+    SaveScriptVariableValueAtIndex(NULL, VAR_PERFORMANCE_PROGRESS_LIST, 58, 1);
+    InitTreasureBagMenu();
+    return -1;
 }
 
-#define FUCKASS_VARIABLE 349
-static int SpLearnDifferentMove(int param1, int param2){ // burrito here! chesyon was a nunce and didnt let me use params for his function! so im stealing and repurposing it to do that
-    // param1: id of the TM to teach the move
-    // param2: if not 0, the move ID to forcefully teach. If 0, force learning is disabled
+static int SpLearnDifferentMove(int tm_id, int move_id){ // burrito here! chesyon was a nunce and didnt let me use params for his function! so im stealing and repurposing it to do that
+                                                         // chesyon here! i was BUSY D:
+    // tm_id: id of the TM to teach the move
+    // move_id: if not 0, the move ID to forcefully teach. If 0, force learning is disabled
     // WARNING: the move ID provided MUST be the same move that the TM teaches, or else game go boom
     if(tm_started){
         if(!GetPerformanceFlagWithChecks(58)){ // has the menu code disabled the flag?
             tm_started = false;
             memcpy(BAG_ITEMS_PTR, &item_0_backup, sizeof(struct item)); // restore item at slot 0 to what it was before we overwrote it with tm
-            if (param2 == 0) return 0; // ches said to do this?????
+            if (move_id == 0) return 0; // ches said to do this?????
+                                        // ches here; this SP has specific behavior for if move_id is 0 (see param description). if we don't return here, a 2nd param of 0 will just infinitely loop, as the "do they know the move" check will never pass for an id of 0.
         }
         else return -1; // tm still running
     }
-    int move_slot = 0;
-    for (; move_slot < 4; move_slot++){
-        if(TEAM_MEMBER_TABLE_PTR->members[0].moves[move_slot].id.val == param2) break;
+    for (int i = 0; i < 4; i++){
+        if(TEAM_MEMBER_TABLE_PTR->active_roster[0].moves[i].id.val == move_id) return 0; // move known
     }
-    if(move_slot < 4) return 0; // move known
-    else { // move not known
-        tm_started = true;
-        memcpy(&item_0_backup, BAG_ITEMS_PTR, sizeof(struct item)); // backup item at slot 0 in bag because we're about to overwrite it
-        RemoveItem(0);
-        struct item new_item;
-        InitItem(&new_item, param1, 0, false);
-        AddItemToBagNoHeld(&new_item);
-        SaveScriptVariableValueAtIndex(NULL, VAR_PERFORMANCE_PROGRESS_LIST, 58, 1);
-        InitTreasureBagMenu();
-        return -1;
-    }
+    // move not known
+    tm_started = true;
+    memcpy(&item_0_backup, BAG_ITEMS_PTR, sizeof(struct item)); // backup item at slot 0 in bag because we're about to overwrite it
+    RemoveItem(0);
+    struct item new_item;
+    InitItem(&new_item, tm_id, 0, false);
+    AddItemToBagNoHeld(&new_item);
+    SaveScriptVariableValueAtIndex(NULL, VAR_PERFORMANCE_PROGRESS_LIST, 58, 1);
+    InitTreasureBagMenu();
+    return -1;
 }
 
 // Called for special process IDs 100 and greater.
