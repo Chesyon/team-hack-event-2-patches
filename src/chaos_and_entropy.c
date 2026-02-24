@@ -16,7 +16,7 @@ void __attribute__((naked)) __attribute__((used)) EntropyAccuracyCheck() {
     asm("mov r1,#113"); // Entropy Scarf
     asm("bl ItemIsActive");
     asm("cmp r0,#0x0");
-    asm("ldrb r0,[r9, #0xec]");
+    asm("ldreqb r0,[r9, #0xec]");
     asm("beq EntropyAccuracyOffUnhook");
     asm("b   EntropyAccuracyOnUnhook");
 }
