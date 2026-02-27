@@ -765,7 +765,8 @@ TryTransformActor:
             b ActuallyReplaceActor;
 			
 		ActorWishiwashiThreshold:
-			ldrh r1, [r5, #0xE]; // Current HP
+			/*
+            ldrh r1, [r5, #0xE]; // Current HP
 			ldrh r2, [r5, #0x10]; // Max HP
 			lsr r2, #0x1; // Max HP >> num_to_shift_by
 			cmp r1, r2; // Current >= (Max >> X)
@@ -774,7 +775,11 @@ TryTransformActor:
 			ldrb r0, [r9, #0x6]
 			cmp r0, r1;
 			blt ActorIncrementLoopCounter
-			b ActuallyReplaceActor;
+            b ActuallyReplaceActor;
+            */
+            // We dont like wishiwashi transforming
+            b ActorIncrementLoopCounter
+			
 			
     LoopThruActorsEnd:
         pop {r2-r12,pc};
