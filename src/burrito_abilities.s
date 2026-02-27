@@ -316,9 +316,9 @@
 	nop
 	mov   r2, #0
 	b     EndLoopI
-	mov   r2, #5
+	mov   r2, #20
 	b     DoRng
-	mov   r2, #2
+	mov   r2, #50
 	b     DoRng
 	nop
 	b     CauseBurn
@@ -328,7 +328,7 @@
 	mov   r0, r8
 	mov   r1, r6
 	bl    DungeonRandOutcomeUserTargetInteraction
-	cmp   r0, #0
+	cmp   r0, #1
 	beq   CauseBurn
 
 	FlashFireBurnCheck:
