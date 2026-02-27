@@ -770,7 +770,7 @@ TryTransformActor:
 			lsr r2, #0x1; // Max HP >> num_to_shift_by
 			cmp r1, r2; // Current >= (Max >> X)
 			blt ActorIncrementLoopCounter; // If NOT...
-			ldrb r1, [r0, #0x2]
+			ldrb r1, [r5, #0x2]
 			ldrb r0, [r9, #0x6]
 			cmp r0, r1;
 			blt ActorIncrementLoopCounter

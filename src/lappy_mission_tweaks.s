@@ -805,11 +805,19 @@ SelectPuzzleRoomId:
 
 RevertPuzzleTeamWrapper:
 	RevertPuzzleTeamStart:
-		push {r2-r12,lr}
+		sub sp, #0xBC; // Original instruction
+		mov r4, r0;
+		push {r0-r12,lr}
+		mov r0, r4;
+		bl EntityIsValid
+		popne {r0-r12,pc};
+		bl GetLeader
+		cmp r0, r4;
+		popne {r0-r12,pc};
+
 		// Original Instruction
-		bl CreateMonsterSummaryFromMonster
 		bl RevertPuzzleBagAndTeam
-		pop {r2-r12,pc};
+		pop {r0-r12,pc};
 
 RevertPuzzleBagAndTeam:
 	push {r0-r12, lr}
@@ -843,10 +851,6 @@ NotMemoFixedRoomParty:
 ZeroBagSwapByte:
 	mov r0, #0;
 	bl WriteBagSwapByte;
-	mov r1, #0x4E; // PERFORMANCE_PROGRESS_LIST[62];
-	mov r2, #62; 
-	mov r3, #0; // Enable Quicksaves
-	bl SaveScriptVariableValueAtIndex
 	pop {r0-r12,pc}
 
 
@@ -887,10 +891,6 @@ InjectSpecialEpisodePC:
 	ldrh r0, [r6, #0x0];
 	mov r1, #1;
 	bl LoadMonsterSprite;
-	mov r1, #0x4E; // PERFORMANCE_PROGRESS_LIST[62];
-	mov r2, #62; 
-	mov r3, #1; // Disable Quicksaves
-	bl SaveScriptVariableValueAtIndex
     pop {r1-r12,pc}
 
 
@@ -979,10 +979,21 @@ MemoSwapBag:
 
 MemoSwapParty:
 	push {r2-r12,lr};
-
-	
-
-
+	push {r0-r3}
+	mov r1, #0x4E; // PERFORMANCE_PROGRESS_LIST[62];
+	mov r2, #62; 
+	bl LoadScriptVariableValueAtIndex
+	eor r3, r0, #1;
+	mov r1, #0x4E; // PERFORMANCE_PROGRESS_LIST[62];
+	mov r2, #62; 
+	bl SaveScriptVariableValueAtIndex
+	// bl 0x204B1D8
+	// cmp r0, #1;
+	// bne SkipSwitchingModeFromTopScreen
+	mov r0, #2; // What mode might this be? Lets find out!
+	bl ChangeTopScreenType
+	SkipSwitchingModeFromTopScreen:
+	pop {r0-r3}
 	mov r7, r0;
 	mov r6, r1;
 		mov r0,#0

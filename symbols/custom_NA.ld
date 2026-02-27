@@ -192,7 +192,7 @@ LongReachEffect = 0x23087fc;
 SweeterScentExit = 0x2332dfc;
 SweetScentVFXExit = 0x230e828;
 AfterCallToSafeguard = 0x2312370;
-
+ChangeTopScreenType = 0x22e8ca8;
 StopAttackingHook = 0x231A0BC;
 
 /* Hooks & Instruction Changes */

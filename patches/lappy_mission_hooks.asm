@@ -1078,7 +1078,15 @@
 
 	.org EXIT_DUNGEON_FLOOR_HOOK
 	.area 0x4;
-		bl RevertPuzzleTeamWrapper;
+		// bl RevertPuzzleTeamWrapper;
+		bl CreateMonsterSummaryFromMonster;
+	.endarea
+
+
+	.org HandleFaint
+	.area 0x8
+		push {r4-r11, lr};
+		bl RevertPuzzleTeamWrapper
 	.endarea
 
 	.org MEMO_PRINT_STRING_HOOK
