@@ -763,7 +763,8 @@ RevertPuzzleTeamWrapper:
 		push {r0-r12,lr}
 		mov r0, r4;
 		bl EntityIsValid
-		popne {r0-r12,pc};
+		cmp r0, #0;
+		popeq {r0-r12,pc};
 		bl GetLeader
 		cmp r0, r4;
 		popne {r0-r12,pc};
