@@ -5,6 +5,11 @@
 	cmp   r7, r8
 	beq   IgnitionCheckEndPremature
 
+	mov   r0, r8
+	bl    EntityIsValid
+	cmp   r0, #0
+	beq   IgnitionCheckEndPremature
+
 	ldr   r0, [r8, #0]
 	cmp   r0, #1
 	bne   IgnitionCheckEndPremature
