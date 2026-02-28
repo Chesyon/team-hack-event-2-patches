@@ -1,5 +1,6 @@
 #include <pmdsky.h>
 #include <cot.h>
+#include "floats.h"
 
 // lord forgive me for i have sinned
 
@@ -17,35 +18,28 @@ typedef struct {
     float v; // 0 to 1
 } HSV;
 
-// This probably already exists but is undocumented, so we get my janky approach of converting to a double and using the documented double function for comparisons.
-bool feq(float a, float b){
-    return _deq(_f2d(a), _f2d(b));
-}
-
 float max3(float a, float b, float c) {
-    float max = _fls(b, a) ? a : b;
-    return _fls(c, max) ? max : c;
+    float max = a > b ? a : b;
+    return max > c ? max : c;
 }
 
 float min3(float a, float b, float c) {
-    float min = _fls(a, b) ? a : b;
-    return _fls(min, c) ? min : c;
+    float min = a < b ? a : b;
+    return min < c ? min : c;
 }
 
 float fabs(float x){
-    return _fls(_fflt(0), x) ? x : _fsub(_fflt(0), x);
+    return 0 < x ? x : 0 - x;
 }
 
 // this is bad but if it works it works
 float fmod(float dividend, float divisor){
     float mod;
-    // Handling negative values
-    if (_fls(dividend, _fflt(0))) mod = _fsub(_fflt(0), dividend);
-    else mod = dividend;
-    if (_fls(divisor, _fflt(0))) divisor = _fsub(_fflt(0), divisor);
+    mod = fabs(dividend);
+    divisor = fabs(divisor);
 
-    while(_fls(divisor, mod)){
-        mod = _fsub(mod, divisor);
+    while(divisor < mod){
+        mod -= divisor;
     }
     return mod;
 }
@@ -58,29 +52,28 @@ HSV float_rgb_to_hsv(floatRGB float_rgb) {
     max = max3(float_rgb.r, float_rgb.g, float_rgb.b);
     hsv.v = max; // Value
 
-    delta = _fsub(max, min);
-    if (feq(max, _fflt(0))) {
+    delta = max - min;
+    if (max == 0) {
         // R = G = B = 0 => Black
-        hsv.s = _fflt(0);
-        hsv.h = _fflt(0);
+        hsv.s = 0;
+        hsv.h = 0;
         return hsv;
     }
 
-    hsv.s = _fdiv(delta, max);
-
-    if (feq(delta, _fflt(0))) {
-        hsv.h = _fflt(0);
-    } else if (feq(max, float_rgb.r)) {
-        hsv.h = _fmul(_fflt(60), _fadd(_fdiv(_fsub(float_rgb.g, float_rgb.b), delta), _fflt(6)));
-    } else if (feq(max, float_rgb.g)) {
-        hsv.h = _fmul(_fflt(60), _fadd(_fdiv(_fsub(float_rgb.b, float_rgb.r), delta), _fflt(2)));
+    hsv.s = delta / max;
+    if (delta == 0) {
+        hsv.h = 0;
+    } else if (max == float_rgb.r) {
+        hsv.h = 60 * (((float_rgb.g - float_rgb.b) / delta) + 6);
+    } else if (max == float_rgb.g) {
+        hsv.h = 60 * (((float_rgb.b - float_rgb.r) / delta) + 2);
     } else {
-        hsv.h = _fmul(_fflt(60), _fadd(_fdiv(_fsub(float_rgb.r, float_rgb.g), delta), _fflt(4)));
+        hsv.h = 60 * (((float_rgb.r - float_rgb.g) / delta) + 4);
     }
 
-    if (_fls(hsv.h, _fflt(0)))
+    if (hsv.h < 0)
         
-        hsv.h = _fadd(hsv.h, _fflt(360));
+        hsv.h += 360;
 
     return hsv;
 }
@@ -88,29 +81,32 @@ HSV float_rgb_to_hsv(floatRGB float_rgb) {
 // Convert HSV to floatRGB
 floatRGB hsv_to_float_rgb(HSV hsv) {
     floatRGB float_rgb;
-    float c = _fmul(hsv.v, hsv.s);
-    float x = _fmul(c, _fsub(_fflt(1), fabs(_fsub(fmod(_fdiv(hsv.h, _fflt(60)), _fflt(2)), 1))));
-    float m = _fsub(hsv.v, c);
+    float c = hsv.v * hsv.s;
+    float x = c * (1 - fabs(fmod(hsv.h / 60, 2) - 1));
+    float m = hsv.v - c;
 
     float r, g, b;
 
-    if (_fls(hsv.h, 60)) {
+    if (hsv.h == hsv.s){
+        return float_rgb;
+    }
+    if (hsv.h < 60) {
         r = c, g = x, b = 0;
-    } else if (_fls(hsv.h, _fflt(120))) {
+    } else if (hsv.h < 120) {
         r = x, g = c, b = 0;
-    } else if (_fls(hsv.h, _fflt(180))) {
+    } else if (hsv.h < 180) {
         r = 0, g = c, b = x;
-    } else if (_fls(hsv.h, _fflt(240))) {
+    } else if (hsv.h < 240) {
         r = 0, g = x, b = c;
-    } else if (_fls(hsv.h, _fflt(300))) {
+    } else if (hsv.h < 300) {
         r = x, g = 0, b = c;
     } else {
         r = c, g = 0, b = x;
     }
 
-    float_rgb.r = _fadd(r, m);
-    float_rgb.g = _fadd(g, m);
-    float_rgb.b = _fadd(b, m);
+    float_rgb.r = r + m;
+    float_rgb.g = g + m;
+    float_rgb.b = b + m;
 
     return float_rgb;
 }
@@ -118,25 +114,25 @@ floatRGB hsv_to_float_rgb(HSV hsv) {
 // Shift the hue of an floatRGB color
 floatRGB shift_hue(floatRGB color, int hue_shift_degrees) {
     HSV hsv = float_rgb_to_hsv(color);
-    hsv.h = fmod(_fadd(hsv.h, _fflt(hue_shift_degrees)), _fflt(360));
-    if (_fls(hsv.h, _fflt(0)))
-        hsv.h = _fadd(hsv.h, _fflt(360));
+    hsv.h = fmod(hsv.h + hue_shift_degrees, 360);
+    if (hsv.h < 0)
+        hsv.h += 360;
     return hsv_to_float_rgb(hsv);
 }
 
 floatRGB rgb_to_float_rgb(struct rgb rgb){
     floatRGB output;
-    output.r = _fdiv(_fflt(rgb.r), _fflt(255));
-    output.g = _fdiv(_fflt(rgb.g), _fflt(255));
-    output.b = _fdiv(_fflt(rgb.b), _fflt(255));
+    output.r = (float)(rgb.r) / 255;
+    output.g = (float)(rgb.g) / 255;
+    output.b = (float)(rgb.b) / 255;
     return output;
 }
 
 struct rgb float_rgb_to_rgb(floatRGB float_rgb){
     struct rgb output;
-    output.r = _ffix(_fmul(float_rgb.r, _fflt(255)));
-    output.g = _ffix(_fmul(float_rgb.g, _fflt(255)));
-    output.b = _ffix(_fmul(float_rgb.b, _fflt(255)));
+    output.r = float_rgb.r * 255;
+    output.g = float_rgb.g * 255;
+    output.b = float_rgb.b * 255;
     return output;
 }
 
