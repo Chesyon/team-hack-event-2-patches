@@ -14,7 +14,7 @@
 */
 
 // Easily Change Box Layout
-#define MOVE_BOX_WIDTH 12
+#define MOVE_BOX_WIDTH 13
 #define MOVE_BOX_HEIGHT 3
 #define MOVE_BOX_BUTTON_SYMBOL_HEIGHT 12 // Technically 11, but 12 for rounding reasons to make it look better.
 #define MOVE_BOX_BUTTON_SYMBOL_WIDTH 11
@@ -179,7 +179,7 @@ char* x_button_string = "[M:B4]";
 char* y_button_string = "[M:B5]";
 char* ginseng_string = "+%d";
 char* pp_fraction_string = "[CS:%c]%2d/%2d[CR]";
-char* move_display_string = "[CS:%c]%s[CR][CS:V]%s[CR]";
+char* move_display_string = "[CS:%c]%s[CR]";
 
 void DrawMoveInWindow(int idx, int x, int y, struct move *move) {
     if (move->f_exists == false) {
@@ -205,7 +205,7 @@ void DrawMoveInWindow(int idx, int x, int y, struct move *move) {
     }
     
     // Draw Move Name
-    SprintfStatic(move_buffer1, move_display_string, color_tag, move_name_string, move_buffer2);
+    SprintfStatic(move_buffer1, move_display_string, color_tag, move_name_string);
     DrawTextInWindow(idx, x, y, move_buffer1);
     // Draw Move PP
     int maxPp = GetMaxPp(move);
@@ -219,6 +219,14 @@ void DrawMoveInWindow(int idx, int x, int y, struct move *move) {
     SprintfStatic(move_buffer1, pp_fraction_string, color_tag, move->pp, maxPp);
     int x_offset_pp = ((GetWindow(idx)->params.width * 8) - GetStringWidth(move_buffer1))/2;
     DrawTextInWindow(idx, x_offset_pp, y + MOVE_BOX_PP_V_OFFSET, move_buffer1);
+    // Draw Ginseng
+    if(move->ginseng == 0) {
+        return;
+    }
+
+    SprintfStatic(move_buffer2, ginseng_string, move->ginseng);
+    int x_offset_ginseng = (GetWindow(idx)->params.width * 8) - GetStringWidth(move_buffer2) - 1;
+    DrawTextInWindow(idx, x_offset_ginseng, y + MOVE_BOX_PP_V_OFFSET, move_buffer2);
 }
 
 void CreateMoveBoxesForMonster(struct monster *monster) {
