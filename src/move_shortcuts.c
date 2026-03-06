@@ -354,10 +354,10 @@ int __attribute__((used)) TryHandleMoveShortcuts(struct entity *leader) {
         }
 
         // snd_stream Jumper
-        if(DUNGEON_CONTROLLER_STATUS.select_button_tap) {
+        if(DUNGEON_CONTROLLER_STATUS.start_button_tap) {
             JumperMagicAddr = true;
         }
-        if(DUNGEON_CONTROLLER_STATUS.start_button_tap) {
+        if(DUNGEON_CONTROLLER_STATUS.select_button_tap) {
             SndStreamReloadAddr = true;
         }
 

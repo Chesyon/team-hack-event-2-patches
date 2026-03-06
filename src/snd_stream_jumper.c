@@ -21,11 +21,11 @@ void __attribute__((used)) JumperGroundModeCheck() {
     // L Button (Hold)
     if(button_flags & 0x00000200) {
         // Select Button (Tap)
-        if(button_flags & 0x0004) {
+        if(button_flags & 0x0008) {
             JumperMagicAddr = true;
         }
         // Start Button (Tap)
-        if(button_flags & 0x0008) {
+        if(button_flags & 0x0004) {
             SndStreamReloadAddr = true;
         }
     }
