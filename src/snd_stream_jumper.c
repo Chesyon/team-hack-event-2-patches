@@ -11,25 +11,24 @@
 extern bool JumperMagicAddr;
 extern bool SndStreamReloadAddr;
 extern uint32_t *GetPressedButtonsTweak(int controller, uint32_t *button_flags_ptr);
-extern void FUN_0204F9CC_NA();
+extern void FUN_022DC808_NA();
 
 void __attribute__((used)) JumperGroundModeCheck() {
-    uint32_t *button_flags_ptr = NULL;
+    uint32_t button_flags = 0x00000000;
     int controller = 0;
-    GetPressedButtonsTweak(controller, button_flags_ptr);
-    uint32_t button_flags = *button_flags_ptr;
+    GetPressedButtonsTweak(controller, &button_flags);
 
     // L Button (Hold)
     if(button_flags & 0x00000200) {
         // Select Button (Tap)
-        if(button_flags & 0x00040000) {
+        if(button_flags & 0x0004) {
             JumperMagicAddr = true;
         }
         // Start Button (Tap)
-        if(button_flags & 0x00080000) {
+        if(button_flags & 0x0008) {
             SndStreamReloadAddr = true;
         }
     }
 
-    FUN_0204F9CC_NA();
+    FUN_022DC808_NA();
 }
