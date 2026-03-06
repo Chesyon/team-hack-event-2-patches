@@ -33,6 +33,9 @@
 // clobbers r1. However, give it just in case.
 extern void SetDisplayMode(int display_mode, int unusued);
 extern int GetStringWidth(char* str);
+extern bool JumperMagicAddr;
+extern bool SndStreamReloadAddr;
+extern uint32_t *GetPressedButtonsTweak(int controller, uint32_t *button_flags_ptr);
 
 typedef struct controller_status {
     bool a_button : 1;      // 0  - 0x0001
@@ -348,6 +351,14 @@ int __attribute__((used)) TryHandleMoveShortcuts(struct entity *leader) {
                 AdvanceFrame(0);
                 return MOVE_SHORTCUT_ITEM_USED;
             }
+        }
+
+        // snd_stream Jumper
+        if(DUNGEON_CONTROLLER_STATUS.select_button_tap) {
+            JumperMagicAddr = true;
+        }
+        if(DUNGEON_CONTROLLER_STATUS.start_button_tap) {
+            SndStreamReloadAddr = true;
         }
 
         // Check for a move to use.

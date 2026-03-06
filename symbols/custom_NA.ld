@@ -294,3 +294,11 @@ OOPS2 = 0x22FEBAC;
 /* Boss HP Hooks */
 BossHPCheckHook =  0x2309964;
 BossHPCheckUnhook = 0x2309970;
+
+/* snd_stream Jumper */
+JumperGroundModeHook = 0x22E8E2C;
+FUN_0204F9CC_NA = 0x204F9CC;
+JumperDungeonModeHook = 0x0;
+JumperMagicAddr = 0x22B9043;
+SndStreamReloadAddr = 0x23D7FF1;
+GetPressedButtonsTweak = 0x200625C;
