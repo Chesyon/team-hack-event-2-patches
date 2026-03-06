@@ -18,13 +18,13 @@ void __attribute__((used)) JumperGroundModeCheck() {
     int controller = 0;
     GetPressedButtonsTweak(controller, &button_flags);
 
-    // L Button (Hold)
+    // L Button (Tap)
     if(button_flags & 0x00000200) {
-        // Select Button (Tap)
+        // Start Button (Tap)
         if(button_flags & 0x0008) {
             JumperMagicAddr = true;
         }
-        // Start Button (Tap)
+        // Select Button (Tap)
         if(button_flags & 0x0004) {
             SndStreamReloadAddr = true;
         }
