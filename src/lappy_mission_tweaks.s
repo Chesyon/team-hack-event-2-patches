@@ -759,9 +759,8 @@ SelectPuzzleRoomId:
 RevertPuzzleTeamWrapper:
 	RevertPuzzleTeamStart:
 		sub sp, #0xBC; // Original instruction
-		mov r4, r0;
 		push {r0-r12,lr}
-		mov r0, r4;
+		mov r4, r0;
 		bl EntityIsValid
 		cmp r0, #0;
 		popeq {r0-r12,pc};

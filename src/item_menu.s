@@ -1,5 +1,5 @@
 .align
-
+/*
 NewMenuStart:
 	mvn	r3, #0
 	push	{r4, r5, lr}
@@ -171,3 +171,4 @@ ITEM_INDICES:
 	.fill 50, 0x0
 
 .align
+*/
