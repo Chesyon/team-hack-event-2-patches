@@ -73,6 +73,9 @@ void __attribute__((used)) __attribute__((naked)) ChaosTypeCheck() {
 
 // Random Explosion
 bool __attribute__((used)) ChaosExplosionCheck(struct entity *attacker, struct entity *defender) {
+    if(false == IsMonster(attacker)) {
+        return false;
+    }
     if(ItemIsActive(attacker, CHAOS_AMULET)) {
         return true;
     }
