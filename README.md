@@ -1,3 +1,6 @@
+## Heads up!
+The code in this repository contains MAJOR spoilers for the contents of _Team Hack Event #2: Crimson Chrysalis_. If you do not want to be spoiled on the hack, please click away now!
+
 # c-of-time
 
 ![c-of-time logo by Irdkwia](./cot-logo.png)
