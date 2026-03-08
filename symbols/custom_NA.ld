@@ -299,5 +299,6 @@ BossHPCheckUnhook = 0x2309970;
 JumperGroundModeHook = 0x22E8E28;
 FUN_022DC808_NA = 0x22DC808;
 JumperMagicAddr = 0x22B9043;
+SndStreamPlayingAddr = 0x23D7FF0;
 SndStreamReloadAddr = 0x23D7FF1;
 GetPressedButtonsTweak = 0x200625C;
